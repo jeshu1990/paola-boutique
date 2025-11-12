@@ -1,0 +1,51 @@
+.tab-btn {
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    background-color: #f8fafc;
+    border-bottom-color: #cbd5e0;
+}
+
+.tab-btn.tab-active {
+    border-bottom-color: #8b5cf6;
+}
+
+.tab-content {
+    transition: opacity 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+.stock-bajo {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+}
+
+.stock-medio {
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+}
+
+.stock-alto {
+    background-color: #f0fdf4;
+    border-left: 4px solid #10b981;
+}
+
+.producto-agotado {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.filtro-inv-btn.active {
+    background: linear-gradient(45deg, #ec4899, #8b5cf6);
+    color: white;
+}
