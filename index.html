@@ -1488,6 +1488,48 @@
     }
 }
 
+/* ========== CORRECCIÓN IMÁGENES MÓVIL ========== */
+@media (max-width: 480px) {
+    /* Forzar que las imágenes se muestren en móvil */
+    .producto-img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Contenedor de imágenes en móvil */
+    .producto-img-container {
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Asegurar que las imágenes del carrusel se vean */
+    .producto-circulo img {
+        display: block !important;
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Imágenes del modal */
+    #modal-image {
+        display: block !important;
+        max-width: 100% !important;
+        max-height: 200px !important;
+    }
+}
+
+/* Para tablets */
+@media (max-width: 768px) {
+    .producto-img {
+        display: block !important;
+        max-width: 100% !important;
+    }
+}
+        
 
 
     </style>
@@ -3658,3 +3700,4 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
