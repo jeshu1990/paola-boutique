@@ -1410,6 +1410,86 @@
     }
 }
 
+/* ========== SOLUCIÓN FORZADA PARA BOTONES HEADER ========== */
+@media (max-width: 480px) {
+    /* Fuerza el header a ser compacto */
+    header.hero-moderno {
+        padding: 5px 0 !important;
+    }
+    
+    header.hero-moderno .container {
+        padding: 0 8px !important;
+    }
+    
+    /* Logo compacto */
+    header.hero-moderno .flex.items-center.gap-3 {
+        gap: 6px !important;
+        min-width: auto;
+    }
+    
+    header.hero-moderno .w-10 {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    header.hero-moderno .text-2xl {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+    
+    header.hero-moderno .text-xs {
+        font-size: 0.5rem !important;
+    }
+    
+    /* Botones solo íconos */
+    header.hero-moderno .flex.gap-2.items-center {
+        gap: 2px !important;
+    }
+    
+    header.hero-moderno .bg-white\/10 {
+        padding: 5px !important;
+        width: 35px !important;
+        height: 35px !important;
+        border-radius: 6px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Ocultar texto completamente */
+    header.hero-moderno .flex.gap-2.items-center > * > span,
+    header.hero-moderno .flex.gap-2.items-center span {
+        display: none !important;
+    }
+    
+    /* Íconos pequeños */
+    header.hero-moderno .flex.gap-2.items-center i {
+        font-size: 0.8rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Quitar márgenes de íconos */
+    header.hero-moderno .fa-shopping-cart,
+    header.hero-moderno .fa-heart,
+    header.hero-moderno .fa-instagram,
+    header.hero-modennium .fa-facebook,
+    header.hero-moderno .fa-book {
+        margin-right: 0 !important;
+    }
+    
+    /* Contadores mini */
+    header.hero-moderno .absolute {
+        top: -2px !important;
+        right: -2px !important;
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 0.5rem !important;
+        line-height: 14px !important;
+    }
+}
+
+
+
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen">
