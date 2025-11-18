@@ -974,14 +974,14 @@
     left: 15%;
 }
 
-/* Carrusel Horizontal Automático en Círculos */
+/* CARRUSEL HORIZONTAL AUTOMÁTICO MEJORADO */
 @keyframes scroll-horizontal {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
 .animate-scroll-horizontal {
-    animation: scroll-horizontal 40s linear infinite;
+    animation: scroll-horizontal 30s linear infinite;
     display: flex;
     width: max-content;
 }
@@ -1117,7 +1117,7 @@
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
 }
 
-/* CARRUSEL CON DIRECCIONES OPUESTAS */
+/* CARRUSEL CON DIRECCIONES OPUESTAS MEJORADO */
 @keyframes scroll-horizontal-izquierda {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -1129,13 +1129,13 @@
 }
 
 .animate-scroll-izquierda {
-    animation: scroll-horizontal-izquierda 40s linear infinite;
+    animation: scroll-horizontal-izquierda 35s linear infinite;
     display: flex;
     width: max-content;
 }
 
 .animate-scroll-derecha {
-    animation: scroll-horizontal-derecha 40s linear infinite;
+    animation: scroll-horizontal-derecha 35s linear infinite;
     display: flex;
     width: max-content;
 }
@@ -1143,6 +1143,34 @@
 .animate-scroll-izquierda:hover,
 .animate-scroll-derecha:hover {
     animation-play-state: paused;
+}
+
+/* Efecto de desvanecimiento en los bordes del carrusel */
+.carrusel-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carrusel-container::before,
+.carrusel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carrusel-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.carrusel-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 }
 
 .carrusel-track {
@@ -1200,6 +1228,11 @@
     object-fit: contain;
     margin-bottom: 8px;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.producto-circulo:hover img {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .nombre-producto {
@@ -1231,12 +1264,6 @@
     font-weight: 700;
     z-index: 10;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.carrusel-container {
-    position: relative;
-    overflow: hidden;
-    padding: 20px 0;
 }
 
 /* EFECTOS PARA EL TÍTULO PRINCIPAL */
@@ -1380,6 +1407,11 @@
     .precio-producto {
         font-size: 14px;
     }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1406,7 +1438,12 @@
     /* Ajustar velocidad de animación en móvil */
     .animate-scroll-izquierda,
     .animate-scroll-derecha {
-        animation-duration: 30s;
+        animation-duration: 25s;
+    }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 30px;
     }
 }
 
@@ -3533,7 +3570,7 @@ scrollToTopBtn.addEventListener('click', function() {
 });
 
 // =============================================
-// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS
+// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS - CORREGIDO
 // =============================================
 
 let productosCarrusel = [];
@@ -3569,7 +3606,7 @@ function crearProductoCirculoHTML(producto) {
     `;
 }
 
-// Función para cargar productos en el carrusel con direcciones opuestas
+// Función para cargar productos en el carrusel con direcciones opuestas - CORREGIDA
 function cargarCarruselDireccionesOpuestas(productos) {
     const carruselTrack1 = document.getElementById('carrusel-track-1');
     const carruselTrack2 = document.getElementById('carrusel-track-2');
@@ -3582,23 +3619,18 @@ function cargarCarruselDireccionesOpuestas(productos) {
         return;
     }
     
-    // Dividir productos en dos grupos para las dos filas
-    const mitad = Math.ceil(productos.length / 2);
-    const productosFila1 = productos.slice(0, mitad);
-    const productosFila2 = productos.slice(mitad);
+    // CORRECCIÓN: Usar TODOS los productos sin duplicar
+    // Para la fila 1 (izquierda): orden normal
+    const productosFila1 = [...productos];
     
-    // Para la fila 1 (izquierda): orden normal + duplicado
-    const productosDuplicados1 = [...productosFila1, ...productosFila1];
+    // Para la fila 2 (derecha): orden invertido
+    const productosFila2 = [...productos].reverse();
     
-    // Para la fila 2 (derecha): orden invertido + duplicado
-    const productosInvertidos2 = [...productosFila2].reverse();
-    const productosDuplicados2 = [...productosInvertidos2, ...productosInvertidos2];
-    
-    carruselTrack1.innerHTML = productosDuplicados1.map(producto => 
+    carruselTrack1.innerHTML = productosFila1.map(producto => 
         crearProductoCirculoHTML(producto)
     ).join('');
     
-    carruselTrack2.innerHTML = productosDuplicados2.map(producto => 
+    carruselTrack2.innerHTML = productosFila2.map(producto => 
         crearProductoCirculoHTML(producto)
     ).join('');
 }
@@ -3656,4 +3688,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
-
