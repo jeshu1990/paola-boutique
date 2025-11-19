@@ -1890,7 +1890,87 @@
     </div>
 </section>
             
-
+<!-- Formulario para agregar productos -->
+<div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+    <h3 class="text-xl font-bold mb-4">➕ Agregar Nuevo Producto</h3>
+    
+    <form id="form-producto" onsubmit="event.preventDefault(); guardarProductoConImagen(getFormData());">
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Producto</label>
+                <input type="text" id="nombre-producto" required 
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
+                <select id="categoria-producto" required 
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500">
+                    <option value="">Seleccionar categoría</option>
+                    <option value="niñas">👧 Niñas</option>
+                    <option value="niños">👦 Niños</option>
+                    <option value="cosmeticos">💄 Cosméticos</option>
+                    <option value="joyas">💎 Joyas</option>
+                    <option value="otros">🎁 Otros</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Precio (S/)</label>
+                <input type="number" id="precio-producto" required min="0" step="0.01"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Stock</label>
+                <input type="number" id="stock-producto" required min="0"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500">
+            </div>
+        </div>
+        
+        <!-- Campo de imagen mejorado -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+                📸 Imagen del Producto
+            </label>
+            <input type="file" id="imagen-producto" accept="image/*" 
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500"
+                   onchange="mostrarVistaPrevia(this)">
+            
+            <!-- Vista previa de imagen -->
+            <div id="vista-previa" class="mt-3 hidden">
+                <p class="text-sm text-gray-600 mb-2">Vista previa:</p>
+                <img id="imagen-previa" class="w-32 h-32 object-cover rounded-lg border">
+            </div>
+            
+            <p class="text-xs text-gray-500 mt-1">
+                Formatos: JPG, PNG, WEBP • Máximo: 2MB
+            </p>
+        </div>
+        
+        <!-- Especificaciones del producto -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Especificaciones</label>
+            <div id="especificaciones-container">
+                <div class="flex gap-2 mb-2">
+                    <input type="text" placeholder="Ej: Material: Algodón 100%" 
+                           class="flex-1 p-3 border border-gray-300 rounded-lg">
+                    <button type="button" onclick="agregarEspecificacion()" 
+                            class="bg-green-500 text-white px-4 rounded-lg hover:bg-green-600">
+                        +
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" 
+                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all">
+            💾 Guardar Producto
+        </button>
+    </form>
+</div>
      
 
         <!-- Proceso de compra didáctico (SE MANTIENE) -->
@@ -2992,6 +3072,271 @@ if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
         }
 
         // =============================================
+// PANEL DE ADMINISTRACIÓN MEJORADO (BASE64)
+// =============================================
+
+// Función para guardar producto con imagen
+async function guardarProductoConImagen(datosProducto) {
+    try {
+        const inputImagen = document.getElementById('imagen-producto');
+        const archivoImagen = inputImagen?.files[0];
+        
+        // Procesar imagen
+        datosProducto.imagen = await procesarImagenParaProducto(archivoImagen);
+        
+        // Guardar en localStorage
+        const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+        datosProducto.id = Date.now();
+        datosProducto.stock = parseInt(datosProducto.stock) || 0;
+        datosProducto.vendidos = 0;
+        
+        productos.push(datosProducto);
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        
+        // Limpiar formulario
+        if (document.getElementById('form-producto')) {
+            document.getElementById('form-producto').reset();
+        }
+        
+        // Ocultar vista previa
+        const vistaPrevia = document.getElementById('vista-previa');
+        if (vistaPrevia) vistaPrevia.classList.add('hidden');
+        
+        mostrarNotificacion('✅ Producto guardado correctamente');
+        return true;
+        
+    } catch (error) {
+        console.error('Error:', error);
+        mostrarNotificacion(error);
+        return false;
+    }
+}
+
+// Función para actualizar producto existente
+async function actualizarProductoConImagen(idProducto, datosActualizados) {
+    try {
+        const inputImagen = document.getElementById('imagen-producto-editar');
+        const archivoImagen = inputImagen?.files[0];
+        
+        // Si hay nueva imagen, procesarla
+        if (archivoImagen) {
+            datosActualizados.imagen = await procesarImagenParaProducto(archivoImagen);
+        }
+        
+        // Actualizar en localStorage
+        const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+        const index = productos.findIndex(p => p.id === idProducto);
+        
+        if (index !== -1) {
+            productos[index] = { ...productos[index], ...datosActualizados };
+            localStorage.setItem('productos_paola', JSON.stringify(productos));
+            mostrarNotificacion('✅ Producto actualizado correctamente');
+            return true;
+        } else {
+            mostrarNotificacion('❌ Producto no encontrado');
+            return false;
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        mostrarNotificacion(error);
+        return false;
+    }
+}
+
+// Obtener datos del formulario
+function getFormData() {
+    const especificaciones = Array.from(document.querySelectorAll('#especificaciones-container input'))
+        .map(input => input.value)
+        .filter(text => text.trim() !== '');
+    
+    return {
+        nombre: document.getElementById('nombre-producto').value,
+        categoria: document.getElementById('categoria-producto').value,
+        precio: parseFloat(document.getElementById('precio-producto').value),
+        stock: parseInt(document.getElementById('stock-producto').value),
+        tallas: {
+            tallas: [], // Puedes agregar lógica para tallas si necesitas
+            descripciones: especificaciones
+        }
+    };
+}
+
+// Mostrar vista previa de imagen
+function mostrarVistaPrevia(input) {
+    const vistaPrevia = document.getElementById('vista-previa');
+    const imagenPrevia = document.getElementById('imagen-previa');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            imagenPrevia.src = e.target.result;
+            vistaPrevia.classList.remove('hidden');
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        vistaPrevia.classList.add('hidden');
+    }
+}
+
+// Agregar campo de especificación
+function agregarEspecificacion() {
+    const container = document.getElementById('especificaciones-container');
+    const div = document.createElement('div');
+    div.className = 'flex gap-2 mb-2';
+    div.innerHTML = `
+        <input type="text" placeholder="Ej: Color: Rosa Pastel" 
+               class="flex-1 p-3 border border-gray-300 rounded-lg">
+        <button type="button" onclick="this.parentElement.remove()" 
+                class="bg-red-500 text-white px-4 rounded-lg hover:bg-red-600">
+            -
+        </button>
+    `;
+    container.appendChild(div);
+}
+
+// Función para mostrar/ocultar panel de administración
+function togglePanelAdmin() {
+    const panel = document.getElementById('panel-admin');
+    if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        cargarProductosEnAdmin();
+    } else {
+        panel.classList.add('hidden');
+    }
+}
+
+// Cargar productos en el panel de administración
+function cargarProductosEnAdmin() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+    const container = document.getElementById('lista-productos-admin');
+    
+    if (!container) return;
+    
+    if (productos.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-8 text-gray-500">
+                <i class="fas fa-box-open text-4xl mb-3"></i>
+                <p>No hay productos registrados</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = productos.map(producto => `
+        <div class="bg-white p-4 rounded-lg border border-gray-200">
+            <div class="flex items-center gap-4">
+                <img src="${producto.imagen}" alt="${producto.nombre}" 
+                     class="w-16 h-16 object-cover rounded-lg">
+                <div class="flex-1">
+                    <h4 class="font-semibold">${producto.nombre}</h4>
+                    <p class="text-purple-600 font-bold">S/ ${producto.precio}</p>
+                    <p class="text-sm text-gray-600">Stock: ${producto.stock} | Vendidos: ${producto.vendidos}</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="editarProducto(${producto.id})" 
+                            class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-600">
+                        Editar
+                    </button>
+                    <button onclick="eliminarProducto(${producto.id})" 
+                            class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Eliminar producto
+function eliminarProducto(id) {
+    if (confirm('¿Estás seguro de eliminar este producto?')) {
+        const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+        const nuevosProductos = productos.filter(p => p.id !== id);
+        localStorage.setItem('productos_paola', JSON.stringify(nuevosProductos));
+        mostrarNotificacion('✅ Producto eliminado');
+        cargarProductosEnAdmin();
+        cargarProductos(); // Recargar en el catálogo principal
+    }
+}
+// Obtener datos del formulario
+function getFormData() {
+    const especificaciones = Array.from(document.querySelectorAll('#especificaciones-container input'))
+        .map(input => input.value)
+        .filter(text => text.trim() !== '');
+    
+    return {
+        nombre: document.getElementById('nombre-producto').value,
+        categoria: document.getElementById('categoria-producto').value,
+        precio: parseFloat(document.getElementById('precio-producto').value),
+        stock: parseInt(document.getElementById('stock-producto').value),
+        tallas: {
+            tallas: [], // Puedes agregar lógica para tallas si necesitas
+            descripciones: especificaciones
+        }
+    };
+}
+
+// Mostrar vista previa de imagen
+function mostrarVistaPrevia(input) {
+    const vistaPrevia = document.getElementById('vista-previa');
+    const imagenPrevia = document.getElementById('imagen-previa');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            imagenPrevia.src = e.target.result;
+            vistaPrevia.classList.remove('hidden');
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        vistaPrevia.classList.add('hidden');
+    }
+}
+
+// Agregar campo de especificación
+function agregarEspecificacion() {
+    const container = document.getElementById('especificaciones-container');
+    const div = document.createElement('div');
+    div.className = 'flex gap-2 mb-2';
+    div.innerHTML = `
+        <input type="text" placeholder="Ej: Color: Rosa Pastel" 
+               class="flex-1 p-3 border border-gray-300 rounded-lg">
+        <button type="button" onclick="this.parentElement.remove()" 
+                class="bg-red-500 text-white px-4 rounded-lg hover:bg-red-600">
+            -
+        </button>
+    `;
+    container.appendChild(div);
+}
+
+// Verificar y reparar imágenes existentes
+function repararImagenesExistentes() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+    let cambios = false;
+    
+    productos.forEach(producto => {
+        // Si la imagen es una URL externa y no carga, reemplazar
+        if (producto.imagen && !producto.imagen.startsWith('data:image')) {
+            const img = new Image();
+            img.onerror = function() {
+                producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
+                cambios = true;
+            };
+            img.src = producto.imagen;
+        }
+    });
+    
+    if (cambios) {
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        console.log('✅ Imágenes reparadas automáticamente');
+    }
+}
+        // =============================================
         // SISTEMA DE CARRITO (COMPACTO PERO FUNCIONAL)
         // =============================================
 
@@ -3714,8 +4059,65 @@ if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
             });
         }
 
-        // Inicialización corregida
-        document.addEventListener('DOMContentLoaded', function() {
+       // =============================================
+// INICIALIZACIÓN COMPLETA DE LA APLICACIÓN
+// =============================================
+
+// Al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Iniciando PAOLA BOUTIQUE...');
+    
+    // 1. Registrar visita (contador interno)
+    incrementarContadorVisitas();
+    registrarVisita();
+    
+    // 2. Inicializar panel de administración
+    inicializarPanelAdmin();
+    
+    // 3. Cargar productos principales
+    cargarProductos();
+    
+    // 4. Renderizar testimonios
+    renderizarTestimonios();
+    
+    // 5. Inicializar eventos después de un pequeño delay
+    setTimeout(() => {
+        inicializarEventos();
+        actualizarContadorFavoritos();
+        actualizarContadorCarrito();
+        
+        // 6. Iniciar carrusel automático si hay productos
+        if (productosFiltrados.length > 0) {
+            setInterval(() => cambiarCarrusel('next'), 5000);
+        }
+        
+        // 7. Iniciar rotación automática de testimonios
+        setInterval(rotarTestimonios, 5000);
+        
+        // 8. Inicializar carrusel horizontal
+        inicializarCarrusel();
+        
+        console.log('✅ PAOLA BOUTIQUE iniciada correctamente');
+    }, 100);
+});
+
+// También inicializar cuando la página se vuelve visible
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        // Recargar productos si la página vuelve a ser visible
+        cargarProductos();
+    }
+});
+
+// Manejar errores globales
+window.addEventListener('error', function(e) {
+    console.error('❌ Error global:', e.error);
+});
+
+// Manejar promesas rechazadas no capturadas
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('❌ Promesa rechazada:', e.reason);
+});
             // =============================================
             // CONTADOR DE VISITAS - INCREMENTAR AL CARGAR LA PÁGINA
             // =============================================
@@ -3906,5 +4308,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
 
 
