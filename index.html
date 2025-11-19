@@ -94,9 +94,11 @@
             box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15);
         }
         
+        /* ============================================= */
         /* MODIFICACIÓN CLAVE: IMÁGENES QUE NO SE DISTORSIONAN */
+        /* ============================================= */
         .producto-img-container {
-            height: 140px;
+            height: 140px; /* Altura fija para el contenedor */
             overflow: hidden;
             position: relative;
             display: flex;
@@ -108,7 +110,7 @@
         .producto-img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* ¡ESTO ES CLAVE! Mantiene proporciones */
             width: auto;
             height: auto;
             transition: all 0.4s ease;
@@ -122,7 +124,7 @@
         .carousel-img {
             max-width: 100%;
             max-height: 280px;
-            object-fit: contain;
+            object-fit: contain; /* Mantiene proporciones en carrusel */
             border-radius: 16px;
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
@@ -131,9 +133,10 @@
         #modal-image {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Mantiene proporciones en modal */
             border-radius: 8px;
         }
+        /* ============================================= */
         
         /* Header más delgado y moderno */
         .header-glass {
@@ -241,11 +244,11 @@
             color: white;
         }
         
-        /* Grid de productos mejorado - MÁS COMPACTO */
+        /* Grid de productos mejorado - MÁS COMPACTO (4-5 productos por fila) */
         .productos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Más compacto */
+            gap: 16px; /* Espacio reducido */
             padding: 16px 0;
         }
         
@@ -266,7 +269,7 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
         }
         
-        /* HERO MEJORADO CON ANIMACIONES Y DISEÑO MODERNO */
+        /* NUEVO: HERO MEJORADO CON ANIMACIONES Y DISEÑO MODERNO */
         .hero-mejorado {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             position: relative;
@@ -296,16 +299,16 @@
             padding: 40px 20px;
         }
         
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+       .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        background-clip: text; /* ← LÍNEA AGREGADA */
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* ← LÍNEA AGREGADA para compatibilidad */
+        margin-bottom: 20px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         
         .hero-subtitle {
@@ -342,7 +345,7 @@
             transition: all 0.3s ease;
         }
         
-        /* EFECTO HOVER EN ICONOS DE HERO */
+        /* NUEVO: EFECTO HOVER EN ICONOS DE HERO */
         .hero-feature:hover i {
             background: rgba(255,255,255,0.3);
             transform: scale(1.1) rotate(5deg);
@@ -435,7 +438,7 @@
             animation: float 9s ease-in-out infinite 1.5s;
         }
         
-        /* CARRUSEL MEJORADO CON DISEÑO MODERNO */
+        /* NUEVO: CARRUSEL MEJORADO CON DISEÑO MODERNO */
         .carousel-mejorado {
             border-radius: 20px;
             overflow: hidden;
@@ -861,666 +864,668 @@
             }
         }
 
-        /* Estilos compactos para el hero */
-        .hero-mejorado {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-feature-compact {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 8px 4px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-        }
-
-        .hero-feature-compact:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .icon-container-compact {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Botones compactos */
-        .btn-compact {
-            position: relative;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: all 0.3s ease;
-            border: none;
-            overflow: hidden;
-            text-align: center;
-            min-width: 160px;
-        }
-
-        .btn-compact.primary {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            color: white;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-compact.secondary {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-compact:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(139, 92, 246, 0.4);
-        }
-
-        .btn-compact.primary:hover {
-            background: linear-gradient(135deg, #db2777, #7c3aed);
-        }
-
-        .btn-compact.secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Floating elements más pequeños */
-        .floating-element:nth-child(1) {
-            width: 50px;
-            height: 50px;
-            top: 10%;
-            left: 10%;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 40px;
-            height: 40px;
-            top: 70%;
-            left: 80%;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 30px;
-            height: 30px;
-            top: 40%;
-            left: 85%;
-        }
-
-        .floating-element:nth-child(4) {
-            width: 60px;
-            height: 60px;
-            top: 80%;
-            left: 15%;
-        }
-
-        /* CARRUSEL HORIZONTAL AUTOMÁTICO MEJORADO */
-        @keyframes scroll-horizontal {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .animate-scroll-horizontal {
-            animation: scroll-horizontal 30s linear infinite;
-            display: flex;
-            width: max-content;
-        }
-
-        .animate-scroll-horizontal:hover {
-            animation-play-state: paused;
-        }
-
-        /* EFECTO CON COLORES DIFERENTES PARA CADA BOTÓN */
-        .filtro-moderno {
-            background: white;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 8px 16px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .filtro-moderno::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .filtro-moderno:hover::before {
-            left: 100%;
-        }
-
-        /* COLORES ESPECÍFICOS PARA CADA CATEGORÍA */
-        .filtro-moderno[onclick*="'todos'"]:hover {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'todos'"].active {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
-        }
-
-        /* Niñas - Rosa */
-        .filtro-moderno[onclick*="'niñas'"]:hover {
-            background: linear-gradient(135deg, #ec4899, #db2777);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'niñas'"].active {
-            background: linear-gradient(135deg, #ec4899, #db2777);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2);
-        }
-
-        /* Niños - Azul */
-        .filtro-moderno[onclick*="'niños'"]:hover {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'niños'"].active {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
-        }
-
-        /* Cosméticos - Púrpura */
-        .filtro-moderno[onclick*="'cosmeticos'"]:hover {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'cosmeticos'"].active {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.2);
-        }
-
-        /* Joyas - Amarillo/Dorado */
-        .filtro-moderno[onclick*="'joyas'"]:hover {
-            background: linear-gradient(135deg, #eab308, #ca8a04);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'joyas'"].active {
-            background: linear-gradient(135deg, #eab308, #ca8a04);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(234, 179, 8, 0.2);
-        }
-
-        /* Otros - Verde */
-        .filtro-moderno[onclick*="'otros'"]:hover {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .filtro-moderno[onclick*="'otros'"].active {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
-        }
-
-        /* CARRUSEL CON DIRECCIONES OPUESTAS MEJORADO */
-        @keyframes scroll-horizontal-izquierda {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        @keyframes scroll-horizontal-derecha {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
-
-        .animate-scroll-izquierda {
-            animation: scroll-horizontal-izquierda 35s linear infinite;
-            display: flex;
-            width: max-content;
-        }
-
-        .animate-scroll-derecha {
-            animation: scroll-horizontal-derecha 35s linear infinite;
-            display: flex;
-            width: max-content;
-        }
-
-        .animate-scroll-izquierda:hover,
-        .animate-scroll-derecha:hover {
-            animation-play-state: paused;
-        }
-
-        /* Efecto de desvanecimiento en los bordes del carrusel */
-        .carrusel-container {
-            position: relative;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .carrusel-container::before,
-        .carrusel-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .carrusel-container::before {
-            left: 0;
-            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-        }
-
-        .carrusel-container::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-        }
-
-        .carrusel-track {
-            display: flex;
-            width: max-content;
-            gap: 20px;
-        }
-
-        .producto-circulo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-            flex-shrink: 0;
-        }
-
-        .producto-circulo::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .producto-circulo:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .producto-circulo:hover::before {
-            opacity: 1;
-        }
-
-        .producto-circulo img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            margin-bottom: 8px;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .producto-circulo:hover img {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .nombre-producto {
-            font-weight: 600;
-            color: #2d3748;
-            font-size: 14px;
-            line-height: 1.2;
-            z-index: 1;
-            margin-bottom: 5px;
-        }
-
-        .precio-producto {
-            font-weight: 700;
-            color: #8b5cf6;
-            font-size: 16px;
-            z-index: 1;
-        }
-
-        .categoria-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            color: #4b5563;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* EFECTOS PARA EL TÍTULO PRINCIPAL */
-        .titulo-destacado {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6, #10b981);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shift 4s ease infinite;
-            position: relative;
-            display: inline-block;
-        }
-
-        .titulo-destacado::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .titulo-destacado:hover::after {
-            transform: scaleX(1);
-        }
-
-        @keyframes gradient-shift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Alternativa: Efecto de sombra animada */
-        .titulo-sombra {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-            animation: pulse-sombra 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse-sombra {
-            0% {
-                text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-            }
-            100% {
-                text-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 40px rgba(236, 72, 153, 0.4);
-            }
-        }
-
-        /* Alternativa: Efecto tipo neón */
-        .titulo-neon {
-            color: #fff;
-            text-shadow: 
-                0 0 5px #ec4899,
-                0 0 10px #ec4899,
-                0 0 15px #ec4899,
-                0 0 20px #8b5cf6,
-                0 0 35px #8b5cf6,
-                0 0 40px #8b5cf6;
-            animation: neon-flicker 2s infinite alternate;
-        }
-
-        @keyframes neon-flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 
-                    0 0 5px #ec4899,
-                    0 0 10px #ec4899,
-                    0 0 15px #ec4899,
-                    0 0 20px #8b5cf6,
-                    0 0 35px #8b5cf6,
-                    0 0 40px #8b5cf6;
-            }
-            20%, 24%, 55% {
-                text-shadow: none;
-            }
-        }
-
-        /* Alternativa: Efecto de escritura */
-        .titulo-escritura {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .titulo-escritura::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            animation: escritura 3s infinite;
-        }
-
-        @keyframes escritura {
-            0% {
-                left: -100%;
-            }
-            50% {
-                left: 100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        /* RESPONSIVE PARA EL CARRUSEL EN MÓVIL */
-        @media (max-width: 768px) {
-            .producto-circulo {
-                width: 140px;
-                height: 140px;
-                margin: 0 10px;
-            }
-            
-            .producto-circulo img {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .nombre-producto {
-                font-size: 12px;
-            }
-            
-            .precio-producto {
-                font-size: 14px;
-            }
-            
-            .carrusel-container::before,
-            .carrusel-container::after {
-                width: 50px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .producto-circulo {
-                width: 120px;
-                height: 120px;
-                margin: 0 8px;
-            }
-            
-            .producto-circulo img {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .nombre-producto {
-                font-size: 11px;
-            }
-            
-            .categoria-badge {
-                font-size: 0.5rem;
-                padding: 2px 6px;
-            }
-            
-            /* Ajustar velocidad de animación en móvil */
-            .animate-scroll-izquierda,
-            .animate-scroll-derecha {
-                animation-duration: 25s;
-            }
-            
-            .carrusel-container::before,
-            .carrusel-container::after {
-                width: 30px;
-            }
-        }
-
-        /* SOLUCIÓN FORZADA PARA BOTONES HEADER */
-        @media (max-width: 480px) {
-            /* Fuerza el header a ser compacto */
-            header.hero-moderno {
-                padding: 5px 0 !important;
-            }
-            
-            header.hero-moderno .container {
-                padding: 0 8px !important;
-            }
-            
-            /* Logo compacto */
-            header.hero-moderno .flex.items-center.gap-3 {
-                gap: 6px !important;
-                min-width: auto;
-            }
-            
-            header.hero-moderno .w-10 {
-                width: 30px !important;
-                height: 30px !important;
-            }
-            
-            header.hero-moderno .text-2xl {
-                font-size: 1rem !important;
-                line-height: 1.2;
-            }
-            
-            header.hero-moderno .text-xs {
-                font-size: 0.5rem !important;
-            }
-            
-            /* Botones solo íconos */
-            header.hero-moderno .flex.gap-2.items-center {
-                gap: 2px !important;
-            }
-            
-            header.hero-moderno .bg-white\/10 {
-                padding: 5px !important;
-                width: 35px !important;
-                height: 35px !important;
-                border-radius: 6px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-            
-            /* Ocultar texto completamente */
-            header.hero-moderno .flex.gap-2.items-center > * > span,
-            header.hero-moderno .flex.gap-2.items-center span {
-                display: none !important;
-            }
-            
-            /* Íconos pequeños */
-            header.hero-moderno .flex.gap-2.items-center i {
-                font-size: 0.8rem !important;
-                margin: 0 !important;
-            }
-            
-            /* Quitar márgenes de íconos */
-            header.hero-moderno .fa-shopping-cart,
-            header.hero-moderno .fa-heart,
-            header.hero-moderno .fa-instagram,
-            header.hero-moderno .fa-facebook,
-            header.hero-moderno .fa-book {
-                margin-right: 0 !important;
-            }
-            
-            /* Contadores mini */
-            header.hero-moderno .absolute {
-                top: -2px !important;
-                right: -2px !important;
-                width: 14px !important;
-                height: 14px !important;
-                font-size: 0.5rem !important;
-                line-height: 14px !important;
-            }
-        }
-
-    </style>
+    /* Estilos compactos para el hero */
+.hero-mejorado {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-feature-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 4px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+.hero-feature-compact:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.icon-container-compact {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones compactos */
+.btn-compact {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+    text-align: center;
+    min-width: 160px;
+}
+
+.btn-compact.primary {
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.btn-compact.secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-compact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-compact.primary:hover {
+    background: linear-gradient(135deg, #db2777, #7c3aed);
+}
+
+.btn-compact.secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Floating elements más pequeños */
+.floating-element:nth-child(1) {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 10%;
+}
+
+.floating-element:nth-child(2) {
+    width: 40px;
+    height: 40px;
+    top: 70%;
+    left: 80%;
+}
+
+.floating-element:nth-child(3) {
+    width: 30px;
+    height: 30px;
+    top: 40%;
+    left: 85%;
+}
+
+.floating-element:nth-child(4) {
+    width: 60px;
+    height: 60px;
+    top: 80%;
+    left: 15%;
+}
+
+/* CARRUSEL HORIZONTAL AUTOMÁTICO MEJORADO */
+@keyframes scroll-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-horizontal {
+    animation: scroll-horizontal 30s linear infinite;
+    display: flex;
+    width: max-content;
+}
+
+.animate-scroll-horizontal:hover {
+    animation-play-state: paused;
+}
+
+/* EFECTO CON COLORES DIFERENTES PARA CADA BOTÓN */
+.filtro-moderno {
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.filtro-moderno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.filtro-moderno:hover::before {
+    left: 100%;
+}
+
+/* COLORES ESPECÍFICOS PARA CADA CATEGORÍA */
+
+/* Todos - Dorado/Naranja */
+.filtro-moderno[onclick*="'todos'"]:hover {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.filtro-moderno[onclick*="'todos'"].active {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+}
+
+/* Niñas - Rosa */
+.filtro-moderno[onclick*="'niñas'"]:hover {
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+}
+
+.filtro-moderno[onclick*="'niñas'"].active {
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2);
+}
+
+/* Niños - Azul */
+.filtro-moderno[onclick*="'niños'"]:hover {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.filtro-moderno[onclick*="'niños'"].active {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+}
+
+/* Cosméticos - Púrpura */
+.filtro-moderno[onclick*="'cosmeticos'"]:hover {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.filtro-moderno[onclick*="'cosmeticos'"].active {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.2);
+}
+
+/* Joyas - Amarillo/Dorado */
+.filtro-moderno[onclick*="'joyas'"]:hover {
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+}
+
+.filtro-moderno[onclick*="'joyas'"].active {
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.2);
+}
+
+/* Otros - Verde */
+.filtro-moderno[onclick*="'otros'"]:hover {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.filtro-moderno[onclick*="'otros'"].active {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+/* CARRUSEL CON DIRECCIONES OPUESTAS MEJORADO */
+@keyframes scroll-horizontal-izquierda {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-horizontal-derecha {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.animate-scroll-izquierda {
+    animation: scroll-horizontal-izquierda 35s linear infinite;
+    display: flex;
+    width: max-content;
+}
+
+.animate-scroll-derecha {
+    animation: scroll-horizontal-derecha 35s linear infinite;
+    display: flex;
+    width: max-content;
+}
+
+.animate-scroll-izquierda:hover,
+.animate-scroll-derecha:hover {
+    animation-play-state: paused;
+}
+
+/* Efecto de desvanecimiento en los bordes del carrusel */
+.carrusel-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carrusel-container::before,
+.carrusel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carrusel-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.carrusel-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.carrusel-track {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+}
+
+.producto-circulo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+}
+
+.producto-circulo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.producto-circulo:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.producto-circulo:hover::before {
+    opacity: 1;
+}
+
+.producto-circulo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.producto-circulo:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.nombre-producto {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+    line-height: 1.2;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.precio-producto {
+    font-weight: 700;
+    color: #8b5cf6;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.categoria-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    color: #4b5563;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* EFECTOS PARA EL TÍTULO PRINCIPAL */
+.titulo-destacado {
+    background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6, #10b981);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease infinite;
+    position: relative;
+    display: inline-block;
+}
+
+.titulo-destacado::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.titulo-destacado:hover::after {
+    transform: scaleX(1);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Alternativa: Efecto de sombra animada */
+.titulo-sombra {
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    animation: pulse-sombra 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-sombra {
+    0% {
+        text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 40px rgba(236, 72, 153, 0.4);
+    }
+}
+
+/* Alternativa: Efecto tipo neón */
+.titulo-neon {
+    color: #fff;
+    text-shadow: 
+        0 0 5px #ec4899,
+        0 0 10px #ec4899,
+        0 0 15px #ec4899,
+        0 0 20px #8b5cf6,
+        0 0 35px #8b5cf6,
+        0 0 40px #8b5cf6;
+    animation: neon-flicker 2s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px #ec4899,
+            0 0 10px #ec4899,
+            0 0 15px #ec4899,
+            0 0 20px #8b5cf6,
+            0 0 35px #8b5cf6,
+            0 0 40px #8b5cf6;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* Alternativa: Efecto de escritura */
+.titulo-escritura {
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.titulo-escritura::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: escritura 3s infinite;
+}
+
+@keyframes escritura {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* RESPONSIVE PARA EL CARRUSEL EN MÓVIL */
+@media (max-width: 768px) {
+    .producto-circulo {
+        width: 140px;
+        height: 140px;
+        margin: 0 10px;
+    }
+    
+    .producto-circulo img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .nombre-producto {
+        font-size: 12px;
+    }
+    
+    .precio-producto {
+        font-size: 14px;
+    }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .producto-circulo {
+        width: 120px;
+        height: 120px;
+        margin: 0 8px;
+    }
+    
+    .producto-circulo img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .nombre-producto {
+        font-size: 11px;
+    }
+    
+    .categoria-badge {
+        font-size: 0.5rem;
+        padding: 2px 6px;
+    }
+    
+    /* Ajustar velocidad de animación en móvil */
+    .animate-scroll-izquierda,
+    .animate-scroll-derecha {
+        animation-duration: 25s;
+    }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 30px;
+    }
+}
+
+/* ========== SOLUCIÓN FORZADA PARA BOTONES HEADER ========== */
+@media (max-width: 480px) {
+    /* Fuerza el header a ser compacto */
+    header.hero-moderno {
+        padding: 5px 0 !important;
+    }
+    
+    header.hero-moderno .container {
+        padding: 0 8px !important;
+    }
+    
+    /* Logo compacto */
+    header.hero-moderno .flex.items-center.gap-3 {
+        gap: 6px !important;
+        min-width: auto;
+    }
+    
+    header.hero-moderno .w-10 {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    header.hero-moderno .text-2xl {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+    
+    header.hero-moderno .text-xs {
+        font-size: 0.5rem !important;
+    }
+    
+    /* Botones solo íconos */
+    header.hero-moderno .flex.gap-2.items-center {
+        gap: 2px !important;
+    }
+    
+    header.hero-moderno .bg-white\/10 {
+        padding: 5px !important;
+        width: 35px !important;
+        height: 35px !important;
+        border-radius: 6px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Ocultar texto completamente */
+    header.hero-moderno .flex.gap-2.items-center > * > span,
+    header.hero-moderno .flex.gap-2.items-center span {
+        display: none !important;
+    }
+    
+    /* Íconos pequeños */
+    header.hero-moderno .flex.gap-2.items-center i {
+        font-size: 0.8rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Quitar márgenes de íconos */
+    header.hero-moderno .fa-shopping-cart,
+    header.hero-moderno .fa-heart,
+    header.hero-moderno .fa-instagram,
+    header.hero-modennium .fa-facebook,
+    header.hero-moderno .fa-book {
+        margin-right: 0 !important;
+    }
+    
+    /* Contadores mini */
+    header.hero-moderno .absolute {
+        top: -2px !important;
+        right: -2px !important;
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 0.5rem !important;
+        line-height: 14px !important;
+    }
+}
+
+</style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen">
     
@@ -1538,7 +1543,7 @@
                     </div>
                 </div>
                  <div class="flex gap-2 items-center">
-                    <!-- Botón del carrito -->
+                    <!-- Botón del carrito CON EXPANSIÓN Y CAMBIO DE COLOR -->
                     <button id="cart-btn" class="relative group bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600">
                         <i class="fas fa-shopping-cart text-base group-hover:text-white"></i>
                         <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
@@ -1547,7 +1552,7 @@
                         <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold hidden group-hover:bg-white group-hover:text-green-600" id="cart-count">0</span>
                     </button>
     
-                    <!-- Botón de favoritos -->
+                    <!-- Botón de favoritos CON EXPANSIÓN Y CAMBIO DE COLOR -->
                     <button id="favorites-btn" class="relative group bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500">
                         <i class="far fa-heart text-base group-hover:text-white"></i>
                         <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
@@ -1555,17 +1560,8 @@
                         </span>
                         <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold hidden group-hover:bg-white group-hover:text-pink-600" id="favorites-count">0</span>
                     </button>
-
-                    <!-- Botón de Administración -->
-                    <button onclick="togglePanelAdmin()" 
-                            class="bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 group hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500">
-                        <i class="fas fa-cog text-base group-hover:text-white"></i>
-                        <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
-                            Administrar
-                        </span>
-                    </button>
     
-                    <!-- Instagram -->
+                    <!-- Instagram CON EXPANSIÓN Y CAMBIO DE COLOR -->
                     <a href="https://instagram.com" target="_blank" 
                     class="bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 group hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600">
                         <i class="fab fa-instagram text-base group-hover:text-white"></i>
@@ -1574,7 +1570,7 @@
                         </span>
                     </a>
     
-                    <!-- Facebook -->
+                    <!-- Facebook CON EXPANSIÓN Y CAMBIO DE COLOR -->
                     <a href="https://facebook.com" target="_blank" 
                     class="bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 group hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700">
                         <i class="fab fa-facebook text-base group-hover:text-white"></i>
@@ -1583,7 +1579,7 @@
                         </span>
                     </a>
     
-                    <!-- Libro de Reclamaciones -->
+                    <!-- Libro de Reclamaciones CON EXPANSIÓN Y CAMBIO DE COLOR -->
                     <a href="https://www.consumidor.gob.pe/libro-de-reclamaciones" target="_blank" 
                     class="bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-200 flex items-center gap-2 group hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600">
                         <i class="fas fa-book text-base group-hover:text-white"></i>
@@ -1592,6 +1588,7 @@
                         </span>
                     </a>
                 </div>
+   
             </div>
         </div>
     </header>
@@ -1606,115 +1603,115 @@
     </div>
 
     <!-- HERO SECTION COMPACTA -->
-    <section class="hero-mejorado text-white py-8">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-        
-        <div class="container mx-auto px-4">
-            <div class="hero-content">
-                <!-- Título más compacto -->
-                <h1 class="text-2xl md:text-3xl font-bold text-center mb-3 animate-fadeIn">
-                    <span class="animate-colorChange">Bienvenidos a</span> 
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">PAOLA'BOUTIQUE</span>
-                </h1>
-                
-                <!-- Subtítulo más corto -->
-                <p class="text-sm md:text-base text-center mb-6 max-w-2xl mx-auto opacity-90 animate-fadeIn">
-                    Moda infantil, cosméticos premium, joyas y accesorios únicos en Tarapoto.
-                </p>
-                
-                <!-- Iconos compactos en 2 filas -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 max-w-2xl mx-auto animate-fadeIn">
-                    <!-- Envío Rápido -->
-                    <div class="hero-feature-compact group">
-                        <div class="icon-container-compact bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:from-green-500 group-hover:to-teal-500">
-                            <i class="fas fa-truck text-sm"></i>
-                        </div>
-                        <span class="text-xs group-hover:text-cyan-200">Envío Rápido</span>
+<section class="hero-mejorado text-white py-8">
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <div class="container mx-auto px-4">
+        <div class="hero-content">
+            <!-- Título más compacto -->
+            <h1 class="text-2xl md:text-3xl font-bold text-center mb-3 animate-fadeIn">
+                <span class="animate-colorChange">Bienvenidos a</span> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">PAOLA'BOUTIQUE</span>
+            </h1>
+            
+            <!-- Subtítulo más corto -->
+            <p class="text-sm md:text-base text-center mb-6 max-w-2xl mx-auto opacity-90 animate-fadeIn">
+                Moda infantil, cosméticos premium, joyas y accesorios únicos en Tarapoto.
+            </p>
+            
+            <!-- Iconos compactos en 2 filas -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 max-w-2xl mx-auto animate-fadeIn">
+                <!-- Envío Rápido -->
+                <div class="hero-feature-compact group">
+                    <div class="icon-container-compact bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:from-green-500 group-hover:to-teal-500">
+                        <i class="fas fa-truck text-sm"></i>
                     </div>
-                    
-                    <!-- Calidad Premium -->
-                    <div class="hero-feature-compact group">
-                        <div class="icon-container-compact bg-gradient-to-r from-purple-500 to-pink-500 group-hover:from-yellow-500 group-hover:to-orange-500">
-                            <i class="fas fa-shield-alt text-sm"></i>
-                        </div>
-                        <span class="text-xs group-hover:text-yellow-200">Calidad Premium</span>
-                    </div>
-                    
-                    <!-- Ofertas Especiales -->
-                    <div class="hero-feature-compact group">
-                        <div class="icon-container-compact bg-gradient-to-r from-pink-500 to-rose-500 group-hover:from-red-500 group-hover:to-pink-600">
-                            <i class="fas fa-tags text-sm"></i>
-                        </div>
-                        <span class="text-xs group-hover:text-pink-200">Ofertas Especiales</span>
-                    </div>
-                    
-                    <!-- Soporte 24/7 -->
-                    <div class="hero-feature-compact group">
-                        <div class="icon-container-compact bg-gradient-to-r from-green-500 to-emerald-500 group-hover:from-blue-500 group-hover:to-indigo-500">
-                            <i class="fas fa-headset text-sm"></i>
-                        </div>
-                        <span class="text-xs group-hover:text-blue-200">Soporte 24/7</span>
-                    </div>
+                    <span class="text-xs group-hover:text-cyan-200">Envío Rápido</span>
                 </div>
                 
-                <!-- Botones compactos -->
-                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fadeIn">
-                    <!-- Explorar Catálogo -->
-                    <a href="#catalogo" 
-                       class="btn-compact primary group">
-                        <i class="fas fa-shopping-bag mr-2 group-hover:scale-110"></i>Explorar Catálogo
-                    </a>
-                    
-                    <!-- Contactar por WhatsApp -->
-                    <a href="https://wa.me/51991798916" target="_blank" 
-                       class="btn-compact secondary group">
-                        <i class="fab fa-whatsapp mr-2 group-hover:scale-110"></i>Contactar WhatsApp
-                    </a>
+                <!-- Calidad Premium -->
+                <div class="hero-feature-compact group">
+                    <div class="icon-container-compact bg-gradient-to-r from-purple-500 to-pink-500 group-hover:from-yellow-500 group-hover:to-orange-500">
+                        <i class="fas fa-shield-alt text-sm"></i>
+                    </div>
+                    <span class="text-xs group-hover:text-yellow-200">Calidad Premium</span>
+                </div>
+                
+                <!-- Ofertas Especiales -->
+                <div class="hero-feature-compact group">
+                    <div class="icon-container-compact bg-gradient-to-r from-pink-500 to-rose-500 group-hover:from-red-500 group-hover:to-pink-600">
+                        <i class="fas fa-tags text-sm"></i>
+                    </div>
+                    <span class="text-xs group-hover:text-pink-200">Ofertas Especiales</span>
+                </div>
+                
+                <!-- Soporte 24/7 -->
+                <div class="hero-feature-compact group">
+                    <div class="icon-container-compact bg-gradient-to-r from-green-500 to-emerald-500 group-hover:from-blue-500 group-hover:to-indigo-500">
+                        <i class="fas fa-headset text-sm"></i>
+                    </div>
+                    <span class="text-xs group-hover:text-blue-200">Soporte 24/7</span>
                 </div>
             </div>
+            
+            <!-- Botones compactos -->
+            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fadeIn">
+                <!-- Explorar Catálogo -->
+                <a href="#catalogo" 
+                   class="btn-compact primary group">
+                    <i class="fas fa-shopping-bag mr-2 group-hover:scale-110"></i>Explorar Catálogo
+                </a>
+                
+                <!-- Contactar por WhatsApp -->
+                <a href="https://wa.me/51991798916" target="_blank" 
+                   class="btn-compact secondary group">
+                    <i class="fab fa-whatsapp mr-2 group-hover:scale-110"></i>Contactar WhatsApp
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Sección Catálogo en Círculos - Carrusel Automático -->
-    <section class="py-12 bg-gradient-to-br from-pink-50 to-purple-50" id="catalogo">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold mb-3 titulo-destacado">
-                 Descubre Nuestros Productos en PAOLA'BOUTIQUE
-                </h2>
+<section class="py-12 bg-gradient-to-br from-pink-50 to-purple-50" id="catalogo">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold mb-3 titulo-destacado">
+             Descubre Nuestros Productos en PAOLA'BOUTIQUE
+            </h2>
+        </div>
+                 
+        <!-- CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS -->
+        <div class="carrusel-container">
+         <!-- Fila 1 - Se mueve hacia la IZQUIERDA -->
+            <div class="animate-scroll-izquierda mb-8">
+             <div class="carrusel-track" id="carrusel-track-1">
+            <!-- Los productos de la fila 1 se cargarán aquí dinámicamente -->
             </div>
-                         
-            <!-- CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS -->
-            <div class="carrusel-container">
-             <!-- Fila 1 - Se mueve hacia la IZQUIERDA -->
-                <div class="animate-scroll-izquierda mb-8">
-                 <div class="carrusel-track" id="carrusel-track-1">
-                <!-- Los productos de la fila 1 se cargarán aquí dinámicamente -->
-                </div>
-             </div>
+         </div>
+    
+        <!-- Fila 2 - Se mueve hacia la DERECHA -->
+            <div class="animate-scroll-derecha">
+              <div class="carrusel-track" id="carrusel-track-2">
+            <!-- Los productos de la fila 2 se cargarán aquí dinámicamente -->
+        </div>
+    </div>
+    </div>
         
-            <!-- Fila 2 - Se mueve hacia la DERECHA -->
-                <div class="animate-scroll-derecha">
-                  <div class="carrusel-track" id="carrusel-track-2">
-                <!-- Los productos de la fila 2 se cargarán aquí dinámicamente -->
-            </div>
+            <!-- Instrucciones -->
+            <div class="text-center mt-8">
+            <p class="text-yellow-500 text-sm">
+                <i class="fas fa-info-circle mr-1"></i>
+                Pasa el cursor sobre el carrusel para pausar la animación
+            </p>
         </div>
-        </div>
-            
-                <!-- Instrucciones -->
-                <div class="text-center mt-8">
-                <p class="text-yellow-500 text-sm">
-                    <i class="fas fa-info-circle mr-1"></i>
-                    Pasa el cursor sobre el carrusel para pausar la animación
-                </p>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <div class="container mx-auto px-4 py-6">
         <!-- Filtros COMPACTOS -->
@@ -1768,7 +1765,7 @@
         </div>
     </div>
 
-    <!-- Testimonios -->
+    <!-- Testimonios (se ocultarán al filtrar categorías) -->
     <section class="testimonios-section py-12 bg-gradient-to-r from-pink-50 to-purple-50">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">💬 Lo que dicen nuestros clientes</h2>
@@ -1778,79 +1775,157 @@
         </div>
     </section>
 
-    <!-- SECCIÓN ENCUÉNTRANOS MEJORADA -->
-    <section class="encuentranos-hero py-16 text-white">
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">📍 Encuéntranos</h2>
-                <p class="text-xl opacity-90 max-w-2xl mx-auto">Tu boutique de confianza en Tarapoto. Te esperamos con los mejores productos y atención personalizada.</p>
-            </div>
+   <!-- SECCIÓN ENCUÉNTRANOS MEJORADA -->
+<section class="encuentranos-hero py-16 text-white">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">📍 Encuéntranos</h2>
+            <p class="text-xl opacity-90 max-w-2xl mx-auto">Tu boutique de confianza en Tarapoto. Te esperamos con los mejores productos y atención personalizada.</p>
+        </div>
 
-            <!-- GRID DE 2 COLUMNAS -->
-            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+        <!-- ESTA ES LA PARTE CLAVE: GRID DE 2 COLUMNAS -->
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            
+            <!-- COLUMNA IZQUIERDA: Contactos -->
+            <div class="info-card p-6">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">📞 Contáctanos</h3>
                 
-                <!-- COLUMNA IZQUIERDA: Contactos -->
-                <div class="info-card p-6">
-                    <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">📞 Contáctanos</h3>
+                <div class="space-y-4">
+                    <!-- WhatsApp Compacto -->
+                    <a href="https://wa.me/51991798916" target="_blank"
+                       class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
+                            <i class="fab fa-whatsapp text-white text-base group-hover:text-green-600"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">WhatsApp</h4>
+                            <p class="text-gray-700 group-hover:text-white text-sm">+51 991 798 916</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
+                    </a>
                     
-                    <div class="space-y-4">
-                        <!-- WhatsApp Compacto -->
-                        <a href="https://wa.me/51991798916" target="_blank"
-                           class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
-                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
-                                <i class="fab fa-whatsapp text-white text-base group-hover:text-green-600"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">WhatsApp</h4>
-                                <p class="text-gray-700 group-hover:text-white text-sm">+51 991 798 916</p>
-                            </div>
-                            <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
-                        </a>
-                        
-                        <!-- Ubicación Compacta CLICKEABLE con coordenadas exactas -->
-                        <a href="https://www.google.com/maps?q=-6.484134,-76.363442&ll=-6.484134,-76.363442&z=17" 
-                           target="_blank"
-                           class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
-                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
-                                <i class="fas fa-map-marker-alt text-white text-base group-hover:text-blue-600"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">📍 Ubicación Exacta</h4>
-                                <p class="text-gray-700 group-hover:text-white text-sm">Jr Reategui S/N - Tarapoto</p>
-                                <p class="text-blue-600 font-semibold text-xs mt-1 group-hover:text-white">
-                                    <i class="fas fa-crosshairs mr-1"></i>Coordenadas: -6.484134, -76.363442
-                                </p>
-                            </div>
-                            <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
-                        </a>
-                        
-                        <!-- Horario Compacto -->
-                        <div class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
-                            <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
-                                <i class="fas fa-clock text-white text-base group-hover:text-purple-600"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">🕒 Horario</h4>
-                                <div class="space-y-2 mt-2">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xs text-gray-600 group-hover:text-white">Lun-Vie</span>
-                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-green-600">8AM-8PM</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xs text-gray-600 group-hover:text-white">Sábados</span>
-                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-yellow-600">9AM-6PM</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xs text-gray-600 group-hover:text-white">Domingos</span>
-                                        <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-red-600">Cerrado</span>
-                                    </div>
+                    <!-- Ubicación Compacta CLICKEABLE con coordenadas exactas -->
+                    <a href="https://www.google.com/maps?q=-6.484134,-76.363442&ll=-6.484134,-76.363442&z=17" 
+                       target="_blank"
+                       class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
+                            <i class="fas fa-map-marker-alt text-white text-base group-hover:text-blue-600"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">📍 Ubicación Exacta</h4>
+                            <p class="text-gray-700 group-hover:text-white text-sm">Jr Reategui S/N - Tarapoto</p>
+                            <p class="text-blue-600 font-semibold text-xs mt-1 group-hover:text-white">
+                                <i class="fas fa-crosshairs mr-1"></i>Coordenadas: -6.484134, -76.363442
+                            </p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
+                    </a>
+                    
+                    <!-- Horario Compacto -->
+                    <div class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
+                            <i class="fas fa-clock text-white text-base group-hover:text-purple-600"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h4 class="font-semibold text-gray-800 group-hover:text-white text-sm">🕒 Horario</h4>
+                            <div class="space-y-2 mt-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-600 group-hover:text-white">Lun-Vie</span>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-green-600">8AM-8PM</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-600 group-hover:text-white">Sábados</span>
+                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-yellow-600">9AM-6PM</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-gray-600 group-hover:text-white">Domingos</span>
+                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded group-hover:bg-white group-hover:text-red-600">Cerrado</span>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Información adicional compacta -->
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-info-circle text-blue-600 text-sm mt-0.5"></i>
+                        <div>
+                            <h5 class="font-semibold text-blue-800 text-xs mb-1">💡 Consejo de visita</h5>
+                            <p class="text-blue-700 text-xs">Visítanos entre semana por la mañana para atención personalizada.</p>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Información adicional compacta -->
+            <!-- COLUMNA DERECHA: Mapa -->
+            <div class="info-card p-6">
+                <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">🗺️ Nuestra Ubicación Exacta</h3>
+                <div class="mapa-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=-6.484134,-76.363442&z=17&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-male text-blue-500 text-lg"></i>
+                        <div>
+                            <h5 class="font-bold text-blue-800 text-sm mb-1">👤 Ubicación Exacta</h5>
+                            <p class="text-blue-700 text-xs">Estamos ubicados en <strong>Jr Reategui S/N, Tarapoto</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+            
+
+     
+
+        <!-- Proceso de compra didáctico (SE MANTIENE) -->
+        <div class="info-card p-8 mb-8">
+            <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">🛍️ ¿Cómo Comprar?</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="paso-compra">
+                    <div class="numero-paso">1</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-800">Explora el Catálogo</h4>
+                        <p class="text-gray-600 text-sm">Navega por nuestras categorías y encuentra los productos que más te gusten.</p>
+                    </div>
+                </div>
+                <div class="paso-compra">
+                    <div class="numero-paso">2</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-800">Contacta por WhatsApp</h4>
+                        <p class="text-gray-600 text-sm">Envíanos un mensaje con los productos de tu interés para confirmar disponibilidad.</p>
+                    </div>
+                </div>
+                <div class="paso-compra">
+                    <div class="numero-paso">3</div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-gray-800">Recoge o Recibe</h4>
+                        <p class="text-gray-600 text-sm">Retira en tienda o coordina delivery. ¡Disfruta de tu compra!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Información adicional compacta -->
                     <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                         <div class="flex items-start gap-2">
                             <i class="fas fa-info-circle text-blue-600 text-sm mt-0.5"></i>
@@ -1861,185 +1936,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- COLUMNA DERECHA: Mapa -->
-                <div class="info-card p-6">
-                    <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">🗺️ Nuestra Ubicación Exacta</h3>
-                    <div class="mapa-container">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=-6.484134,-76.363442&z=17&output=embed" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    
-                    <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-male text-blue-500 text-lg"></i>
-                            <div>
-                                <h5 class="font-bold text-blue-800 text-sm mb-1">👤 Ubicación Exacta</h5>
-                                <p class="text-blue-700 text-xs">Estamos ubicados en <strong>Jr Reategui S/N, Tarapoto</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                
             </div>
 
-            <!-- Proceso de compra didáctico -->
-            <div class="info-card p-8 mb-8">
-                <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">🛍️ ¿Cómo Comprar?</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="paso-compra">
-                        <div class="numero-paso">1</div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-2 text-gray-800">Explora el Catálogo</h4>
-                            <p class="text-gray-600 text-sm">Navega por nuestras categorías y encuentra los productos que más te gusten.</p>
-                        </div>
-                    </div>
-                    <div class="paso-compra">
-                        <div class="numero-paso">2</div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-2 text-gray-800">Contacta por WhatsApp</h4>
-                            <p class="text-gray-600 text-sm">Envíanos un mensaje con los productos de tu interés para confirmar disponibilidad.</p>
-                        </div>
-                    </div>
-                    <div class="paso-compra">
-                        <div class="numero-paso">3</div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-2 text-gray-800">Recoge o Recibe</h4>
-                            <p class="text-gray-600 text-sm">Retira en tienda o coordina delivery. ¡Disfruta de tu compra!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PANEL DE ADMINISTRACIÓN (OCULTO INICIALMENTE) -->
-    <section id="panel-admin" class="hidden bg-gray-50 py-12">
-        <div class="container mx-auto px-4">
-            <!-- Botón para abrir/cerrar panel -->
-            <div class="text-center mb-8">
-                <button onclick="togglePanelAdmin()" 
-                        class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all">
-                    🛠️ Cerrar Panel de Administración
-                </button>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Formulario para Agregar Productos -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">➕ Agregar Nuevo Producto</h3>
-                    
-                    <form id="form-producto" onsubmit="event.preventDefault(); guardarProductoConImagen(getFormData());">
-                        <div class="grid md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Producto</label>
-                                <input type="text" id="nombre-producto" required 
-                                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
-                                <select id="categoria-producto" required 
-                                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                                    <option value="">Seleccionar categoría</option>
-                                    <option value="niñas">👧 Niñas</option>
-                                    <option value="niños">👦 Niños</option>
-                                    <option value="cosmeticos">💄 Cosméticos</option>
-                                    <option value="joyas">💎 Joyas</option>
-                                    <option value="otros">🎁 Otros</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Precio (S/)</label>
-                                <input type="number" id="precio-producto" required min="0" step="0.01"
-                                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Stock</label>
-                                <input type="number" id="stock-producto" required min="0"
-                                       class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                            </div>
-                        </div>
-                        
-                        <!-- Campo de imagen -->
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                📸 Imagen del Producto
-                            </label>
-                            <input type="file" id="imagen-producto" accept="image/*" 
-                                   class="w-full p-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                                   onchange="mostrarVistaPrevia(this)">
-                            
-                            <!-- Vista previa de imagen -->
-                            <div id="vista-previa" class="mt-3 hidden">
-                                <p class="text-sm text-gray-600 mb-2">Vista previa:</p>
-                                <img id="imagen-previa" class="w-32 h-32 object-cover rounded-lg border border-gray-300">
-                            </div>
-                            
-                            <p class="text-xs text-gray-500 mt-1">
-                                Formatos: JPG, PNG, WEBP • Máximo: 2MB
-                            </p>
-                        </div>
-                        
-                        <!-- Especificaciones del producto -->
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">📝 Especificaciones</label>
-                            <div id="especificaciones-container">
-                                <div class="flex gap-2 mb-2">
-                                    <input type="text" placeholder="Ej: Material: Algodón 100%" 
-                                           class="flex-1 p-3 border border-gray-300 rounded-lg focus:border-purple-500">
-                                    <button type="button" onclick="agregarEspecificacion()" 
-                                            class="bg-green-500 text-white px-4 rounded-lg hover:bg-green-600 transition-colors">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" 
-                                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all">
-                            💾 Guardar Producto
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Lista de Productos Existentes -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-4 text-gray-800">📦 Productos Existentes</h3>
-                    <div id="lista-productos-admin" class="space-y-4 max-h-96 overflow-y-auto">
-                        <!-- Los productos se cargan aquí dinámicamente -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Herramientas Adicionales -->
-            <div class="mt-8 bg-white rounded-2xl p-6 shadow-lg">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">🛠️ Herramientas</h3>
-                <div class="flex gap-4 flex-wrap">
-                    <button onclick="exportarDatos()" 
-                            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                        💾 Exportar Datos
-                    </button>
-                    <label class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors cursor-pointer">
-                        📥 Importar Datos
-                        <input type="file" accept=".json" onchange="importarDatos(event)" class="hidden">
-                    </label>
-                    <button onclick="localStorage.clear(); location.reload();" 
-                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
-                        🗑️ Limpiar Todo
-                    </button>
-                </div>
-            </div>
+            
         </div>
     </section>
 
@@ -2142,135 +2042,142 @@
         <i class="fab fa-whatsapp text-xl"></i>
     </a>
 
-    <!-- BOTÓN PARA SUBIR -->
-    <button id="scroll-to-top" 
-            class="fixed bottom-20 right-6 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-300 z-50 hidden group">
-        <div class="relative">
-            <i class="fas fa-arrow-up text-lg font-bold group-hover:-translate-y-1 transition-transform"></i>
-            <div class="absolute inset-0 bg-white/20 rounded-2xl transform group-hover:scale-110 transition-transform"></div>
-        </div>
-    </button>
+    <!-- BOTÓN PARA SUBIR (PEGA AQUÍ) -->
+<button id="scroll-to-top" 
+        class="fixed bottom-20 right-6 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-300 z-50 hidden group">
+    <div class="relative">
+        <i class="fas fa-arrow-up text-lg font-bold group-hover:-translate-y-1 transition-transform"></i>
+        <div class="absolute inset-0 bg-white/20 rounded-2xl transform group-hover:scale-110 transition-transform"></div>
+    </div>
+</button>
 
     <footer class="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 text-white py-8 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-6 mb-6">
-                <!-- Información de la empresa MEJORADA -->
-                <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
-                        <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-crown text-sm text-white"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold">PAOLA'BOUTIQUE</h3>
-                            <p class="text-purple-200 text-xs">Tu estilo, nuestra pasión</p>
-                        </div>
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-6 mb-6">
+            <!-- Información de la empresa MEJORADA -->
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
+                    <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-crown text-sm text-white"></i>
                     </div>
-                    <p class="text-yellow-300 text-xs mb-3">
-                        Moda infantil, cosméticos premium y joyas exclusivas.
-                    </p>
-                    <div class="flex justify-center md:justify-start gap-3">
-                        <!-- Instagram con texto -->
-                        <a href="https://instagram.com" target="_blank" 
-                           class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 transition-all duration-300 hover:scale-105">
-                            <i class="fab fa-instagram text-base group-hover:text-white"></i>
-                            <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
-                                Instagram
-                            </span>
-                        </a>
-                        
-                        <!-- Facebook con texto -->
-                        <a href="https://facebook.com" target="_blank" 
-                           class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-105">
-                            <i class="fab fa-facebook-f text-base group-hover:text-white"></i>
-                            <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
-                                Facebook
-                            </span>
-                        </a>
-                        
-                        <!-- WhatsApp con texto -->
-                        <a href="https://wa.me/51991798916" target="_blank" 
-                           class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-105">
-                            <i class="fab fa-whatsapp text-base group-hover:text-white"></i>
-                            <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
-                                WhatsApp
-                            </span>
-                        </a>
+                    <div>
+                        <h3 class="text-lg font-bold">PAOLA'BOUTIQUE</h3>
+                        <p class="text-purple-200 text-xs">Tu estilo, nuestra pasión</p>
                     </div>
                 </div>
-
-                <!-- Enlaces rápidos COMPLETOS -->
-                <div class="text-center md:text-left">
-                    <h4 class="text-base font-bold mb-3 text-purple-300">Enlaces Rápidos</h4>
-                    <div class="space-y-2">
-                        <a href="#catalogo" onclick="filtrarCategoria('niñas')" 
-                           class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500 transition-all duration-300 hover:scale-102">
-                            <i class="fas fa-female text-sm text-pink-400 group-hover:text-white"></i>
-                            <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Niñas</span>
-                        </a>
-                        <a href="#catalogo" onclick="filtrarCategoria('niños')" 
-                           class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 hover:scale-102">
-                            <i class="fas fa-male text-sm text-blue-400 group-hover:text-white"></i>
-                            <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Niños</span>
-                        </a>
-                        <a href="#catalogo" onclick="filtrarCategoria('cosmeticos')" 
-                           class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-102">
-                            <i class="fas fa-paint-brush text-sm text-purple-400 group-hover:text-white"></i>
-                            <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Cosméticos</span>
-                        </a>
-                        <!-- JOYAS AGREGADO -->
-                        <a href="#catalogo" onclick="filtrarCategoria('joyas')" 
-                           class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-orange-500 transition-all duration-300 hover:scale-102">
-                            <i class="fas fa-gem text-sm text-yellow-400 group-hover:text-white"></i>
-                            <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Joyas</span>
-                        </a>
-                        <!-- OTROS PRODUCTOS AGREGADO -->
-                        <a href="#catalogo" onclick="filtrarCategoria('otros')" 
-                           class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300 hover:scale-102">
-                            <i class="fas fa-gift text-sm text-green-400 group-hover:text-white"></i>
-                            <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Otros Productos</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Libro de Reclamaciones COMPACTO -->
-                <div class="text-center md:text-left">
-                    <h4 class="text-base font-bold mb-3 text-purple-300">📖 Reclamaciones</h4>
-                    <div class="space-y-3">
-                        <a href="https://www.consumidor.gob.pe/libro-de-reclamaciones" 
-                           target="_blank"
-                           class="group flex items-center justify-center md:justify-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-300 hover:scale-102 cursor-pointer">
-                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
-                                <i class="fas fa-book text-white text-sm group-hover:text-red-600"></i>
-                            </div>
-                            <div class="text-left">
-                                <p class="text-xs font-semibold group-hover:text-white">Libro de Reclamaciones</p>
-                                <p class="text-gray-300 text-xs group-hover:text-white">Derechos del consumidor</p>
-                            </div>
-                        </a>
-                    </div>
+                <p class="text-yellow-300 text-xs mb-3">
+                    Moda infantil, cosméticos premium y joyas exclusivas.
+                </p>
+                <div class="flex justify-center md:justify-start gap-3">
+                    <!-- Instagram con texto -->
+                    <a href="https://instagram.com" target="_blank" 
+                       class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 transition-all duration-300 hover:scale-105">
+                        <i class="fab fa-instagram text-base group-hover:text-white"></i>
+                        <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
+                            Instagram
+                        </span>
+                    </a>
+                    
+                    <!-- Facebook con texto -->
+                    <a href="https://facebook.com" target="_blank" 
+                       class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-105">
+                        <i class="fab fa-facebook-f text-base group-hover:text-white"></i>
+                        <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
+                            Facebook
+                        </span>
+                    </a>
+                    
+                    <!-- WhatsApp con texto -->
+                    <a href="https://wa.me/51991798916" target="_blank" 
+                       class="group flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-105">
+                        <i class="fab fa-whatsapp text-base group-hover:text-white"></i>
+                        <span class="text-xs font-medium max-w-0 group-hover:max-w-xs overflow-hidden transition-all duration-300 whitespace-nowrap group-hover:text-white">
+                            WhatsApp
+                        </span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Línea separadora -->
-            <div class="border-t border-gray-700 pt-6">
-                <!-- Información legal COMPACTA -->
-                <div class="text-center">
-                    <p class="text-transparent bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-xs mt-1 font-semibold">
-                        <strong>Dirección:</strong> Jr Reátegui S/N - Tarapoto | 
-                        <strong>Teléfono:</strong> +51 991 798 916
-                    </p>
-                    <p class="text-green-300 text-xs mt-1 font-semibold">
-                        <i class="fas fa-info-circle mr-1"></i>Trámite de RUC en proceso | 
-                        © 2025 PAOLA'BOUTIQUE
-                    </p>
-                    <p class="text-yellow-300 text-xs mt-1 font-semibold">
-                        Desarrollado con ❤️ por Jesus Alberto PEREZ BRAVO
-                    </p>
+            <!-- Enlaces rápidos COMPLETOS -->
+            <div class="text-center md:text-left">
+                <h4 class="text-base font-bold mb-3 text-purple-300">Enlaces Rápidos</h4>
+                <div class="space-y-2">
+                    <a href="#catalogo" onclick="filtrarCategoria('niñas')" 
+                       class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-500 transition-all duration-300 hover:scale-102">
+                        <i class="fas fa-female text-sm text-pink-400 group-hover:text-white"></i>
+                        <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Niñas</span>
+                    </a>
+                    <a href="#catalogo" onclick="filtrarCategoria('niños')" 
+                       class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 hover:scale-102">
+                        <i class="fas fa-male text-sm text-blue-400 group-hover:text-white"></i>
+                        <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Niños</span>
+                    </a>
+                    <a href="#catalogo" onclick="filtrarCategoria('cosmeticos')" 
+                       class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-102">
+                        <i class="fas fa-paint-brush text-sm text-purple-400 group-hover:text-white"></i>
+                        <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Cosméticos</span>
+                    </a>
+                    <!-- JOYAS AGREGADO -->
+                    <a href="#catalogo" onclick="filtrarCategoria('joyas')" 
+                       class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-orange-500 transition-all duration-300 hover:scale-102">
+                        <i class="fas fa-gem text-sm text-yellow-400 group-hover:text-white"></i>
+                        <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Joyas</span>
+                    </a>
+                    <!-- OTROS PRODUCTOS AGREGADO -->
+                    <a href="#catalogo" onclick="filtrarCategoria('otros')" 
+                       class="group flex items-center justify-center md:justify-start gap-2 p-2 rounded-lg bg-white/5 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300 hover:scale-102">
+                        <i class="fas fa-gift text-sm text-green-400 group-hover:text-white"></i>
+                        <span class="text-gray-300 group-hover:text-white font-medium text-xs transition-colors">Otros Productos</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Libro de Reclamaciones COMPACTO -->
+            <div class="text-center md:text-left">
+                <h4 class="text-base font-bold mb-3 text-purple-300">📖 Reclamaciones</h4>
+                <div class="space-y-3">
+                    <a href="https://www.consumidor.gob.pe/libro-de-reclamaciones" 
+                       target="_blank"
+                       class="group flex items-center justify-center md:justify-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-300 hover:scale-102 cursor-pointer">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
+                            <i class="fas fa-book text-white text-sm group-hover:text-red-600"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-xs font-semibold group-hover:text-white">Libro de Reclamaciones</p>
+                            <p class="text-gray-300 text-xs group-hover:text-white">Derechos del consumidor</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </footer>
 
+        <!-- Línea separadora -->
+        <div class="border-t border-gray-700 pt-6">
+            <!-- Información legal COMPACTA -->
+            <div class="text-center">
+                <p class="text-transparent bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-xs mt-1 font-semibold">
+                    <strong>Dirección:</strong> Jr Reátegui S/N - Tarapoto | 
+                    <strong>Teléfono:</strong> +51 991 798 916
+                </p>
+                <p class="text-green-300 text-xs mt-1 font-semibold">
+                    <i class="fas fa-info-circle mr-1"></i>Trámite de RUC en proceso | 
+                    © 2025 PAOLA'BOUTIQUE
+                </p>
+                <p class="text-yellow-300 text-xs mt-1 font-semibold">
+                    Desarrollado con ❤️ por Jesus Alberto PEREZ BRAVO
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Botón para subir -->
+<button id="scroll-to-top" 
+        class="fixed bottom-20 right-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-xl shadow-lg hover:scale-110 transition-transform z-50 hidden">
+    <i class="fas fa-chevron-up text-lg"></i>
+</button>
+    
+    
     <script>
         // Variables globales
         let productos = [];
@@ -2367,439 +2274,10 @@
         ];
 
         // =============================================
-        // FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+        // CONTADOR DE VISITAS (SOLO REGISTRO - NO SE MUESTRA)
         // =============================================
-
-        // Función universal para procesar imágenes desde cualquier dispositivo
-        async function procesarImagenParaProducto(archivoImagen) {
-            return new Promise((resolve, reject) => {
-                if (!archivoImagen) {
-                    // Si no hay imagen, usar una por defecto
-                    resolve('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop');
-                    return;
-                }
-
-                // Verificar que sea una imagen válida
-                if (!archivoImagen.type.startsWith('image/')) {
-                    reject('❌ El archivo debe ser una imagen');
-                    return;
-                }
-
-                // Verificar tamaño máximo (2MB)
-                if (archivoImagen.size > 2 * 1024 * 1024) {
-                    reject('❌ La imagen debe ser menor a 2MB');
-                    return;
-                }
-
-                // Convertir a Base64
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // Comprimir imagen si es muy grande
-                    comprimirImagen(e.target.result, 800, 800)
-                        .then(imagenComprimida => {
-                            resolve(imagenComprimida);
-                        })
-                        .catch(error => {
-                            console.warn('Error al comprimir, usando imagen original:', error);
-                            resolve(e.target.result); // Usar original si falla la compresión
-                        });
-                };
-                
-                reader.onerror = function() {
-                    reject('❌ Error al leer la imagen');
-                };
-                
-                reader.readAsDataURL(archivoImagen);
-            });
-        }
-
-        // Función para comprimir imágenes (optimiza el tamaño)
-        function comprimirImagen(dataUrl, maxWidth, maxHeight) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.src = dataUrl;
-                
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    
-                    // Calcular nuevas dimensiones manteniendo proporción
-                    let width = img.width;
-                    let height = img.height;
-                    
-                    if (width > height) {
-                        if (width > maxWidth) {
-                            height = Math.round((height * maxWidth) / width);
-                            width = maxWidth;
-                        }
-                    } else {
-                        if (height > maxHeight) {
-                            width = Math.round((width * maxHeight) / height);
-                            height = maxHeight;
-                        }
-                    }
-                    
-                    canvas.width = width;
-                    canvas.height = height;
-                    
-                    // Dibujar imagen comprimida
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    // Convertir a Base64 con calidad del 80%
-                    const imagenComprimida = canvas.toDataURL('image/jpeg', 0.8);
-                    resolve(imagenComprimida);
-                };
-                
-                img.onerror = reject;
-            });
-        }
-
-        // Función para verificar si una imagen carga correctamente
-        function verificarImagenCarga(url) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-            });
-        }
-
-        // Función para reparar imágenes existentes
-        function repararImagenesExistentes() {
-            const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-            let cambios = false;
-            
-            productos.forEach(producto => {
-                // Si la imagen es una URL externa y no carga, reemplazar
-                if (producto.imagen && !producto.imagen.startsWith('data:image')) {
-                    const img = new Image();
-                    img.onerror = function() {
-                        producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
-                        cambios = true;
-                    };
-                    img.src = producto.imagen;
-                }
-            });
-            
-            if (cambios) {
-                localStorage.setItem('productos_paola', JSON.stringify(productos));
-                console.log('✅ Imágenes reparadas automáticamente');
-            }
-        }
-
-        // =============================================
-        // PANEL DE ADMINISTRACIÓN MEJORADO (BASE64)
-        // =============================================
-
-        // Función para guardar producto con imagen
-        async function guardarProductoConImagen(datosProducto) {
-            try {
-                const inputImagen = document.getElementById('imagen-producto');
-                const archivoImagen = inputImagen?.files[0];
-                
-                // Procesar imagen
-                datosProducto.imagen = await procesarImagenParaProducto(archivoImagen);
-                
-                // Guardar en localStorage
-                const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-                datosProducto.id = Date.now();
-                datosProducto.stock = parseInt(datosProducto.stock) || 0;
-                datosProducto.vendidos = 0;
-                
-                productos.push(datosProducto);
-                localStorage.setItem('productos_paola', JSON.stringify(productos));
-                
-                // Limpiar formulario
-                if (document.getElementById('form-producto')) {
-                    document.getElementById('form-producto').reset();
-                }
-                
-                // Ocultar vista previa
-                const vistaPrevia = document.getElementById('vista-previa');
-                if (vistaPrevia) vistaPrevia.classList.add('hidden');
-                
-                mostrarNotificacion('✅ Producto guardado correctamente');
-                return true;
-                
-            } catch (error) {
-                console.error('Error:', error);
-                mostrarNotificacion(error);
-                return false;
-            }
-        }
-
-        // Función para actualizar producto existente
-        async function actualizarProductoConImagen(idProducto, datosActualizados) {
-            try {
-                const inputImagen = document.getElementById('imagen-producto-editar');
-                const archivoImagen = inputImagen?.files[0];
-                
-                // Si hay nueva imagen, procesarla
-                if (archivoImagen) {
-                    datosActualizados.imagen = await procesarImagenParaProducto(archivoImagen);
-                }
-                
-                // Actualizar en localStorage
-                const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-                const index = productos.findIndex(p => p.id === idProducto);
-                
-                if (index !== -1) {
-                    productos[index] = { ...productos[index], ...datosActualizados };
-                    localStorage.setItem('productos_paola', JSON.stringify(productos));
-                    mostrarNotificacion('✅ Producto actualizado correctamente');
-                    return true;
-                } else {
-                    mostrarNotificacion('❌ Producto no encontrado');
-                    return false;
-                }
-                
-            } catch (error) {
-                console.error('Error:', error);
-                mostrarNotificacion(error);
-                return false;
-            }
-        }
-
-        // Obtener datos del formulario
-        function getFormData() {
-            const especificaciones = Array.from(document.querySelectorAll('#especificaciones-container input'))
-                .map(input => input.value)
-                .filter(text => text.trim() !== '');
-            
-            return {
-                nombre: document.getElementById('nombre-producto').value,
-                categoria: document.getElementById('categoria-producto').value,
-                precio: parseFloat(document.getElementById('precio-producto').value),
-                stock: parseInt(document.getElementById('stock-producto').value),
-                tallas: {
-                    tallas: [], // Puedes agregar lógica para tallas si necesitas
-                    descripciones: especificaciones
-                }
-            };
-        }
-
-        // Mostrar vista previa de imagen
-        function mostrarVistaPrevia(input) {
-            const vistaPrevia = document.getElementById('vista-previa');
-            const imagenPrevia = document.getElementById('imagen-previa');
-            
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    imagenPrevia.src = e.target.result;
-                    vistaPrevia.classList.remove('hidden');
-                };
-                
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                vistaPrevia.classList.add('hidden');
-            }
-        }
-
-        // Agregar campo de especificación
-        function agregarEspecificacion() {
-            const container = document.getElementById('especificaciones-container');
-            const div = document.createElement('div');
-            div.className = 'flex gap-2 mb-2';
-            div.innerHTML = `
-                <input type="text" placeholder="Ej: Color: Rosa Pastel" 
-                       class="flex-1 p-3 border border-gray-300 rounded-lg">
-                <button type="button" onclick="this.parentElement.remove()" 
-                        class="bg-red-500 text-white px-4 rounded-lg hover:bg-red-600">
-                    -
-                </button>
-            `;
-            container.appendChild(div);
-        }
-
-        // Función para mostrar/ocultar panel de administración
-        function togglePanelAdmin() {
-            const panel = document.getElementById('panel-admin');
-            if (panel.classList.contains('hidden')) {
-                panel.classList.remove('hidden');
-                cargarProductosEnAdmin();
-            } else {
-                panel.classList.add('hidden');
-            }
-        }
-
-        // Cargar productos en el panel de administración
-        function cargarProductosEnAdmin() {
-            const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-            const container = document.getElementById('lista-productos-admin');
-            
-            if (!container) return;
-            
-            if (productos.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-8 text-gray-500">
-                        <i class="fas fa-box-open text-4xl mb-3"></i>
-                        <p>No hay productos registrados</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = productos.map(producto => `
-                <div class="bg-white p-4 rounded-lg border border-gray-200">
-                    <div class="flex items-center gap-4">
-                        <img src="${producto.imagen}" alt="${producto.nombre}" 
-                             class="w-16 h-16 object-cover rounded-lg">
-                        <div class="flex-1">
-                            <h4 class="font-semibold">${producto.nombre}</h4>
-                            <p class="text-purple-600 font-bold">S/ ${producto.precio}</p>
-                            <p class="text-sm text-gray-600">Stock: ${producto.stock} | Vendidos: ${producto.vendidos}</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="editarProducto(${producto.id})" 
-                                    class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-600">
-                                Editar
-                            </button>
-                            <button onclick="eliminarProducto(${producto.id})" 
-                                    class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">
-                                Eliminar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Eliminar producto
-        function eliminarProducto(id) {
-            if (confirm('¿Estás seguro de eliminar este producto?')) {
-                const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-                const nuevosProductos = productos.filter(p => p.id !== id);
-                localStorage.setItem('productos_paola', JSON.stringify(nuevosProductos));
-                mostrarNotificacion('✅ Producto eliminado');
-                cargarProductosEnAdmin();
-                cargarProductos(); // Recargar en el catálogo principal
-            }
-        }
-
-        // =============================================
-        // FUNCIONES AUXILIARES PARA EL PANEL
-        // =============================================
-
-        // Función para exportar datos (backup)
-        function exportarDatos() {
-            try {
-                const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-                const dataStr = JSON.stringify(productos, null, 2);
-                const dataBlob = new Blob([dataStr], { type: 'application/json' });
-                
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(dataBlob);
-                link.download = `paola-boutique-backup-${new Date().toISOString().split('T')[0]}.json`;
-                link.click();
-                
-                mostrarNotificacion('✅ Datos exportados correctamente');
-            } catch (error) {
-                console.error('Error al exportar:', error);
-                mostrarNotificacion('❌ Error al exportar datos');
-            }
-        }
-
-        // Función para importar datos
-        function importarDatos(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const productosImportados = JSON.parse(e.target.result);
-                    
-                    // Validar que sea un array
-                    if (!Array.isArray(productosImportados)) {
-                        throw new Error('Formato de archivo inválido');
-                    }
-                    
-                    // Validar estructura básica de productos
-                    const productoValido = productosImportados.every(p => 
-                        p.nombre && p.categoria && p.precio !== undefined
-                    );
-                    
-                    if (!productoValido) {
-                        throw new Error('Estructura de productos inválida');
-                    }
-                    
-                    localStorage.setItem('productos_paola', JSON.stringify(productosImportados));
-                    mostrarNotificacion('✅ Datos importados correctamente');
-                    
-                    // Recargar la página para ver los cambios
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1500);
-                    
-                } catch (error) {
-                    console.error('Error al importar:', error);
-                    mostrarNotificacion('❌ Error al importar: ' + error.message);
-                }
-            };
-            reader.readAsText(file);
-            
-            // Limpiar input para permitir re-importar el mismo archivo
-            event.target.value = '';
-        }
-
-        // Función para editar producto (placeholder - puedes expandirla)
-        function editarProducto(id) {
-            const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-            const producto = productos.find(p => p.id === id);
-            
-            if (producto) {
-                // Llenar formulario con datos del producto
-                document.getElementById('nombre-producto').value = producto.nombre;
-                document.getElementById('categoria-producto').value = producto.categoria;
-                document.getElementById('precio-producto').value = producto.precio;
-                document.getElementById('stock-producto').value = producto.stock;
-                
-                // Mostrar mensaje
-                mostrarNotificacion(`✏️ Editando: ${producto.nombre} - Completa los cambios y guarda`);
-                
-                // Scroll al formulario
-                document.getElementById('form-producto').scrollIntoView({ behavior: 'smooth' });
-                
-                // Aquí puedes expandir para tener un formulario de edición separado
-            }
-        }
-
-        // Función para mostrar notificaciones
-        function mostrarNotificacion(mensaje) {
-            // Crear notificación temporal
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fadeIn flex items-center gap-3';
-            notification.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <span class="font-semibold">${mensaje}</span>
-            `;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-
-        // Función para inicializar el panel al cargar la página
-        function inicializarPanelAdmin() {
-            // Reparar imágenes existentes si es necesario
-            setTimeout(repararImagenesExistentes, 1000);
-        }
-
-        // =============================================
-        // FUNCIONES EXISTENTES DEL SISTEMA
-        // =============================================
-
-        // CONTADOR DE VISITAS
+        
+        // Incrementar contador de visitas - solo registro, no se muestra al público
         function incrementarContadorVisitas() {
             let contador = localStorage.getItem('visitas_paola_boutique');
             
@@ -2813,6 +2291,7 @@
             return contador;
         }
 
+        // También guardar fecha de la última visita
         function registrarVisita() {
             let ultimasVisitas = JSON.parse(localStorage.getItem('ultimas_visitas_paola') || '[]');
             ultimasVisitas.push({
@@ -2820,6 +2299,7 @@
                 userAgent: navigator.userAgent
             });
 
+            // Mantener solo las últimas 100 visitas
             if (ultimasVisitas.length > 100) {
                 ultimasVisitas = ultimasVisitas.slice(-100);
             }
@@ -2828,14 +2308,135 @@
         }
 
         // Función segura para obtener elementos
-        function getElement(id) {
-            const element = document.getElementById(id);
-            if (!element) {
-                return null;
-            }
-            return element;
+       function getElement(id) {
+    const element = document.getElementById(id);
+    if (!element) {
+        // console.warn(`Elemento con ID '${id}' no encontrado`); // Comentado para evitar warnings
+        return null;
+    }
+    return element;
+}
+// =============================================
+// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+// =============================================
+
+// Función universal para procesar imágenes desde cualquier dispositivo
+async function procesarImagenParaProducto(archivoImagen) {
+    return new Promise((resolve, reject) => {
+        if (!archivoImagen) {
+            // Si no hay imagen, usar una por defecto
+            resolve('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop');
+            return;
         }
 
+        // Verificar que sea una imagen válida
+        if (!archivoImagen.type.startsWith('image/')) {
+            reject('❌ El archivo debe ser una imagen');
+            return;
+        }
+
+        // Verificar tamaño máximo (2MB)
+        if (archivoImagen.size > 2 * 1024 * 1024) {
+            reject('❌ La imagen debe ser menor a 2MB');
+            return;
+        }
+
+        // Convertir a Base64
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Comprimir imagen si es muy grande
+            comprimirImagen(e.target.result, 800, 800)
+                .then(imagenComprimida => {
+                    resolve(imagenComprimida);
+                })
+                .catch(error => {
+                    console.warn('Error al comprimir, usando imagen original:', error);
+                    resolve(e.target.result); // Usar original si falla la compresión
+                });
+        };
+        
+        reader.onerror = function() {
+            reject('❌ Error al leer la imagen');
+        };
+        
+        reader.readAsDataURL(archivoImagen);
+    });
+}
+
+// Función para comprimir imágenes (optimiza el tamaño)
+function comprimirImagen(dataUrl, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = dataUrl;
+        
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calcular nuevas dimensiones manteniendo proporción
+            let width = img.width;
+            let height = img.height;
+            
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Dibujar imagen comprimida
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convertir a Base64 con calidad del 80%
+            const imagenComprimida = canvas.toDataURL('image/jpeg', 0.8);
+            resolve(imagenComprimida);
+        };
+        
+        img.onerror = reject;
+    });
+}
+
+// Función para verificar si una imagen carga correctamente
+function verificarImagenCarga(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
+// Función para reparar imágenes existentes
+function repararImagenesExistentes() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+    let cambios = false;
+    
+    productos.forEach(producto => {
+        // Si la imagen es una URL externa y no carga, reemplazar
+        if (producto.imagen && !producto.imagen.startsWith('data:image')) {
+            const img = new Image();
+            img.onerror = function() {
+                producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
+                cambios = true;
+            };
+            img.src = producto.imagen;
+        }
+    });
+    
+    if (cambios) {
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        console.log('✅ Imágenes reparadas automáticamente');
+    }
+}
         // Cargar productos desde localStorage
         function cargarProductos() {
             const productosGuardados = localStorage.getItem('productos_paola');
@@ -2875,6 +2476,136 @@
                         },
                         stock: 8,
                         vendidos: 28
+                    },
+                    {
+                        id: 3,
+                        nombre: "Collar de Perlas",
+                        categoria: "joyas",
+                        precio: 45,
+                        imagen: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: [],
+                            descripciones: ["Material: Perlas naturales", "Largo ajustable", "Ideal para ocasiones especiales"]
+                        },
+                        stock: 10,
+                        vendidos: 15
+                    },
+                    {
+                        id: 4,
+                        nombre: "Colonia Esika Vibrante",
+                        categoria: "cosmeticos",
+                        precio: 50,
+                        imagen: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: [],
+                            descripciones: ["Fragancia floral fresca", "Duración prolongada", "Ideal para uso diario"]
+                        },
+                        stock: 12,
+                        vendidos: 8
+                    },
+                    {
+                        id: 5,
+                        nombre: "Vestido Princesa Niña",
+                        categoria: "niñas",
+                        precio: 35,
+                        imagen: "https://images.unsplash.com/photo-1599447292183-51b5b0016c78?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: ["2-4", "4-6", "6-8"],
+                            descripciones: ["Material: Seda sintética", "Color: Azul cielo", "Con detalles brillantes"]
+                        },
+                        stock: 7,
+                        vendidos: 12
+                    },
+                    {
+                        id: 6,
+                        nombre: "Polo Camión Niño",
+                        categoria: "niños",
+                        precio: 22,
+                        imagen: "https://images.unsplash.com/photo-1503454532315-3dd33c3c046e?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: ["2-4", "4-6", "6-8", "8-10"],
+                            descripciones: ["Material: Algodón orgánico", "Color: Rojo y azul", "Estampado de camión 3D"]
+                        },
+                        stock: 10,
+                        vendidos: 18
+                    },
+                    {
+                        id: 7,
+                        nombre: "Labial Esika Durazno",
+                        categoria: "cosmeticos",
+                        precio: 18,
+                        imagen: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: [],
+                            descripciones: ["Color: Durazno natural", "Hidratante y de larga duración", "Ideal para uso diario"]
+                        },
+                        stock: 20,
+                        vendidos: 25
+                    },
+                    {
+                        id: 8,
+                        nombre: "Aretes de Mariposa",
+                        categoria: "joyas",
+                        precio: 28,
+                        imagen: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: [],
+                            descripciones: ["Material: Plata 925", "Diseño: Mariposa elegante", "Ideal para ocasiones especiales"]
+                        },
+                        stock: 15,
+                        vendidos: 9
+                    },
+                    {
+                        id: 9,
+                        nombre: "Set de Broches",
+                        categoria: "otros",
+                        precio: 15,
+                        imagen: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: [],
+                            descripciones: ["Set de 5 broches diferentes", "Material: Resina y metal", "Perfecto para personalizar"]
+                        },
+                        stock: 25,
+                        vendidos: 14
+                    },
+                    {
+                        id: 10,
+                        nombre: "Polo Flores Niña",
+                        categoria: "niñas",
+                        precio: 24,
+                        imagen: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: ["2-4", "4-6", "6-8"],
+                            descripciones: ["Material: Algodón suave", "Color: Rosa con flores", "Diseño fresco y juvenil"]
+                        },
+                        stock: 12,
+                        vendidos: 16
+                    },
+                    {
+                        id: 11,
+                        nombre: "Polo Estampado Animales Niña",
+                        categoria: "niñas",
+                        precio: 26,
+                        imagen: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: ["2-4", "4-6", "6-8", "8-10"],
+                            descripciones: ["Material: Algodón premium", "Color: Amarillo pastel", "Estampado de animales"]
+                        },
+                        stock: 9,
+                        vendidos: 11
+                    },
+                    {
+                        id: 12,
+                        nombre: "Polo Deportivo Niño",
+                        categoria: "niños",
+                        precio: 23,
+                        imagen: "https://images.unsplash.com/photo-1503454532315-3dd33c3c046e?w=400&h=400&fit=crop",
+                        tallas: {
+                            tallas: ["4-6", "6-8", "8-10"],
+                            descripciones: ["Material: Algodón deportivo", "Color: Azul marino", "Diseño cómodo para jugar"]
+                        },
+                        stock: 14,
+                        vendidos: 7
                     }
                 ];
                 productosFiltrados = productos.filter(producto => producto.stock > 0);
@@ -2925,7 +2656,7 @@
         }
 
         // =============================================
-        // RENDERIZAR CATEGORÍAS CON 5 PRODUCTOS CADA UNA
+        // NUEVO: RENDERIZAR CATEGORÍAS CON 5 PRODUCTOS CADA UNA
         // =============================================
         function renderizarCategoriasConProductos() {
             const categoriasContenido = getElement('categorias-contenido');
@@ -3058,7 +2789,7 @@
             return 'Disponible';
         }
 
-        // Función para crear el HTML de un producto
+        // Función para crear el HTML de un producto (VERSIÓN COMPACTA CON IMÁGENES MÁS PEQUEÑAS)
         function crearProductoHTML(producto) {
             const categoriaBadge = producto.categoria === 'niñas' ? '👧 Niñas' : 
                                    producto.categoria === 'niños' ? '👦 Niños' : 
@@ -3070,7 +2801,7 @@
                                    producto.categoria === 'cosmeticos' ? 'from-purple-500 to-pink-500' :
                                    producto.categoria === 'joyas' ? 'from-yellow-500 to-orange-500' : 'from-green-500 to-teal-500';
             
-            // Manejar correctamente las especificaciones
+            // CORRECCIÓN: Manejar correctamente las especificaciones
             let especificacionHTML = '';
             
             if (producto.tallas) {
@@ -3092,16 +2823,16 @@
                         `;
                     }
                     
-                    // Mostrar primera descripción si existe
-                    if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
-                        const primeraDescripcion = producto.tallas.descripciones[0];
-                        especificacionHTML += `
-                            <div class="mb-2">
-                                <p class="text-xs text-gray-600 mb-1 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
-                                <p class="text-xs text-gray-600 line-clamp-2">${primeraDescripcion}</p>
-                            </div>
-                        `;
-                    }
+                  // Mostrar primera descripción si existe
+if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
+    const primeraDescripcion = producto.tallas.descripciones[0];
+    especificacionHTML += `
+        <div class="mb-2">
+            <p class="text-xs text-gray-600 mb-1 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
+            <p class="text-xs text-gray-600 line-clamp-2">${primeraDescripcion}</p>
+        </div>
+    `;
+}
                 } else {
                     // Formato antiguo (solo array of strings)
                     especificacionHTML += `
@@ -3176,7 +2907,7 @@
         }
 
         // =============================================
-        // SISTEMA DE CARRITO
+        // SISTEMA DE CARRITO (COMPACTO PERO FUNCIONAL)
         // =============================================
 
         // Función para agregar producto al carrito
@@ -3391,7 +3122,7 @@
                 return;
             }
             
-            // Registrar venta
+           // Registrar venta
             const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
             const nuevaVenta = {
                 id: Date.now(),
@@ -3451,85 +3182,111 @@
             }
         }
 
-        // =============================================
-        // FUNCIÓN DE BÚSQUEDA MEJORADA
-        // =============================================
-        function buscarProductos(termino) {
-            const categoriasContenido = getElement('categorias-contenido');
-            const productosCategoriaSection = getElement('productos-categoria');
-            const productosCategoriaGrid = getElement('productos-categoria-grid');
-            const testimoniosSection = document.querySelector('.testimonios-section');
+        // Función para mostrar notificaciones
+        function mostrarNotificacion(mensaje) {
+            // Crear notificación temporal
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow z-50 animate-fadeIn';
+            notification.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold text-sm">${mensaje}</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
             
-            if (!categoriasContenido || !productosCategoriaSection || !productosCategoriaGrid) return;
-            
-            if (termino === '') {
-                // Si no hay término de búsqueda, volver a la vista normal
-                if (categoriaActual === 'todos') {
-                    categoriasContenido.classList.remove('hidden');
-                    productosCategoriaSection.classList.add('hidden');
-                    if (testimoniosSection) testimoniosSection.style.display = 'block';
-                } else {
-                    mostrarTodosProductosCategoria(categoriaActual);
-                }
-                return;
-            }
-            
-            // Filtrar productos que coincidan con la búsqueda
-            const productosEncontrados = productosFiltrados.filter(producto => 
-                producto.nombre.toLowerCase().includes(termino.toLowerCase()) ||
-                (producto.tallas && producto.tallas.descripciones && 
-                 producto.tallas.descripciones.some(desc => 
-                     desc.toLowerCase().includes(termino.toLowerCase())
-                 ))
-            );
-            
-            if (productosEncontrados.length === 0) {
-                // Mostrar mensaje de "no resultados"
-                productosCategoriaGrid.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
-                        <h3 class="text-xl font-bold text-gray-600 mb-2">No se encontraron productos</h3>
-                        <p class="text-gray-500">No hay productos que coincidan con "${termino}"</p>
-                        <button onclick="limpiarBusqueda()" class="btn-modern mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                            <i class="fas fa-times mr-2"></i>Limpiar búsqueda
-                        </button>
-                    </div>
-                `;
-            } else {
-                // Mostrar productos encontrados
-                productosCategoriaGrid.innerHTML = productosEncontrados.map(producto => crearProductoHTML(producto)).join('');
-            }
-            
-            // Mostrar sección de resultados y ocultar otras
-            categoriasContenido.classList.add('hidden');
-            productosCategoriaSection.classList.remove('hidden');
-            if (testimoniosSection) testimoniosSection.style.display = 'none';
-            
-            // Actualizar título de la sección
-            const categoriaTitulo = getElement('categoria-titulo');
-            const categoriaIcono = getElement('categoria-icono');
-            const categoriaIconoI = getElement('categoria-icono-i');
-            
-            if (categoriaTitulo && categoriaIcono && categoriaIconoI) {
-                categoriaTitulo.textContent = `🔍 Resultados para "${termino}"`;
-                categoriaIcono.className = 'w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white';
-                categoriaIconoI.className = 'fas fa-search text-lg';
-            }
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 200);
+            }, 2000);
         }
 
         // =============================================
-        // FUNCIÓN PARA LIMPIAR BÚSQUEDA
+        // FUNCIONES EXISTENTES MEJORADAS (COMPACTAS)
         // =============================================
-        function limpiarBusqueda() {
-            const busquedaInput = getElement('busqueda');
-            if (busquedaInput) {
-                busquedaInput.value = '';
-            }
-            busquedaActual = '';
-            volverACategorias();
+        // =============================================
+// FUNCIÓN DE BÚSQUEDA MEJORADA
+// =============================================
+function buscarProductos(termino) {
+    const categoriasContenido = getElement('categorias-contenido');
+    const productosCategoriaSection = getElement('productos-categoria');
+    const productosCategoriaGrid = getElement('productos-categoria-grid');
+    const testimoniosSection = document.querySelector('.testimonios-section');
+    
+    if (!categoriasContenido || !productosCategoriaSection || !productosCategoriaGrid) return;
+    
+    if (termino === '') {
+        // Si no hay término de búsqueda, volver a la vista normal
+        if (categoriaActual === 'todos') {
+            categoriasContenido.classList.remove('hidden');
+            productosCategoriaSection.classList.add('hidden');
+            if (testimoniosSection) testimoniosSection.style.display = 'block';
+        } else {
+            mostrarTodosProductosCategoria(categoriaActual);
         }
+        return;
+    }
+    
+    // Filtrar productos que coincidan con la búsqueda
+    const productosEncontrados = productosFiltrados.filter(producto => 
+        producto.nombre.toLowerCase().includes(termino.toLowerCase()) ||
+        (producto.tallas && producto.tallas.descripciones && 
+         producto.tallas.descripciones.some(desc => 
+             desc.toLowerCase().includes(termino.toLowerCase())
+         ))
+    );
+    
+    if (productosEncontrados.length === 0) {
+        // Mostrar mensaje de "no resultados"
+        productosCategoriaGrid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-600 mb-2">No se encontraron productos</h3>
+                <p class="text-gray-500">No hay productos que coincidan con "${termino}"</p>
+                <button onclick="limpiarBusqueda()" class="btn-modern mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                    <i class="fas fa-times mr-2"></i>Limpiar búsqueda
+                </button>
+            </div>
+        `;
+    } else {
+        // Mostrar productos encontrados
+        productosCategoriaGrid.innerHTML = productosEncontrados.map(producto => crearProductoHTML(producto)).join('');
+    }
+    
+    // Mostrar sección de resultados y ocultar otras
+    categoriasContenido.classList.add('hidden');
+    productosCategoriaSection.classList.remove('hidden');
+    if (testimoniosSection) testimoniosSection.style.display = 'none';
+    
+    // Actualizar título de la sección
+    const categoriaTitulo = getElement('categoria-titulo');
+    const categoriaIcono = getElement('categoria-icono');
+    const categoriaIconoI = getElement('categoria-icono-i');
+    
+    if (categoriaTitulo && categoriaIcono && categoriaIconoI) {
+        categoriaTitulo.textContent = `🔍 Resultados para "${termino}"`;
+        categoriaIcono.className = 'w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white';
+        categoriaIconoI.className = 'fas fa-search text-lg';
+    }
+}
 
-        // Función para filtrar por categoría
+// =============================================
+// FUNCIÓN PARA LIMPIAR BÚSQUEDA
+// =============================================
+function limpiarBusqueda() {
+    const busquedaInput = getElement('busqueda');
+    if (busquedaInput) {
+        busquedaInput.value = '';
+    }
+    busquedaActual = '';
+    volverACategorias();
+}
+
+
+        // Función para filtrar por categoría (VERSIÓN COMPACTA)
         function filtrarCategoria(categoria) {
             categoriaActual = categoria;
             
@@ -3579,7 +3336,7 @@
             }
         }
 
-        // Función para mostrar modal de producto
+        // Función para mostrar modal de producto - CORREGIDA
         function mostrarModal(productoId) {
             const producto = productos.find(p => p.id === productoId);
             if (!producto) return;
@@ -3620,7 +3377,7 @@
             
             modalDetails.innerHTML = detallesHTML;
             
-            // Manejar correctamente las especificaciones en el modal
+            // CORRECCIÓN: Manejar correctamente las especificaciones en el modal
             modalTallas.innerHTML = '';
             modalDescripciones.innerHTML = '';
             
@@ -3643,22 +3400,22 @@
                         `;
                     }
                     
-                    // Mostrar descripciones si existen
-                    if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
-                        modalDescripciones.innerHTML = `
-                            <div class="space-y-2">
-                                <p class="text-sm text-gray-600 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
-                                <ul class="space-y-1">
-                                    ${producto.tallas.descripciones.map(desc => `
-                                        <li class="text-gray-700 flex items-start gap-2">
-                                            <i class="fas fa-check text-green-500 mt-1"></i>
-                                            <span>${desc}</span>
-                                        </li>
-                                    `).join('')}
-                                </ul>
-                            </div>
-                        `;
-                    }
+                 // Mostrar descripciones si existen
+if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
+    modalDescripciones.innerHTML = `
+        <div class="space-y-2">
+            <p class="text-sm text-gray-600 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
+            <ul class="space-y-1">
+                ${producto.tallas.descripciones.map(desc => `
+                    <li class="text-gray-700 flex items-start gap-2">
+                        <i class="fas fa-check text-green-500 mt-1"></i>
+                        <span>${desc}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+}
                 } else {
                     // Formato antiguo (solo array of strings)
                     modalTallas.innerHTML = `
@@ -3701,174 +3458,368 @@
             cerrarModal();
         }
 
-        // =============================================
-        // CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS
-        // =============================================
-
-        let productosCarrusel = [];
-
-        // Función para inicializar el carrusel
+        // Funciones del carrusel MEJORADO
         function inicializarCarrusel() {
-            productosCarrusel = productos.filter(p => p.stock > 0).map(p => ({
-                id: p.id,
-                nombre: p.nombre,
-                categoria: p.categoria,
-                precio: p.precio,
-                imagen: p.imagen
-            }));
+            const productosDestacados = productosFiltrados.slice(0, 3);
+            const carousel = getElement('carousel');
+            const indicators = getElement('carousel-indicators');
             
-            cargarCarruselDireccionesOpuestas(productosCarrusel);
-        }
-
-        // Función para crear el HTML de un producto
-        function crearProductoCirculoHTML(producto) {
-            let categoriaEmoji = "🎁";
-            if (producto.categoria === "niñas") categoriaEmoji = "👧";
-            else if (producto.categoria === "niños") categoriaEmoji = "👦";
-            else if (producto.categoria === "cosmeticos") categoriaEmoji = "💄";
-            else if (producto.categoria === "joyas") categoriaEmoji = "💎";
+            if (!carousel || !indicators) return;
             
-            return `
-                <div class="producto-circulo" onclick="mostrarDetalleProductoCarrusel(${producto.id})">
-                    <img src="${producto.imagen}" alt="${producto.nombre}">
-                    <div class="nombre-producto">${producto.nombre}</div>
-                    <div class="precio-producto">S/ ${producto.precio}</div>
-                    <div class="categoria-badge">${categoriaEmoji}</div>
-                </div>
-            `;
-        }
-
-        // Función para cargar productos en el carrusel con direcciones opuestas
-        function cargarCarruselDireccionesOpuestas(productos) {
-            const carruselTrack1 = document.getElementById('carrusel-track-1');
-            const carruselTrack2 = document.getElementById('carrusel-track-2');
-            
-            if (!carruselTrack1 || !carruselTrack2) return;
-            
-            if (productos.length === 0) {
-                carruselTrack1.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
-                carruselTrack2.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
+            if (productosDestacados.length === 0) {
+                carousel.innerHTML = `
+                    <div class="bg-gradient-to-r from-gray-100 to-gray-200 p-12 rounded-xl text-center">
+                        <i class="fas fa-box-open text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-600 mb-3">No hay productos destacados</h3>
+                        <p class="text-gray-500">Agrega productos en el panel de administración</p>
+                    </div>
+                `;
+                const prevBtn = getElement('prev-btn');
+                const nextBtn = getElement('next-btn');
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
                 return;
             }
             
-            // Dividir los productos en dos grupos diferentes
-            const mitad = Math.ceil(productos.length / 2);
+            // Crear items del carrusel MEJORADOS
+            carousel.innerHTML = productosDestacados.map((producto, index) => {
+                const categoriaColor = producto.categoria === 'niñas' ? 'from-pink-100 to-purple-100' : 
+                                      producto.categoria === 'niños' ? 'from-blue-100 to-purple-100' : 
+                                      producto.categoria === 'cosmeticos' ? 'from-purple-100 to-pink-100' :
+                                      producto.categoria === 'joyas' ? 'from-yellow-100 to-orange-100' : 'from-green-100 to-teal-100';
+                
+                const categoriaTexto = producto.categoria === 'niñas' ? 'bg-pink-500' : 
+                                      producto.categoria === 'niños' ? 'bg-blue-500' : 
+                                      producto.categoria === 'cosmeticos' ? 'bg-purple-500' :
+                                      producto.categoria === 'joyas' ? 'bg-yellow-500' : 'bg-green-500';
+                
+                return `
+                    <div class="carousel-item-mejorado ${index === 0 ? 'active' : 'hidden'}">
+                        <div class="carousel-background bg-gradient-to-r ${categoriaColor}"></div>
+                        <div class="carousel-item-content-mejorado">
+                            <div class="carousel-text-mejorado">
+                                <span class="carousel-badge">Producto Destacado</span>
+                                <h3 class="carousel-title">${producto.nombre}</h3>
+                                <p class="carousel-description">${getDescripcionProducto(producto)}</p>
+                                <p class="carousel-price">S/ ${producto.precio}</p>
+                                <div class="carousel-actions">
+                                    <button onclick="mostrarModal(${producto.id})" 
+                                            class="carousel-btn primary">
+                                        <i class="fas fa-eye mr-2"></i>Ver Detalles
+                                    </button>
+                                    <button onclick="agregarAlCarrito(${producto.id})" 
+                                        class="carousel-btn secondary">
+                                        <i class="fas fa-cart-plus mr-2"></i>Agregar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="carousel-image-container">
+                                <img src="${producto.imagen}" alt="${producto.nombre}" 
+                                     class="carousel-img-mejorado">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
             
-            // Para la fila 1 (izquierda): primera mitad de productos
-            const productosFila1 = productos.slice(0, mitad);
-            
-            // Para la fila 2 (derecha): segunda mitad de productos
-            const productosFila2 = productos.slice(mitad);
-            
-            // Si hay menos productos, duplicar algunos para que el carrusel se vea completo
-            if (productosFila1.length < 5) {
-                const productosExtras = productosFila2.slice(0, 5 - productosFila1.length);
-                productosFila1.push(...productosExtras);
-            }
-            
-            if (productosFila2.length < 5) {
-                const productosExtras = productosFila1.slice(0, 5 - productosFila2.length);
-                productosFila2.push(...productosExtras);
-            }
-            
-            carruselTrack1.innerHTML = productosFila1.map(producto => 
-                crearProductoCirculoHTML(producto)
-            ).join('');
-            
-            carruselTrack2.innerHTML = productosFila2.map(producto => 
-                crearProductoCirculoHTML(producto)
-            ).join('');
+            // Crear indicadores
+            indicators.innerHTML = productosDestacados.map((_, index) => `
+                <button class="carousel-indicator w-3 h-3 rounded-full ${index === 0 ? 'bg-purple-600' : 'bg-purple-300'} hover:bg-purple-500 transition-colors" data-index="${index}"></button>
+            `).join('');
         }
 
-        // Función para mostrar detalles del producto
-        function mostrarDetalleProductoCarrusel(id) {
-            const producto = productos.find(p => p.id === id);
-            if (producto) {
-                mostrarModal(id);
+        function getDescripcionProducto(producto) {
+            if (producto.categoria === 'niñas') {
+                return '¡Perfecto para las más pequeñas! Diseños únicos y tejidos suaves que garantizan comodidad y estilo.';
+            } else if (producto.categoria === 'niños') {
+                return '¡Ideal para los más activos! Resistente, cómodo y diseñado para durar en todas sus aventuras.';
+            } else if (producto.categoria === 'cosmeticos') {
+                return 'Productos de la más alta calidad para el cuidado delicado de la piel de tus pequeños. Hipoalergénicos y testeados.';
+            } else if (producto.categoria === 'joyas') {
+                return 'Hermosas joyas y accesorios elaborados con materiales premium para complementar tu estilo único.';
+            } else {
+                return 'Productos especiales y únicos, seleccionados cuidadosamente para satisfacer todos los gustos y necesidades.';
             }
         }
 
-        // =============================================
-        // INICIALIZACIÓN COMPLETA DE LA APLICACIÓN
-        // =============================================
+        function cambiarCarrusel(direction) {
+            const items = document.querySelectorAll('.carousel-item-mejorado');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (items.length === 0) return;
+            
+            items[currentCarouselIndex].classList.remove('active');
+            items[currentCarouselIndex].classList.add('hidden');
+            indicators[currentCarouselIndex].classList.remove('bg-purple-600');
+            indicators[currentCarouselIndex].classList.add('bg-purple-300');
+            
+            if (direction === 'next') {
+                currentCarouselIndex = (currentCarouselIndex + 1) % items.length;
+            } else {
+                currentCarouselIndex = (currentCarouselIndex - 1 + items.length) % items.length;
+            }
+            
+            items[currentCarouselIndex].classList.remove('hidden');
+            items[currentCarouselIndex].classList.add('active');
+            indicators[currentCarouselIndex].classList.remove('bg-purple-300');
+            indicators[currentCarouselIndex].classList.add('bg-purple-600');
+        }
 
-        // Al cargar la página
+        function irACarrusel(index) {
+            const items = document.querySelectorAll('.carousel-item-mejorado');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            if (items.length === 0) return;
+            
+            items[currentCarouselIndex].classList.remove('active');
+            items[currentCarouselIndex].classList.add('hidden');
+            indicators[currentCarouselIndex].classList.remove('bg-purple-600');
+            indicators[currentCarouselIndex].classList.add('bg-purple-300');
+            
+            currentCarouselIndex = index;
+            
+            items[currentCarouselIndex].classList.remove('hidden');
+            items[currentCarouselIndex].classList.add('active');
+            indicators[currentCarouselIndex].classList.remove('bg-purple-300');
+            indicators[currentCarouselIndex].classList.add('bg-purple-600');
+        }
+
+        // Función para inicializar todos los eventos después de cargar el DOM
+        function inicializarEventos() {
+            // Verificar que los elementos existan antes de agregar eventos
+            const prevBtn = getElement('prev-btn');
+            const nextBtn = getElement('next-btn');
+            const closeModal = getElement('close-modal');
+            const productModal = getElement('product-modal');
+            const cartBtn = getElement('cart-btn');
+            const busquedaInput = getElement('busqueda');
+            
+           // if (prevBtn) prevBtn.addEventListener('click', () => cambiarCarrusel('prev'));
+           //if (nextBtn) nextBtn.addEventListener('click', () => cambiarCarrusel('next'));
+            if (closeModal) closeModal.addEventListener('click', cerrarModal);
+            if (cartBtn) cartBtn.addEventListener('click', toggleCarrito);
+            if (busquedaInput) {
+             busquedaInput.addEventListener('input', (e) => {
+               busquedaActual = e.target.value.toLowerCase();
+                buscarProductos(busquedaActual);
+                 });
+                }
+              
+            // Configurar indicadores del carrusel (se configuran después de crear el carrusel)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('carousel-indicator')) {
+                    irACarrusel(parseInt(e.target.dataset.index));
+                }
+            });
+            
+            // Cerrar modal al hacer clic fuera
+            if (productModal) {
+                productModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        cerrarModal();
+                    }
+                });
+            }
+            
+            // Escuchar cambios en localStorage
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'productos_paola') {
+                    cargarProductos();
+                }
+            });
+        }
+
+        // Inicialización corregida
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Iniciando PAOLA BOUTIQUE...');
-            
-            // 1. Registrar visita (contador interno)
+            // =============================================
+            // CONTADOR DE VISITAS - INCREMENTAR AL CARGAR LA PÁGINA
+            // =============================================
             incrementarContadorVisitas();
+            
             registrarVisita();
             
-            // 2. Inicializar panel de administración
-            inicializarPanelAdmin();
-            
-            // 3. Cargar productos principales
+            // Cargar productos primero
             cargarProductos();
             
-            // 4. Renderizar testimonios
+            // Renderizar testimonios
             renderizarTestimonios();
             
-            // 5. Inicializar eventos después de un pequeño delay
+            // Inicializar eventos después de un pequeño delay para asegurar que el DOM esté listo
             setTimeout(() => {
                 inicializarEventos();
                 actualizarContadorFavoritos();
                 actualizarContadorCarrito();
                 
-                // 6. Inicializar carrusel horizontal
-                inicializarCarrusel();
+                // Iniciar carrusel automático si hay productos
+                if (productosFiltrados.length > 0) {
+                    setInterval(() => cambiarCarrusel('next'), 5000);
+                }
                 
-                console.log('✅ PAOLA BOUTIQUE iniciada correctamente');
+                // Iniciar rotación automática de testimonios
+                setInterval(rotarTestimonios, 5000);
             }, 100);
         });
+    // Botón para subir
+const scrollToTopBtn = document.getElementById('scroll-to-top');
 
-        // Función para inicializar todos los eventos
-        function inicializarEventos() {
-            // Eventos del carrito
-            const cartBtn = document.getElementById('cart-btn');
-            const busquedaInput = document.getElementById('busqueda');
-            
-            if (cartBtn) cartBtn.addEventListener('click', toggleCarrito);
-            if (busquedaInput) {
-                busquedaInput.addEventListener('input', (e) => {
-                    busquedaActual = e.target.value.toLowerCase();
-                    buscarProductos(busquedaActual);
-                });
-            }
-            
-            // Eventos de modales
-            const closeModal = document.getElementById('close-modal');
-            const productModal = document.getElementById('product-modal');
-            
-            if (closeModal) closeModal.addEventListener('click', cerrarModal);
-            if (productModal) {
-                productModal.addEventListener('click', function(e) {
-                    if (e.target === this) cerrarModal();
-                });
-            }
-            
-            // Botón para subir
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-            if (scrollToTopBtn) {
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        scrollToTopBtn.classList.remove('hidden');
-                    } else {
-                        scrollToTopBtn.classList.add('hidden');
-                    }
-                });
-                
-                scrollToTopBtn.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-            
-            console.log('✅ Eventos inicializados');
-        }
+// Mostrar/ocultar botón al hacer scroll con efecto
+window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.remove('hidden');
+        scrollToTopBtn.classList.add('animate-bounce');
+    } else {
+        scrollToTopBtn.classList.add('hidden');
+        scrollToTopBtn.classList.remove('animate-bounce');
+    }
+});
 
+// Función para subir al inicio con efecto
+scrollToTopBtn.addEventListener('click', function() {
+    // Agregar efecto de click
+    this.classList.add('scale-90');
+    
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    // Quitar efecto después de la animación
+    setTimeout(() => {
+        this.classList.remove('scale-90');
+    }, 300);
+});
+
+// =============================================
+// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS - CORREGIDO
+// =============================================
+
+let productosCarrusel = [];
+
+// Función para inicializar el carrusel
+function inicializarCarrusel() {
+    productosCarrusel = productos.filter(p => p.stock > 0).map(p => ({
+        id: p.id,
+        nombre: p.nombre,
+        categoria: p.categoria,
+        precio: p.precio,
+        imagen: p.imagen
+    }));
+    
+    cargarCarruselDireccionesOpuestas(productosCarrusel);
+}
+
+// Función para crear el HTML de un producto
+function crearProductoCirculoHTML(producto) {
+    let categoriaEmoji = "🎁";
+    if (producto.categoria === "niñas") categoriaEmoji = "👧";
+    else if (producto.categoria === "niños") categoriaEmoji = "👦";
+    else if (producto.categoria === "cosmeticos") categoriaEmoji = "💄";
+    else if (producto.categoria === "joyas") categoriaEmoji = "💎";
+    
+    return `
+        <div class="producto-circulo" onclick="mostrarDetalleProductoCarrusel(${producto.id})">
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <div class="nombre-producto">${producto.nombre}</div>
+            <div class="precio-producto">S/ ${producto.precio}</div>
+            <div class="categoria-badge">${categoriaEmoji}</div>
+        </div>
+    `;
+}
+// Función para cargar productos en el carrusel con direcciones opuestas - CORREGIDA
+function cargarCarruselDireccionesOpuestas(productos) {
+    const carruselTrack1 = document.getElementById('carrusel-track-1');
+    const carruselTrack2 = document.getElementById('carrusel-track-2');
+    
+    if (!carruselTrack1 || !carruselTrack2) return;
+    
+    if (productos.length === 0) {
+        carruselTrack1.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
+        carruselTrack2.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
+        return;
+    }
+    
+    // CORRECCIÓN: Dividir los productos en dos grupos diferentes
+    const mitad = Math.ceil(productos.length / 2);
+    
+    // Para la fila 1 (izquierda): primera mitad de productos
+    const productosFila1 = productos.slice(0, mitad);
+    
+    // Para la fila 2 (derecha): segunda mitad de productos
+    const productosFila2 = productos.slice(mitad);
+    
+    // Si hay menos productos, duplicar algunos para que el carrusel se vea completo
+    // pero asegurando que no se repitan exactamente los mismos productos
+    if (productosFila1.length < 5) {
+        const productosExtras = productosFila2.slice(0, 5 - productosFila1.length);
+        productosFila1.push(...productosExtras);
+    }
+    
+    if (productosFila2.length < 5) {
+        const productosExtras = productosFila1.slice(0, 5 - productosFila2.length);
+        productosFila2.push(...productosExtras);
+    }
+    
+    carruselTrack1.innerHTML = productosFila1.map(producto => 
+        crearProductoCirculoHTML(producto)
+    ).join('');
+    
+    carruselTrack2.innerHTML = productosFila2.map(producto => 
+        crearProductoCirculoHTML(producto)
+    ).join('');
+}
+
+// Función para filtrar el carrusel
+function filtrarCarrusel(categoria) {
+    const productosFiltrados = categoria === 'todos' 
+        ? productos.filter(p => p.stock > 0).map(p => ({
+            id: p.id,
+            nombre: p.nombre,
+            categoria: p.categoria,
+            precio: p.precio,
+            imagen: p.imagen
+        }))
+        : productos.filter(p => p.categoria === categoria && p.stock > 0).map(p => ({
+            id: p.id,
+            nombre: p.nombre,
+            categoria: p.categoria,
+            precio: p.precio,
+            imagen: p.imagen
+        }));
+    
+    productosCarrusel = productosFiltrados;
+    
+    // Actualizar botones activos
+    document.querySelectorAll('.filtro-carrusel').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    cargarCarruselDireccionesOpuestas(productosFiltrados);
+}
+
+// Función para mostrar detalles del producto
+function mostrarDetalleProductoCarrusel(id) {
+    const producto = productos.find(p => p.id === id);
+    if (producto) {
+        mostrarModal(id);
+    }
+}
+
+// Actualizar carrusel cuando se actualicen los productos
+function actualizarCarrusel() {
+    inicializarCarrusel();
+}
+
+// Inicializar cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        inicializarCarrusel();
+    }, 500);
+});
+        
+        
     </script>
 </body>
 </html>
+
+
