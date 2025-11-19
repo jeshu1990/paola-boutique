@@ -2179,6 +2179,121 @@
     
     
     <script>
+        // =============================================
+// SISTEMA DE SINCRONIZACIÓN MANUAL - SOLUCIÓN RECOMENDADA
+// =============================================
+
+// Función para exportar productos a un archivo
+function exportarProductos() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola') || '[]');
+    const datos = JSON.stringify(productos, null, 2);
+    const blob = new Blob([datos], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'productos_paola_boutique.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    alert('✅ Productos exportados. Guarda el archivo y compártelo con tu celular.');
+}
+
+// Función para importar productos desde un archivo
+function importarProductos(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        try {
+            const productosImportados = JSON.parse(e.target.result);
+            localStorage.setItem('productos_paola', JSON.stringify(productosImportados));
+            cargarProductos();
+            alert('✅ Productos importados correctamente. Recarga la página en ambos dispositivos.');
+        } catch (error) {
+            alert('❌ Error al importar: Archivo inválido');
+        }
+    };
+    
+    reader.readAsText(file);
+}
+
+// Función para reparar imágenes Base64 existentes
+function repararImagenesBase64() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola') || '[]');
+    let cambios = false;
+    
+    const placeholders = {
+        'niñas': 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=400&fit=crop',
+        'niños': 'https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=400&h=400&fit=crop',
+        'cosmeticos': 'https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?w=400&h=400&fit=crop',
+        'joyas': 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
+        'otros': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop'
+    };
+    
+    productos.forEach(producto => {
+        if (producto.imagen && producto.imagen.startsWith('data:image')) {
+            console.log(`🔧 Reemplazando imagen Base64: ${producto.nombre}`);
+            producto.imagen = placeholders[producto.categoria] || placeholders.otros;
+            cambios = true;
+        }
+    });
+    
+    if (cambios) {
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        cargarProductos();
+        alert('🔄 Imágenes reparadas. Ahora exporta para sincronizar.');
+    } else {
+        alert('✅ No hay imágenes Base64 que reparar');
+    }
+}
+
+// Agregar botones al panel de administración
+function agregarBotonesSincronizacion() {
+    // Buscar el panel admin o crear uno temporal
+    let adminPanel = document.getElementById('admin-panel');
+    
+    if (!adminPanel) {
+        // Crear panel temporal si no existe
+        adminPanel = document.createElement('div');
+        adminPanel.id = 'admin-sync-panel';
+        adminPanel.className = 'fixed bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg z-50 border';
+        adminPanel.innerHTML = `
+            <h3 class="font-bold mb-2">🔄 Sincronización</h3>
+            <div class="space-y-2">
+                <button onclick="repararImagenesBase64()" class="w-full bg-yellow-500 text-white px-3 py-2 rounded text-sm">
+                    🔧 Reparar Imágenes
+                </button>
+                <button onclick="exportarProductos()" class="w-full bg-blue-500 text-white px-3 py-2 rounded text-sm">
+                    📤 Exportar
+                </button>
+                <label class="w-full bg-green-500 text-white px-3 py-2 rounded text-sm block text-center cursor-pointer">
+                    📥 Importar
+                    <input type="file" accept=".json" onchange="importarProductos(event)" class="hidden">
+                </label>
+            </div>
+        `;
+        document.body.appendChild(adminPanel);
+    } else {
+        adminPanel.innerHTML += `
+            <div class="bg-white p-4 rounded-lg shadow mb-4">
+                <h3 class="font-bold mb-2">🔄 Sincronización entre Dispositivos</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="repararImagenesBase64()" class="bg-yellow-500 text-white px-3 py-2 rounded text-sm">
+                        🔧 Reparar Imágenes
+                    </button>
+                    <button onclick="exportarProductos()" class="bg-blue-500 text-white px-3 py-2 rounded text-sm">
+                        📤 Exportar
+                    </button>
+                    <label class="bg-green-500 text-white px-3 py-2 rounded text-sm text-center cursor-pointer col-span-2">
+                        📥 Importar Productos
+                        <input type="file" accept=".json" onchange="importarProductos(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+        `;
+    }
+}
         // Variables globales
         let productos = [];
         let productosFiltrados = [];
@@ -3794,3 +3909,4 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
