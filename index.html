@@ -3605,7 +3605,6 @@ function crearProductoCirculoHTML(producto) {
         </div>
     `;
 }
-
 // Función para cargar productos en el carrusel con direcciones opuestas - CORREGIDA
 function cargarCarruselDireccionesOpuestas(productos) {
     const carruselTrack1 = document.getElementById('carrusel-track-1');
@@ -3619,12 +3618,26 @@ function cargarCarruselDireccionesOpuestas(productos) {
         return;
     }
     
-    // CORRECCIÓN: Usar TODOS los productos sin duplicar
-    // Para la fila 1 (izquierda): orden normal
-    const productosFila1 = [...productos];
+    // CORRECCIÓN: Dividir los productos en dos grupos diferentes
+    const mitad = Math.ceil(productos.length / 2);
     
-    // Para la fila 2 (derecha): orden invertido
-    const productosFila2 = [...productos].reverse();
+    // Para la fila 1 (izquierda): primera mitad de productos
+    const productosFila1 = productos.slice(0, mitad);
+    
+    // Para la fila 2 (derecha): segunda mitad de productos
+    const productosFila2 = productos.slice(mitad);
+    
+    // Si hay menos productos, duplicar algunos para que el carrusel se vea completo
+    // pero asegurando que no se repitan exactamente los mismos productos
+    if (productosFila1.length < 5) {
+        const productosExtras = productosFila2.slice(0, 5 - productosFila1.length);
+        productosFila1.push(...productosExtras);
+    }
+    
+    if (productosFila2.length < 5) {
+        const productosExtras = productosFila1.slice(0, 5 - productosFila2.length);
+        productosFila2.push(...productosExtras);
+    }
     
     carruselTrack1.innerHTML = productosFila1.map(producto => 
         crearProductoCirculoHTML(producto)
@@ -3688,3 +3701,4 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
