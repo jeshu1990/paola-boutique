@@ -2316,10 +2316,12 @@
     }
     return element;
 }
+
 // =============================================
-// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+// SISTEMA MEJORADO DE IMÁGENES MULTIDISPOSITIVO
 // =============================================
 
+// Función principal para procesar imágenes
 async function procesarImagenParaProducto(archivoImagen) {
     return new Promise((resolve, reject) => {
         if (!archivoImagen) {
@@ -2346,9 +2348,6 @@ async function procesarImagenParaProducto(archivoImagen) {
             return;
         }
 
-        // PARA SISTEMAS MULTIDISPOSITIVO: Usar URLs externas en lugar de Base64
-        // Pero como no tenemos servidor, optimizaremos Base64 al máximo
-        
         const reader = new FileReader();
         
         reader.onload = function(e) {
@@ -2412,7 +2411,7 @@ function comprimirImagenParaMultidispositivo(dataUrl, maxWidth, maxHeight) {
             
             // Convertir a Base64 con calidad optimizada para móvil
             try {
-                const imagenComprimida = canvas.toDataURL('image/jpeg', 0.7); // Calidad reducida para móvil
+                const imagenComprimida = canvas.toDataURL('image/jpeg', 0.7);
                 console.log(`📱 Imagen comprimida: ${(imagenComprimida.length / 1024).toFixed(2)} KB`);
                 resolve(imagenComprimida);
             } catch (error) {
@@ -2443,73 +2442,6 @@ function comprimirImagenBasica(dataUrl) {
     });
 }
 
-// Función de compresión optimizada para multidispositivo
-function comprimirImagenParaMultidispositivo(dataUrl, maxWidth, maxHeight) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = dataUrl;
-        
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Calcular dimensiones optimizadas para móvil
-            let width = img.width;
-            let height = img.height;
-            
-            // Reducir tamaño para móvil
-            if (width > maxWidth || height > maxHeight) {
-                if (width > height) {
-                    height = Math.round((height * maxWidth) / width);
-                    width = maxWidth;
-                } else {
-                    width = Math.round((width * maxHeight) / height);
-                    height = maxHeight;
-                }
-            }
-            
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Mejorar calidad de renderizado
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            
-            // Dibujar imagen comprimida
-            ctx.drawImage(img, 0, 0, width, height);
-            
-            // Convertir a Base64 con calidad optimizada para móvil
-            try {
-                const imagenComprimida = canvas.toDataURL('image/jpeg', 0.7); // Calidad reducida para móvil
-                console.log(`📱 Imagen comprimida: ${(imagenComprimida.length / 1024).toFixed(2)} KB`);
-                resolve(imagenComprimida);
-            } catch (error) {
-                reject(error);
-            }
-        };
-        
-        img.onerror = reject;
-    });
-}
-
-// Compresión básica como fallback
-function comprimirImagenBasica(dataUrl) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.src = dataUrl;
-        
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 400;
-            canvas.height = 400;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, 400, 400);
-            resolve(canvas.toDataURL('image/jpeg', 0.6));
-        };
-        
-        img.onerror = () => resolve(dataUrl);
-    });
-}
 // =============================================
 // SISTEMA DE SINCRONIZACIÓN DE IMÁGENES
 // =============================================
@@ -2523,7 +2455,7 @@ function verificarYRepararImagenes() {
         // Si la imagen es Base64 y es muy grande, comprimirla
         if (producto.imagen && producto.imagen.startsWith('data:image')) {
             const tamanoKB = producto.imagen.length / 1024;
-            if (tamanoKB > 500) { // Si es mayor a 500KB, comprimir
+            if (tamanoKB > 500) {
                 console.log(`🔧 Comprimiendo imagen muy grande: ${tamanoKB.toFixed(2)} KB`);
                 comprimirImagenParaMultidispositivo(producto.imagen, 500, 500)
                     .then(imagenComprimida => {
@@ -2553,8 +2485,6 @@ function verificarYRepararImagenes() {
         setTimeout(() => {
             localStorage.setItem('productos_paola', JSON.stringify(productos));
             console.log('✅ Imágenes reparadas y optimizadas');
-            // Opcional: recargar para ver los cambios
-            // location.reload();
         }, 1000);
     }
 }
@@ -2563,13 +2493,16 @@ function verificarYRepararImagenes() {
 function forzarActualizacionImagenes() {
     if (confirm('¿Actualizar todas las imágenes para compatibilidad móvil? Esto puede tomar unos segundos.')) {
         verificarYRepararImagenes();
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
     }
 }
+
 // =============================================
 // FUNCIÓN PARA AGREGAR BOTÓN DE REPARACIÓN
 // =============================================
 function agregarBotonReparacion() {
-    // Solo mostrar en modo desarrollo o si hay problemas
     const footer = document.querySelector('footer');
     if (footer && !document.getElementById('boton-reparacion-imagenes')) {
         const botonReparacion = document.createElement('button');
@@ -2578,64 +2511,28 @@ function agregarBotonReparacion() {
         botonReparacion.className = 'fixed bottom-20 left-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm z-50 transition-all shadow-lg';
         botonReparacion.onclick = forzarActualizacionImagenes;
         botonReparacion.title = 'Reparar imágenes para compatibilidad entre dispositivos';
-        footer.appendChild(botonReparacion);
-        
-        // Ocultar automáticamente después de 10 segundos
-        setTimeout(() => {
-            botonReparacion.style.opacity = '0.5';
-        }, 10000);
+        document.body.appendChild(botonReparacion);
     }
-}
-// Función para verificar si una imagen carga correctamente
-function verificarImagenCarga(url) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = url;
-    });
 }
 
-// Función para reparar imágenes existentes
-function repararImagenesExistentes() {
-    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
-    let cambios = false;
-    
-    productos.forEach(producto => {
-        // Si la imagen es una URL externa y no carga, reemplazar
-        if (producto.imagen && !producto.imagen.startsWith('data:image')) {
-            const img = new Image();
-            img.onerror = function() {
-                producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
-                cambios = true;
-            };
-            img.src = producto.imagen;
-        }
-    });
-    
-    if (cambios) {
-        localStorage.setItem('productos_paola', JSON.stringify(productos));
-        console.log('✅ Imágenes reparadas automáticamente');
-    }
-}
         // Cargar productos desde localStorage
-      function cargarProductos() {
-    const productosGuardados = localStorage.getItem('productos_paola');
-    if (productosGuardados) {
-        productos = JSON.parse(productosGuardados);
-        
-        // ✅ NUEVO: Verificar y reparar imágenes para multidispositivo
-        setTimeout(() => {
-            verificarYRepararImagenes();
-        }, 1000);
-        
-        // Filtrar solo productos con stock > 0 para el catálogo público
-        productosFiltrados = productos.filter(producto => producto.stock > 0);
-        renderizarCategoriasConProductos();
-        inicializarCarrusel();
-        const loadingState = getElement('loading-state');
-        if (loadingState) loadingState.classList.add('hidden');
-    } else {
+        function cargarProductos() {
+            const productosGuardados = localStorage.getItem('productos_paola');
+            if (productosGuardados) {
+                productos = JSON.parse(productosGuardados);
+                
+                // ✅ NUEVO: Verificar y reparar imágenes para multidispositivo
+                setTimeout(() => {
+                    verificarYRepararImagenes();
+                }, 1000);
+                
+                // Filtrar solo productos con stock > 0 para el catálogo público
+                productosFiltrados = productos.filter(producto => producto.stock > 0);
+                renderizarCategoriasConProductos();
+                inicializarCarrusel();
+                const loadingState = getElement('loading-state');
+                if (loadingState) loadingState.classList.add('hidden');
+            } else {
                 // Si no hay productos en localStorage, cargar algunos de ejemplo
                 productos = [
                     {
@@ -2663,136 +2560,6 @@ function repararImagenesExistentes() {
                         },
                         stock: 8,
                         vendidos: 28
-                    },
-                    {
-                        id: 3,
-                        nombre: "Collar de Perlas",
-                        categoria: "joyas",
-                        precio: 45,
-                        imagen: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: [],
-                            descripciones: ["Material: Perlas naturales", "Largo ajustable", "Ideal para ocasiones especiales"]
-                        },
-                        stock: 10,
-                        vendidos: 15
-                    },
-                    {
-                        id: 4,
-                        nombre: "Colonia Esika Vibrante",
-                        categoria: "cosmeticos",
-                        precio: 50,
-                        imagen: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: [],
-                            descripciones: ["Fragancia floral fresca", "Duración prolongada", "Ideal para uso diario"]
-                        },
-                        stock: 12,
-                        vendidos: 8
-                    },
-                    {
-                        id: 5,
-                        nombre: "Vestido Princesa Niña",
-                        categoria: "niñas",
-                        precio: 35,
-                        imagen: "https://images.unsplash.com/photo-1599447292183-51b5b0016c78?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: ["2-4", "4-6", "6-8"],
-                            descripciones: ["Material: Seda sintética", "Color: Azul cielo", "Con detalles brillantes"]
-                        },
-                        stock: 7,
-                        vendidos: 12
-                    },
-                    {
-                        id: 6,
-                        nombre: "Polo Camión Niño",
-                        categoria: "niños",
-                        precio: 22,
-                        imagen: "https://images.unsplash.com/photo-1503454532315-3dd33c3c046e?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: ["2-4", "4-6", "6-8", "8-10"],
-                            descripciones: ["Material: Algodón orgánico", "Color: Rojo y azul", "Estampado de camión 3D"]
-                        },
-                        stock: 10,
-                        vendidos: 18
-                    },
-                    {
-                        id: 7,
-                        nombre: "Labial Esika Durazno",
-                        categoria: "cosmeticos",
-                        precio: 18,
-                        imagen: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: [],
-                            descripciones: ["Color: Durazno natural", "Hidratante y de larga duración", "Ideal para uso diario"]
-                        },
-                        stock: 20,
-                        vendidos: 25
-                    },
-                    {
-                        id: 8,
-                        nombre: "Aretes de Mariposa",
-                        categoria: "joyas",
-                        precio: 28,
-                        imagen: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: [],
-                            descripciones: ["Material: Plata 925", "Diseño: Mariposa elegante", "Ideal para ocasiones especiales"]
-                        },
-                        stock: 15,
-                        vendidos: 9
-                    },
-                    {
-                        id: 9,
-                        nombre: "Set de Broches",
-                        categoria: "otros",
-                        precio: 15,
-                        imagen: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: [],
-                            descripciones: ["Set de 5 broches diferentes", "Material: Resina y metal", "Perfecto para personalizar"]
-                        },
-                        stock: 25,
-                        vendidos: 14
-                    },
-                    {
-                        id: 10,
-                        nombre: "Polo Flores Niña",
-                        categoria: "niñas",
-                        precio: 24,
-                        imagen: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: ["2-4", "4-6", "6-8"],
-                            descripciones: ["Material: Algodón suave", "Color: Rosa con flores", "Diseño fresco y juvenil"]
-                        },
-                        stock: 12,
-                        vendidos: 16
-                    },
-                    {
-                        id: 11,
-                        nombre: "Polo Estampado Animales Niña",
-                        categoria: "niñas",
-                        precio: 26,
-                        imagen: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: ["2-4", "4-6", "6-8", "8-10"],
-                            descripciones: ["Material: Algodón premium", "Color: Amarillo pastel", "Estampado de animales"]
-                        },
-                        stock: 9,
-                        vendidos: 11
-                    },
-                    {
-                        id: 12,
-                        nombre: "Polo Deportivo Niño",
-                        categoria: "niños",
-                        precio: 23,
-                        imagen: "https://images.unsplash.com/photo-1503454532315-3dd33c3c046e?w=400&h=400&fit=crop",
-                        tallas: {
-                            tallas: ["4-6", "6-8", "8-10"],
-                            descripciones: ["Material: Algodón deportivo", "Color: Azul marino", "Diseño cómodo para jugar"]
-                        },
-                        stock: 14,
-                        vendidos: 7
                     }
                 ];
                 productosFiltrados = productos.filter(producto => producto.stock > 0);
@@ -3816,7 +3583,7 @@ if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
             });
         }
 
-      // =============================================
+// =============================================
 // INICIALIZACIÓN MEJORADA PARA MULTIDISPOSITIVO
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -4027,6 +3794,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
-
-
-
