@@ -2316,7 +2316,212 @@
     }
     return element;
 }
+// =============================================
+// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+// =============================================
 
+// Función universal para procesar imágenes desde cualquier dispositivo
+async function procesarImagenParaProducto(archivoImagen) {
+    return new Promise((resolve, reject) => {
+        if (!archivoImagen) {
+            // Si no hay imagen, usar una por defecto
+            resolve('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop');
+            return;
+        }
+
+        // Verificar que sea una imagen válida
+        if (!archivoImagen.type.startsWith('image/')) {
+            reject('❌ El archivo debe ser una imagen');
+            return;
+        }
+
+        // Verificar tamaño máximo (2MB)
+        if (archivoImagen.size > 2 * 1024 * 1024) {
+            reject('❌ La imagen debe ser menor a 2MB');
+            return;
+        }
+
+        // Convertir a Base64
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Comprimir imagen si es muy grande
+            comprimirImagen(e.target.result, 800, 800)
+                .then(imagenComprimida => {
+                    resolve(imagenComprimida);
+                })
+                .catch(error => {
+                    console.warn('Error al comprimir, usando imagen original:', error);
+                    resolve(e.target.result); // Usar original si falla la compresión
+                });
+        };
+        
+        reader.onerror = function() {
+            reject('❌ Error al leer la imagen');
+        };
+        
+        reader.readAsDataURL(archivoImagen);
+    });
+}
+
+// Función para comprimir imágenes (optimiza el tamaño)
+function comprimirImagen(dataUrl, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = dataUrl;
+        
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calcular nuevas dimensiones manteniendo proporción
+            let width = img.width;
+            let height = img.height;
+            
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Dibujar imagen comprimida
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convertir a Base64 con calidad del 80%
+            const imagenComprimida = canvas.toDataURL('image/jpeg', 0.8);
+            resolve(imagenComprimida);
+        };
+        
+        img.onerror = reject;
+    });
+}
+
+// Función para verificar si una imagen carga correctamente
+function verificarImagenCarga(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
+// Función para reparar imágenes existentes
+function repararImagenesExistentes() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+    let cambios = false;
+    
+    productos.forEach(producto => {
+        // Si la imagen es una URL externa y no carga, reemplazar
+        if (producto.imagen && !producto.imagen.startsWith('data:image')) {
+            const img = new Image();
+            img.onerror = function() {
+                producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
+                cambios = true;
+            };
+            img.src = producto.imagen;
+        }
+    });
+    
+    if (cambios) {
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        console.log('✅ Imágenes reparadas automáticamente');
+    }
+}
+// Función universal para procesar imágenes desde cualquier dispositivo
+async function procesarImagenParaProducto(archivoImagen) {
+    return new Promise((resolve, reject) => {
+        if (!archivoImagen) {
+            // Si no hay imagen, usar una por defecto
+            resolve('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop');
+            return;
+        }
+
+        // Verificar que sea una imagen válida
+        if (!archivoImagen.type.startsWith('image/')) {
+            reject('❌ El archivo debe ser una imagen');
+            return;
+        }
+
+        // Verificar tamaño máximo (2MB)
+        if (archivoImagen.size > 2 * 1024 * 1024) {
+            reject('❌ La imagen debe ser menor a 2MB');
+            return;
+        }
+
+        // Convertir a Base64
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Comprimir imagen si es muy grande
+            comprimirImagen(e.target.result, 800, 800)
+                .then(imagenComprimida => {
+                    resolve(imagenComprimida);
+                })
+                .catch(error => {
+                    console.warn('Error al comprimir, usando imagen original:', error);
+                    resolve(e.target.result); // Usar original si falla la compresión
+                });
+        };
+        
+        reader.onerror = function() {
+            reject('❌ Error al leer la imagen');
+        };
+        
+        reader.readAsDataURL(archivoImagen);
+    });
+}
+
+// Función para comprimir imágenes (optimiza el tamaño)
+function comprimirImagen(dataUrl, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = dataUrl;
+        
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calcular nuevas dimensiones manteniendo proporción
+            let width = img.width;
+            let height = img.height;
+            
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Dibujar imagen comprimida
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convertir a Base64 con calidad del 80%
+            const imagenComprimida = canvas.toDataURL('image/jpeg', 0.8);
+            resolve(imagenComprimida);
+        };
+        
+        img.onerror = reject;
+    });
+}
+        
         // Cargar productos desde localStorage
         function cargarProductos() {
             const productosGuardados = localStorage.getItem('productos_paola');
@@ -3701,4 +3906,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
 
