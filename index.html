@@ -4,24 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAOLA'BOUTIQUE - Catálogo Virtual</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
-    
-    <!-- Preconectar a CDNs para mejor rendimiento -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Meta tags para SEO y redes sociales -->
-    <meta name="description" content="PAOLA'BOUTIQUE - Moda infantil, cosméticos premium, joyas y accesorios únicos en Tarapoto. ¡Descubre nuestro catálogo virtual!">
-    <meta name="keywords" content="moda infantil, ropa niños, ropa niñas, cosméticos, joyas, Tarapoto, boutique">
-    <meta name="author" content="Jesus Alberto PEREZ BRAVO">
-    
-    <!-- Open Graph para compartir en redes sociales -->
-    <meta property="og:title" content="PAOLA'BOUTIQUE - Catálogo Virtual">
-    <meta property="og:description" content="Moda infantil, cosméticos premium, joyas y accesorios únicos en Tarapoto">
-    <meta property="og:type" content="website">
-    
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
     <!-- Tailwind CSS CDN (para desarrollo) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -314,15 +298,19 @@
             text-align: center;
             padding: 40px 20px;
         }
-   .hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-    -webkit-background-clip: text;
-    background-clip: text; /* ← LÍNEA AGREGADA */
-    -webkit-text-fill-color: transparent;
-    color: transparent; /* ← LÍNEA AGREGADA para compatibilidad */
-}
+        
+       .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        background-clip: text; /* ← LÍNEA AGREGADA */
+        -webkit-text-fill-color: transparent;
+        color: transparent; /* ← LÍNEA AGREGADA para compatibilidad */
+        margin-bottom: 20px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
         .hero-subtitle {
             font-size: 1.2rem;
             color: rgba(255,255,255,0.9);
@@ -986,14 +974,14 @@
     left: 15%;
 }
 
-/* Carrusel Horizontal Automático en Círculos */
+/* CARRUSEL HORIZONTAL AUTOMÁTICO MEJORADO */
 @keyframes scroll-horizontal {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
 .animate-scroll-horizontal {
-    animation: scroll-horizontal 40s linear infinite;
+    animation: scroll-horizontal 30s linear infinite;
     display: flex;
     width: max-content;
 }
@@ -1129,7 +1117,7 @@
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
 }
 
-/* CARRUSEL CON DIRECCIONES OPUESTAS */
+/* CARRUSEL CON DIRECCIONES OPUESTAS MEJORADO */
 @keyframes scroll-horizontal-izquierda {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -1141,13 +1129,13 @@
 }
 
 .animate-scroll-izquierda {
-    animation: scroll-horizontal-izquierda 40s linear infinite;
+    animation: scroll-horizontal-izquierda 35s linear infinite;
     display: flex;
     width: max-content;
 }
 
 .animate-scroll-derecha {
-    animation: scroll-horizontal-derecha 40s linear infinite;
+    animation: scroll-horizontal-derecha 35s linear infinite;
     display: flex;
     width: max-content;
 }
@@ -1155,6 +1143,34 @@
 .animate-scroll-izquierda:hover,
 .animate-scroll-derecha:hover {
     animation-play-state: paused;
+}
+
+/* Efecto de desvanecimiento en los bordes del carrusel */
+.carrusel-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carrusel-container::before,
+.carrusel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carrusel-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.carrusel-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 }
 
 .carrusel-track {
@@ -1212,6 +1228,11 @@
     object-fit: contain;
     margin-bottom: 8px;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.producto-circulo:hover img {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .nombre-producto {
@@ -1243,12 +1264,6 @@
     font-weight: 700;
     z-index: 10;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.carrusel-container {
-    position: relative;
-    overflow: hidden;
-    padding: 20px 0;
 }
 
 /* EFECTOS PARA EL TÍTULO PRINCIPAL */
@@ -1392,6 +1407,11 @@
     .precio-producto {
         font-size: 14px;
     }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1418,11 +1438,94 @@
     /* Ajustar velocidad de animación en móvil */
     .animate-scroll-izquierda,
     .animate-scroll-derecha {
-        animation-duration: 30s;
+        animation-duration: 25s;
+    }
+    
+    .carrusel-container::before,
+    .carrusel-container::after {
+        width: 30px;
     }
 }
 
-    </style>
+/* ========== SOLUCIÓN FORZADA PARA BOTONES HEADER ========== */
+@media (max-width: 480px) {
+    /* Fuerza el header a ser compacto */
+    header.hero-moderno {
+        padding: 5px 0 !important;
+    }
+    
+    header.hero-moderno .container {
+        padding: 0 8px !important;
+    }
+    
+    /* Logo compacto */
+    header.hero-moderno .flex.items-center.gap-3 {
+        gap: 6px !important;
+        min-width: auto;
+    }
+    
+    header.hero-moderno .w-10 {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    header.hero-moderno .text-2xl {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+    
+    header.hero-moderno .text-xs {
+        font-size: 0.5rem !important;
+    }
+    
+    /* Botones solo íconos */
+    header.hero-moderno .flex.gap-2.items-center {
+        gap: 2px !important;
+    }
+    
+    header.hero-moderno .bg-white\/10 {
+        padding: 5px !important;
+        width: 35px !important;
+        height: 35px !important;
+        border-radius: 6px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Ocultar texto completamente */
+    header.hero-moderno .flex.gap-2.items-center > * > span,
+    header.hero-moderno .flex.gap-2.items-center span {
+        display: none !important;
+    }
+    
+    /* Íconos pequeños */
+    header.hero-moderno .flex.gap-2.items-center i {
+        font-size: 0.8rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Quitar márgenes de íconos */
+    header.hero-moderno .fa-shopping-cart,
+    header.hero-moderno .fa-heart,
+    header.hero-moderno .fa-instagram,
+    header.hero-modennium .fa-facebook,
+    header.hero-moderno .fa-book {
+        margin-right: 0 !important;
+    }
+    
+    /* Contadores mini */
+    header.hero-moderno .absolute {
+        top: -2px !important;
+        right: -2px !important;
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 0.5rem !important;
+        line-height: 14px !important;
+    }
+}
+
+</style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen">
     
@@ -1598,10 +1701,10 @@
             <!-- Los productos de la fila 2 se cargarán aquí dinámicamente -->
         </div>
     </div>
-</div>
+    </div>
         
-        <!-- Instrucciones -->
-        <div class="text-center mt-8">
+            <!-- Instrucciones -->
+            <div class="text-center mt-8">
             <p class="text-yellow-500 text-sm">
                 <i class="fas fa-info-circle mr-1"></i>
                 Pasa el cursor sobre el carrusel para pausar la animación
@@ -2205,14 +2308,135 @@
         }
 
         // Función segura para obtener elementos
-        function getElement(id) {
-            const element = document.getElementById(id);
-            if (!element) {
-                console.warn(`Elemento con ID '${id}' no encontrado`);
-            }
-            return element;
+       function getElement(id) {
+    const element = document.getElementById(id);
+    if (!element) {
+        // console.warn(`Elemento con ID '${id}' no encontrado`); // Comentado para evitar warnings
+        return null;
+    }
+    return element;
+}
+// =============================================
+// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+// =============================================
+
+// Función universal para procesar imágenes desde cualquier dispositivo
+async function procesarImagenParaProducto(archivoImagen) {
+    return new Promise((resolve, reject) => {
+        if (!archivoImagen) {
+            // Si no hay imagen, usar una por defecto
+            resolve('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop');
+            return;
         }
 
+        // Verificar que sea una imagen válida
+        if (!archivoImagen.type.startsWith('image/')) {
+            reject('❌ El archivo debe ser una imagen');
+            return;
+        }
+
+        // Verificar tamaño máximo (2MB)
+        if (archivoImagen.size > 2 * 1024 * 1024) {
+            reject('❌ La imagen debe ser menor a 2MB');
+            return;
+        }
+
+        // Convertir a Base64
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Comprimir imagen si es muy grande
+            comprimirImagen(e.target.result, 800, 800)
+                .then(imagenComprimida => {
+                    resolve(imagenComprimida);
+                })
+                .catch(error => {
+                    console.warn('Error al comprimir, usando imagen original:', error);
+                    resolve(e.target.result); // Usar original si falla la compresión
+                });
+        };
+        
+        reader.onerror = function() {
+            reject('❌ Error al leer la imagen');
+        };
+        
+        reader.readAsDataURL(archivoImagen);
+    });
+}
+
+// Función para comprimir imágenes (optimiza el tamaño)
+function comprimirImagen(dataUrl, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = dataUrl;
+        
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calcular nuevas dimensiones manteniendo proporción
+            let width = img.width;
+            let height = img.height;
+            
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Dibujar imagen comprimida
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convertir a Base64 con calidad del 80%
+            const imagenComprimida = canvas.toDataURL('image/jpeg', 0.8);
+            resolve(imagenComprimida);
+        };
+        
+        img.onerror = reject;
+    });
+}
+
+// Función para verificar si una imagen carga correctamente
+function verificarImagenCarga(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
+// Función para reparar imágenes existentes
+function repararImagenesExistentes() {
+    const productos = JSON.parse(localStorage.getItem('productos_paola')) || [];
+    let cambios = false;
+    
+    productos.forEach(producto => {
+        // Si la imagen es una URL externa y no carga, reemplazar
+        if (producto.imagen && !producto.imagen.startsWith('data:image')) {
+            const img = new Image();
+            img.onerror = function() {
+                producto.imagen = 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop';
+                cambios = true;
+            };
+            img.src = producto.imagen;
+        }
+    });
+    
+    if (cambios) {
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        console.log('✅ Imágenes reparadas automáticamente');
+    }
+}
         // Cargar productos desde localStorage
         function cargarProductos() {
             const productosGuardados = localStorage.getItem('productos_paola');
@@ -3370,8 +3594,8 @@ if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
             const cartBtn = getElement('cart-btn');
             const busquedaInput = getElement('busqueda');
             
-            if (prevBtn) prevBtn.addEventListener('click', () => cambiarCarrusel('prev'));
-            if (nextBtn) nextBtn.addEventListener('click', () => cambiarCarrusel('next'));
+           // if (prevBtn) prevBtn.addEventListener('click', () => cambiarCarrusel('prev'));
+           //if (nextBtn) nextBtn.addEventListener('click', () => cambiarCarrusel('next'));
             if (closeModal) closeModal.addEventListener('click', cerrarModal);
             if (cartBtn) cartBtn.addEventListener('click', toggleCarrito);
             if (busquedaInput) {
@@ -3466,7 +3690,7 @@ scrollToTopBtn.addEventListener('click', function() {
 });
 
 // =============================================
-// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS
+// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS - CORREGIDO
 // =============================================
 
 let productosCarrusel = [];
@@ -3501,8 +3725,7 @@ function crearProductoCirculoHTML(producto) {
         </div>
     `;
 }
-
-// Función para cargar productos en el carrusel con direcciones opuestas
+// Función para cargar productos en el carrusel con direcciones opuestas - CORREGIDA
 function cargarCarruselDireccionesOpuestas(productos) {
     const carruselTrack1 = document.getElementById('carrusel-track-1');
     const carruselTrack2 = document.getElementById('carrusel-track-2');
@@ -3515,23 +3738,32 @@ function cargarCarruselDireccionesOpuestas(productos) {
         return;
     }
     
-    // Dividir productos en dos grupos para las dos filas
+    // CORRECCIÓN: Dividir los productos en dos grupos diferentes
     const mitad = Math.ceil(productos.length / 2);
+    
+    // Para la fila 1 (izquierda): primera mitad de productos
     const productosFila1 = productos.slice(0, mitad);
+    
+    // Para la fila 2 (derecha): segunda mitad de productos
     const productosFila2 = productos.slice(mitad);
     
-    // Para la fila 1 (izquierda): orden normal + duplicado
-    const productosDuplicados1 = [...productosFila1, ...productosFila1];
+    // Si hay menos productos, duplicar algunos para que el carrusel se vea completo
+    // pero asegurando que no se repitan exactamente los mismos productos
+    if (productosFila1.length < 5) {
+        const productosExtras = productosFila2.slice(0, 5 - productosFila1.length);
+        productosFila1.push(...productosExtras);
+    }
     
-    // Para la fila 2 (derecha): orden invertido + duplicado
-    const productosInvertidos2 = [...productosFila2].reverse();
-    const productosDuplicados2 = [...productosInvertidos2, ...productosInvertidos2];
+    if (productosFila2.length < 5) {
+        const productosExtras = productosFila1.slice(0, 5 - productosFila2.length);
+        productosFila2.push(...productosExtras);
+    }
     
-    carruselTrack1.innerHTML = productosDuplicados1.map(producto => 
+    carruselTrack1.innerHTML = productosFila1.map(producto => 
         crearProductoCirculoHTML(producto)
     ).join('');
     
-    carruselTrack2.innerHTML = productosDuplicados2.map(producto => 
+    carruselTrack2.innerHTML = productosFila2.map(producto => 
         crearProductoCirculoHTML(producto)
     ).join('');
 }
@@ -3586,6 +3818,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
         
         
-</script>
+    </script>
 </body>
 </html>
+
+
