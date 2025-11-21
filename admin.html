@@ -1229,29 +1229,10 @@ function crearPlaceholderLocal(nombre, categoria) {
         }
     });
 }
-        
-  
-    async function procesarImagen(file) {
-    if (!file.type.startsWith('image/')) {
-        mostrarErrorURL('❌ Por favor selecciona un archivo de imagen válido (JPG, PNG, WebP)');
-        return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-        mostrarErrorURL('❌ La imagen es demasiado grande. Máximo 5MB permitido.');
-        return;
-    }
-
-    mostrarCargaURL(true);
-    
-    try {
-        console.log('🌐 Intentando subir imagen automáticamente a ImgBB...');
-    
     // =============================================
-// FUNCIÓN DE SUBIDA AUTOMÁTICA A IMGBB
+// FUNCIÓN DE SUBIDA AUTOMÁTICA A IMGBB - NUEVA
 // =============================================
 async function subirImagenAutomatica(file) {
-    // Verificar si la API Key está configurada
     if (!IMGBB_API_KEY) {
         console.warn('⚠️ API Key de ImgBB no configurada');
         return null;
@@ -1279,7 +1260,7 @@ async function subirImagenAutomatica(file) {
         
         if (data.success) {
             console.log('✅ Imagen subida exitosamente:', data.data.url);
-            return data.data.url; // URL pública que funciona en móviles
+            return data.data.url;
         } else {
             console.error('❌ Error ImgBB:', data.error?.message);
             return null;
@@ -1288,7 +1269,26 @@ async function subirImagenAutomatica(file) {
         console.error('❌ Error subiendo imagen:', error);
         return null;
     }
-}
+}    
+  
+      // =============================================
+// FUNCIÓN procesarImagen - REEMPLAZA ESTA
+// =============================================
+async function procesarImagen(file) {
+    if (!file.type.startsWith('image/')) {
+        mostrarErrorURL('❌ Por favor selecciona un archivo de imagen válido (JPG, PNG, WebP)');
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        mostrarErrorURL('❌ La imagen es demasiado grande. Máximo 5MB permitido.');
+        return;
+    }
+
+    mostrarCargaURL(true);
+    
+    try {
+        console.log('🌐 Intentando subir imagen automáticamente a ImgBB...');
         
         // Intentar subir automáticamente a ImgBB
         const urlPublica = await subirImagenAutomatica(file);
@@ -1315,7 +1315,7 @@ async function subirImagenAutomatica(file) {
     } finally {
         mostrarCargaURL(false);
     }
-}       
+}   
     function esURLValida(url) {
     // Si es data URL (imagen local), es válida
     if (url.startsWith('data:image/')) {
