@@ -2408,53 +2408,24 @@ function verificarImagenCarga(url) {
 
         // Cargar productos desde localStorage
         function cargarProductos() {
-            const productosGuardados = localStorage.getItem('productos_paola');
-            if (productosGuardados) {
-                productos = JSON.parse(productosGuardados);
-                // Filtrar solo productos con stock > 0 para el catálogo público
-                productosFiltrados = productos.filter(producto => producto.stock > 0);
-                renderizarCategoriasConProductos();
-                inicializarCarrusel();
-                const loadingState = getElement('loading-state');
-                if (loadingState) loadingState.classList.add('hidden');
-            } else {
-    // Si no hay productos en localStorage, cargar algunos de ejemplo
-    productos = [
-        {
-            id: 1,
-            nombre: "Producto de Ejemplo 1",
-            categoria: "niñas",
-            precio: 25,
-            imagen: "https://i.ibb.co/x5P3vYZ/ejemplo1.jpg",
-            tallas: {
-                tallas: ["S", "M", "L"],
-                descripciones: ["Material: Algodón 100%", "Producto de demostración"]
-            },
-            stock: 15,
-            vendidos: 0
-        },
-        {
-            id: 2,
-            nombre: "Producto de Ejemplo 2",
-            categoria: "niños",
-            precio: 30,
-            imagen: "https://i.ibb.co/JpBnm4g/ejemplo2.jpg",
-            tallas: {
-                tallas: ["S", "M", "L"],
-                descripciones: ["Material: Algodón premium", "Producto de demostración"]
-            },
-            stock: 10,
-            vendidos: 0
-        }
-    ];
-    productosFiltrados = productos.filter(producto => producto.stock > 0);
-    renderizarCategoriasConProductos();
-    inicializarCarrusel();
-    const loadingState = getElement('loading-state');
-    if (loadingState) loadingState.classList.add('hidden');
+    const productosGuardados = localStorage.getItem('productos_paola');
+    if (productosGuardados) {
+        productos = JSON.parse(productosGuardados);
+        productosFiltrados = productos.filter(producto => producto.stock > 0);
+        renderizarCategoriasConProductos();
+        inicializarCarrusel();
+        const loadingState = getElement('loading-state');
+        if (loadingState) loadingState.classList.add('hidden');
+    } else {
+        // NO CARGAR PRODUCTOS DE EJEMPLO - Dejar vacío
+        productos = [];
+        productosFiltrados = [];
+        renderizarCategoriasConProductos();
+        inicializarCarrusel();
+        const loadingState = getElement('loading-state');
+        if (loadingState) loadingState.classList.add('hidden');
+    }
 }
-        }
-
         // =============================================
         // FUNCIÓN PARA RENDERIZAR TESTIMONIOS
         // =============================================
