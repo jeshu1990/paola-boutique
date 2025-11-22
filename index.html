@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAOLA'BOUTIQUE - Catálogo Virtual</title>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <!-- Tailwind CSS CDN (para desarrollo) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -2168,18 +2173,33 @@
     
     
     <script>
-        // Variables globales
-        let productos = [];
-        let productosFiltrados = [];
-        let categoriaActual = 'todos';
-        let busquedaActual = '';
-        let favoritos = JSON.parse(localStorage.getItem('favoritos_paola')) || [];
-        let carrito = JSON.parse(localStorage.getItem('carrito_paola')) || [];
-        let ventas = JSON.parse(localStorage.getItem('ventas_paola')) || [];
-        let currentCarouselIndex = 0;
-        let modalProduct = null;
-        let metodoPagoSeleccionado = null;
-        let currentTestimonioIndex = 0;
+       // =============================================
+// CONFIGURACIÓN FIREBASE
+// =============================================
+const firebaseConfig = {
+    apiKey: "AIzaSyDTOJxmJyhkSDfl-q9_dlyjKWwKgRgk4Ac",
+    authDomain: "paola-boutique.firebaseapp.com",
+    projectId: "paola-boutique",
+    storageBucket: "paola-boutique.firebasestorage.app",
+    messagingSenderId: "712856686070",
+    appId: "1:712856686070:web:d87eee1684786a8f478bd7"
+};
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Variables globales
+let productos = [];
+let productosFiltrados = [];
+let categoriaActual = 'todos';
+let busquedaActual = '';
+let favoritos = JSON.parse(localStorage.getItem('favoritos_paola')) || [];
+let carrito = JSON.parse(localStorage.getItem('carrito_paola')) || [];
+let ventas = JSON.parse(localStorage.getItem('ventas_paola')) || [];
+let currentCarouselIndex = 0;
+let modalProduct = null;
+let metodoPagoSeleccionado = null;
+let currentTestimonioIndex = 0;
 
         // Información de categorías
         const categoriasInfo = {
@@ -2405,27 +2425,60 @@ function verificarImagenCarga(url) {
 }
 
 // Función para reparar imágenes existentes
-
-        // Cargar productos desde localStorage
-        function cargarProductos() {
-    const productosGuardados = localStorage.getItem('productos_paola');
-    if (productosGuardados) {
-        productos = JSON.parse(productosGuardados);
-        productosFiltrados = productos.filter(producto => producto.stock > 0);
-        renderizarCategoriasConProductos();
-        inicializarCarrusel();
-        const loadingState = getElement('loading-state');
-        if (loadingState) loadingState.classList.add('hidden');
-    } else {
-        // NO CARGAR PRODUCTOS DE EJEMPLO - Dejar vacío
-        productos = [];
-        productosFiltrados = [];
-        renderizarCategoriasConProductos();
-        inicializarCarrusel();
-        const loadingState = getElement('loading-state');
-        if (loadingState) loadingState.classList.add('hidden');
+async function cargarProductos() {
+    const loadingState = getElement('loading-state');
+    
+    try {
+        console.log('🔄 Cargando productos desde Firebase...');
+        
+        // Leer desde Firebase
+        const snapshot = await db.collection('productos').doc('paola_boutique').get();
+        
+        if (snapshot.exists) {
+            const data = snapshot.data();
+            productos = data.items || [];
+            productosFiltrados = productos.filter(producto => producto.stock > 0);
+            
+            // Guardar en localStorage como backup
+            localStorage.setItem('productos_paola', JSON.stringify(productos));
+            
+            console.log('✅ Productos cargados desde Firebase:', productos.length);
+        } else {
+            console.log('⚠️ No hay productos en Firebase, intentando localStorage...');
+            
+            // Fallback a localStorage
+            const productosLocal = localStorage.getItem('productos_paola');
+            if (productosLocal) {
+                productos = JSON.parse(productosLocal);
+                productosFiltrados = productos.filter(producto => producto.stock > 0);
+                console.log('✅ Productos cargados desde localStorage:', productos.length);
+            } else {
+                productos = [];
+                productosFiltrados = [];
+                console.log('ℹ️ No hay productos disponibles');
+            }
+        }
+    } catch (error) {
+        console.error('❌ Error cargando desde Firebase:', error);
+        
+        // Fallback a localStorage
+        const productosLocal = localStorage.getItem('productos_paola');
+        if (productosLocal) {
+            productos = JSON.parse(productosLocal);
+            productosFiltrados = productos.filter(producto => producto.stock > 0);
+            console.log('✅ Productos cargados desde localStorage (fallback):', productos.length);
+        } else {
+            productos = [];
+            productosFiltrados = [];
+        }
     }
+    
+    renderizarCategoriasConProductos();
+    inicializarCarrusel();
+    
+    if (loadingState) loadingState.classList.add('hidden');
 }
+
         // =============================================
         // FUNCIÓN PARA RENDERIZAR TESTIMONIOS
         // =============================================
