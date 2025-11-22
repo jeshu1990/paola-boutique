@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,11 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23EC4899'/><stop offset='100%' stop-color='%238B5CF6'/></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23g)'/><text x='50' y='68' font-family='system-ui' font-size='45' text-anchor='middle' fill='white'>👑</text></svg>">
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYklEQVRYhe2WwW7CMAxF3wYSEkf+/3M4IBVtNK0TJ47jOGlXpE9q0yR+/uxnJ4XdbpcBwG63y5vN5qv5er1+XC6Xj9Vq9bRcLp8AXK/Xz+Vy+Xi5XD6u1+vnZrN5Xq/Xz5vN5nm73T5vt9vn3W73vN/vX/b7/ct+v385HA4vh8Ph5Xg8vhyPx5fT6fRyOp1ezufzy/l8frlcLq+Xy+X1er2+3m6319vt9nq/39/u9/vb4/F4ezweb8/n8+35fL79CQARQURQVRARVBUiAhGBiEBVYWYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmhv8AfgA+AMvlr1QaAgAAAABJRU5ErkJggg==">
     <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYklEQVRYhe2WwW7CMAxF3wYSEkf+/3M4IBVtNK0TJ47jOGlXpE9q0yR+/uxnJ4XdbpcBwG63y5vN5qv5er1+XC6Xj9Vq9bRcLp8AXK/Xz+Vy+Xi5XD6u1+vnZrN5Xq/Xz5vN5nm73T5vt9vn3W73vN/vX/b7/ct+v385HA4vh8Ph5Xg8vhyPx5fT6fRyOp1ezufzy/l8frlcLq+Xy+X1er2+3m6319vt9nq/39/u9/vb4/F4ezweb8/n8+35fL79CQARQURQVRARVBUiAhGBiEBVYWYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmBjODmcHMYGYwM5gZzAxmhv8AfgA+AMvlr1QaAgAAAABJRU5ErkJggg==">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
     <!-- Reemplazado CDN por versión local -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1017,6 +1023,23 @@
         let productoEditando = null;
         let contadorEspecificaciones = 0;
         let imagenSeleccionada = null;
+
+        // =============================================
+        // CONFIGURACIÓN FIREBASE
+        // =============================================
+        const firebaseConfig = {
+        apiKey: "AIzaSyDTOJxmJyhkSDfl-q9_dlyjKWwKgRgk4Ac",
+        authDomain: "paola-boutique.firebaseapp.com",
+        projectId: "paola-boutique",
+        storageBucket: "paola-boutique.firebasestorage.app",
+        messagingSenderId: "712856686070",
+        appId: "1:712856686070:web:d87eee1684786a8f478bd7"
+        };
+        
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
 
         // =============================================
         // SISTEMA DE AUTENTICACIÓN
@@ -2245,63 +2268,90 @@ function mostrarCargaURL(mostrar) {
             document.getElementById('formulario-producto').classList.add('hidden');
         }
 
-        // Manejar envío del formulario de producto - ACTUALIZADO
-        document.getElementById('producto-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Validar que se haya seleccionado una imagen
-            if (!imagenSeleccionada) {
-                alert('❌ Por favor selecciona una imagen para el producto');
-                return;
-            }
-
-            const especificaciones = obtenerEspecificaciones();
-            
-            const producto = {
-                id: productoEditando ? productoEditando.id : Date.now(),
-                nombre: document.getElementById('producto-nombre').value,
-                categoria: document.getElementById('producto-categoria').value,
-                precio: parseFloat(document.getElementById('producto-precio').value),
-                stock: parseInt(document.getElementById('producto-stock').value),
-                imagen: imagenSeleccionada,
-                tallas: especificaciones, // Ahora guarda un objeto con tallas y descripciones
-                vendidos: productoEditando ? (productoEditando.vendidos || 0) : 0
-            };
-
-            if (productoEditando) {
-                const index = productos.findIndex(p => p.id === productoEditando.id);
-                productos[index] = producto;
-            } else {
-                productos.push(producto);
-            }
-
-            localStorage.setItem('productos_paola', JSON.stringify(productos));
-            ocultarFormularioProducto();
-            cargarProductos();
-            actualizarResumen();
-            cargarProductosEnSelect();
-
-            mostrarNotificacion(`✅ Producto ${productoEditando ? 'actualizado' : 'agregado'} correctamente`);
-        });
-
         function editarProducto(id) {
-            const producto = productos.find(p => p.id === id);
-            if (producto) {
-                mostrarFormularioProducto(producto);
-            }
-        }
+    const producto = productos.find(p => p.id === id);
+    if (producto) {
+        mostrarFormularioProducto(producto);
+    }
+}
 
-        function eliminarProducto(id) {
-            if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-                productos = productos.filter(p => p.id !== id);
-                localStorage.setItem('productos_paola', JSON.stringify(productos));
-                cargarProductos();
-                actualizarResumen();
-                cargarProductosEnSelect();
-                mostrarNotificacion('✅ Producto eliminado correctamente');
-            }
+// ← AGREGAR AQUÍ
+async function eliminarProducto(id) {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+        productos = productos.filter(p => p.id !== id);
+        
+        // Actualizar Firebase
+        try {
+            await db.collection('productos').doc('paola_boutique').set({
+                items: productos,
+                ultimaActualizacion: new Date().toISOString()
+            });
+            console.log('✅ Producto eliminado de Firebase');
+        } catch (error) {
+            console.error('❌ Error actualizando Firebase:', error);
         }
+        
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        cargarProductos();
+        actualizarResumen();
+        cargarProductosEnSelect();
+        mostrarNotificacion('✅ Producto eliminado correctamente');
+    }
+}
+        // Manejar envío del formulario de producto - ACTUALIZADO
+document.getElementById('producto-form').addEventListener('submit', async function(e) {
 
+    e.preventDefault();
+
+    // Validar que se haya seleccionado una imagen
+    if (!imagenSeleccionada) {
+        alert('❌ Por favor selecciona una imagen para el producto');
+        return;
+    }
+
+    const especificaciones = obtenerEspecificaciones();
+    
+    const producto = {
+        id: productoEditando ? productoEditando.id : Date.now(),
+        nombre: document.getElementById('producto-nombre').value,
+        categoria: document.getElementById('producto-categoria').value,
+        precio: parseFloat(document.getElementById('producto-precio').value),
+        stock: parseInt(document.getElementById('producto-stock').value),
+        imagen: imagenSeleccionada,
+        tallas: especificaciones,
+        vendidos: productoEditando ? (productoEditando.vendidos || 0) : 0
+    };
+
+    if (productoEditando) {
+        const index = productos.findIndex(p => p.id === productoEditando.id);
+        productos[index] = producto;
+    } else {
+        productos.push(producto);
+    }
+
+    // Guardar en Firebase
+    try {
+        await db.collection('productos').doc('paola_boutique').set({
+            items: productos,
+            ultimaActualizacion: new Date().toISOString()
+        });
+        
+        console.log('✅ Productos guardados en Firebase');
+        alert('✅ Producto guardado correctamente y sincronizado');
+    } catch (error) {
+        console.error('❌ Error guardando en Firebase:', error);
+        alert('⚠️ Error sincronizando con Firebase: ' + error.message);
+    }
+
+    localStorage.setItem('productos_paola', JSON.stringify(productos));
+    ocultarFormularioProducto();
+    cargarProductos();
+    actualizarResumen();
+    cargarProductosEnSelect();
+
+    mostrarNotificacion(`✅ Producto ${productoEditando ? 'actualizado' : 'agregado'} correctamente`);
+});
+       
         // =============================================
         // FUNCIONES DE VENTAS
         // =============================================
@@ -2456,7 +2506,7 @@ function mostrarCargaURL(mostrar) {
             // Manejar envío del formulario de venta
             const ventaForm = document.getElementById('venta-form');
             if (ventaForm) {
-                ventaForm.addEventListener('submit', function(e) {
+                ventaForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
                     const productoId = parseInt(document.getElementById('venta-producto').value);
