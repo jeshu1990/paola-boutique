@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAOLA'BOUTIQUE - Catálogo Virtual</title>
 
+    <meta name="description" content="Catálogo virtual de PAOLA'BOUTIQUE - Moda infantil, cosméticos premium, joyas y accesorios exclusivos en Tarapoto. Envíos rápidos y calidad garantizada.">
+    <meta name="keywords" content="ropa infantil, cosméticos, joyas, accesorios, Tarapoto, boutique, moda niños, moda niñas, Perú">
+    <meta name="author" content="PAOLA'BOUTIQUE">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="PAOLA'BOUTIQUE - Catálogo Virtual">
+    <meta property="og:description" content="Descubre moda infantil, cosméticos premium y joyas exclusivas en Tarapoto">
+    <meta property="og:image" content="https://tuservidor.com/logo-boutique.jpg">
+    <meta property="og:url" content="https://tuservidor.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PAOLA'BOUTIQUE - Catálogo Virtual">
+    <meta name="twitter:description" content="Moda infantil y cosméticos premium en Tarapoto">
+    <meta name="twitter:image" content="https://tuservidor.com/logo-boutique.jpg">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
     
     <!-- Firebase SDK -->
@@ -134,13 +152,201 @@
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
         
-        /* Para el modal también */
-        #modal-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Mantiene proporciones en modal */
-            border-radius: 8px;
-        }
+/* Para el modal también - VERSIÓN MEJORADA */
+#modal-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Botones de navegación en modal */
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(139, 92, 246, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-nav-btn:hover {
+    background: rgba(236, 72, 153, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.modal-nav-btn.prev {
+    left: 10px;
+}
+
+.modal-nav-btn.next {
+    right: 10px;
+}
+
+.modal-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.modal-nav-btn:disabled:hover {
+    background: rgba(139, 92, 246, 0.9);
+    transform: translateY(-50%);
+}
+
+/* Contador de imágenes */
+.modal-image-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+/* ========================================== */
+/* RESPONSIVE MEJORADO PARA MÓVIL - CRÍTICO */
+/* ========================================== */
+@media (max-width: 768px) {
+    /* Modal más pequeño en móvil */
+    #product-modal > div {
+        max-width: 95%;
+        margin: 10px;
+        max-height: 95vh;
+    }
+    
+    /* Imagen más pequeña en móvil */
+    #modal-image {
+        max-height: 250px; /* Reducido significativamente */
+    }
+    
+    /* Contenedor de imagen compacto */
+    .modal-image-container-mobile {
+        min-height: 250px !important;
+        max-height: 250px !important;
+    }
+    
+    /* Botones de navegación más pequeños */
+    .modal-nav-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .modal-nav-btn.prev {
+        left: 5px;
+    }
+    
+    .modal-nav-btn.next {
+        right: 5px;
+    }
+    
+    .modal-nav-btn i {
+        font-size: 0.9rem;
+    }
+    
+    /* Contador más pequeño */
+    .modal-image-counter {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    /* Título más compacto */
+    #modal-title {
+        font-size: 1.2rem !important;
+        line-height: 1.3;
+    }
+    
+    /* Precio más compacto */
+    #modal-price {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Detalles más compactos */
+    #modal-details p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Tallas más pequeñas */
+    #modal-tallas span {
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+    }
+    
+    /* Descripciones más compactas */
+    #modal-descripciones {
+        font-size: 0.85rem !important;
+    }
+    
+    #modal-descripciones li {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Botones de acción más pequeños */
+    .btn-modern {
+        padding: 8px 12px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    /* Grid de una columna en móvil */
+    #product-modal .grid.lg\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Imagen aún más pequeña en móviles pequeños */
+    #modal-image {
+        max-height: 200px;
+    }
+    
+    .modal-image-container-mobile {
+        min-height: 200px !important;
+        max-height: 200px !important;
+    }
+    
+    /* Padding del modal reducido */
+    #product-modal > div > div {
+        padding: 16px !important;
+    }
+    
+    /* Título más pequeño */
+    #modal-title {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Precio más pequeño */
+    #modal-price {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Botones aún más pequeños */
+    .modal-nav-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .modal-nav-btn i {
+        font-size: 0.8rem;
+    }
+}
         /* ============================================= */
         
         /* Header más delgado y moderno */
@@ -979,18 +1185,6 @@
     left: 15%;
 }
 
-/* CARRUSEL HORIZONTAL AUTOMÁTICO MEJORADO */
-@keyframes scroll-horizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.animate-scroll-horizontal {
-    animation: scroll-horizontal 30s linear infinite;
-    display: flex;
-    width: max-content;
-}
-
 .animate-scroll-horizontal:hover {
     animation-play-state: paused;
 }
@@ -1134,13 +1328,13 @@
 }
 
 .animate-scroll-izquierda {
-    animation: scroll-horizontal-izquierda 35s linear infinite;
+    animation: scroll-horizontal-izquierda 15s linear infinite;
     display: flex;
     width: max-content;
 }
 
 .animate-scroll-derecha {
-    animation: scroll-horizontal-derecha 35s linear infinite;
+    animation: scroll-horizontal-derecha 15s linear infinite;
     display: flex;
     width: max-content;
 }
@@ -1514,7 +1708,7 @@
     header.hero-moderno .fa-shopping-cart,
     header.hero-moderno .fa-heart,
     header.hero-moderno .fa-instagram,
-    header.hero-modennium .fa-facebook,
+    header.hero-moderno .fa-facebook,
     header.hero-moderno .fa-book {
         margin-right: 0 !important;
     }
@@ -1529,6 +1723,8 @@
         line-height: 14px !important;
     }
 }
+
+
 
 </style>
 </head>
@@ -1780,7 +1976,7 @@
         </div>
     </section>
 
-   <!-- SECCIÓN ENCUÉNTRANOS MEJORADA -->
+<!-- SECCIÓN ENCUÉNTRANOS MEJORADA -->
 <section class="encuentranos-hero py-16 text-white">
     <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-12">
@@ -1788,7 +1984,7 @@
             <p class="text-xl opacity-90 max-w-2xl mx-auto">Tu boutique de confianza en Tarapoto. Te esperamos con los mejores productos y atención personalizada.</p>
         </div>
 
-        <!-- ESTA ES LA PARTE CLAVE: GRID DE 2 COLUMNAS -->
+        <!-- GRID DE 2 COLUMNAS -->
         <div class="grid lg:grid-cols-2 gap-8 mb-12">
             
             <!-- COLUMNA IZQUIERDA: Contactos -->
@@ -1796,7 +1992,7 @@
                 <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">📞 Contáctanos</h3>
                 
                 <div class="space-y-4">
-                    <!-- WhatsApp Compacto -->
+                    <!-- WhatsApp -->
                     <a href="https://wa.me/51991798916" target="_blank"
                        class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
                         <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
@@ -1809,7 +2005,7 @@
                         <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
                     </a>
                     
-                    <!-- Ubicación Compacta CLICKEABLE con coordenadas exactas -->
+                    <!-- Ubicación -->
                     <a href="https://www.google.com/maps?q=-6.484134,-76.363442&ll=-6.484134,-76.363442&z=17" 
                        target="_blank"
                        class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
@@ -1826,7 +2022,7 @@
                         <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
                     </a>
                     
-                    <!-- Horario Compacto -->
+                    <!-- Horario -->
                     <div class="group flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-600 transition-all duration-300 hover:scale-102 cursor-pointer border border-gray-200">
                         <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all">
                             <i class="fas fa-clock text-white text-base group-hover:text-purple-600"></i>
@@ -1851,9 +2047,9 @@
                         <i class="fas fa-chevron-right text-gray-400 group-hover:text-white transform group-hover:translate-x-1 transition-transform text-sm"></i>
                     </div>
                 </div>
+            </div>
 
-               
-                <!-- COLUMNA DERECHA: Mapa -->
+            <!-- COLUMNA DERECHA: Mapa -->
             <div class="info-card p-6">
                 <h3 class="text-xl font-bold mb-6 text-gray-800 text-center">🗺️ Nuestra Ubicación Exacta</h3>
                 <div class="mapa-container">
@@ -1870,7 +2066,7 @@
                 
                 <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-male text-blue-500 text-lg"></i>
+                        <i class="fas fa-info-circle text-blue-500 text-lg"></i>
                         <div>
                             <h5 class="font-bold text-blue-800 text-sm mb-1">👤 Ubicación Exacta</h5>
                             <p class="text-blue-700 text-xs">Estamos ubicados en <strong>Jr Reategui S/N, Tarapoto</strong></p>
@@ -1878,16 +2074,10 @@
                     </div>
                 </div>
             </div>
+            
         </div>
 
-        
-    </div>
-</section>
-            
-
-     
-
-        <!-- Proceso de compra didáctico (SE MANTIENE) -->
+        <!-- Proceso de compra -->
         <div class="info-card p-8 mb-8">
             <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">🛍️ ¿Cómo Comprar?</h3>
             <div class="grid md:grid-cols-3 gap-6">
@@ -1918,62 +2108,71 @@
 </section>
 
 
-
-    <!-- Información adicional compacta -->
-                    <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                        <div class="flex items-start gap-2">
-                            <i class="fas fa-info-circle text-blue-600 text-sm mt-0.5"></i>
-                            <div>
-                                <h5 class="font-semibold text-blue-800 text-xs mb-1">💡 Consejo de visita</h5>
-                                <p class="text-blue-700 text-xs">Visítanos entre semana por la mañana para atención personalizada.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
+<!-- Modal de producto mejorado CON NAVEGACIÓN Y RESPONSIVE -->
+<div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm p-2">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto">
+        <div class="p-4 md:p-6">
+            <!-- Header del modal -->
+            <div class="flex justify-between items-start mb-3 md:mb-4">
+                <h3 id="modal-title" class="text-xl md:text-2xl font-bold text-gray-800 flex-1 pr-4"></h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 flex-shrink-0">
+                    <i class="fas fa-times text-lg md:text-xl"></i>
+                </button>
             </div>
-
             
-        </div>
-    </section>
-
-    <!-- Modal de producto mejorado -->
-    <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
-        <div class="bg-white rounded-2xl max-w-4xl w-full mx-4 max-h-[80vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
-                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100">
-                        <i class="fas fa-times text-xl"></i>
+            <!-- Grid responsive -->
+            <div class="grid lg:grid-cols-2 gap-4 md:gap-6">
+                <!-- Contenedor de imagen con navegación -->
+                <div class="relative flex items-center justify-center bg-gray-50 rounded-xl p-3 md:p-4 min-h-[200px] md:min-h-[300px] modal-image-container-mobile">
+                    <!-- Botón Anterior -->
+                    <button id="modal-prev-btn" class="modal-nav-btn prev" onclick="navegarProductoModal(-1)">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
+                    
+                    <!-- Imagen -->
+                    <img id="modal-image" src="" alt="">
+                    
+                    <!-- Botón Siguiente -->
+                    <button id="modal-next-btn" class="modal-nav-btn next" onclick="navegarProductoModal(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Contador -->
+                    <div id="modal-image-counter" class="modal-image-counter hidden"></div>
+                    
+                    <!-- Badge de stock -->
+                    <div id="modal-stock-badge" class="stock-badge-moderno text-xs md:text-base px-2 md:px-3 py-1"></div>
                 </div>
-                <div class="grid lg:grid-cols-2 gap-6">
-                    <div class="relative flex items-center justify-center bg-gray-50 rounded-xl p-4 min-h-[300px]">
-                        <img id="modal-image" src="" alt="" class="max-w-full max-h-[280px] object-contain">
-                        <div id="modal-stock-badge" class="stock-badge-moderno text-base px-3 py-1"></div>
-                    </div>
-                    <div class="space-y-4">
-                        <div id="modal-details" class="text-base"></div>
-                        <div id="modal-tallas"></div>
-                        <div id="modal-descripciones"></div>
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
-                            <span id="modal-price" class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"></span>
-                            <div class="flex gap-2">
-                                <button onclick="enviarWhatsAppModal()" 
-                                        class="btn-modern bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl text-sm">
-                                    <i class="fab fa-whatsapp mr-2"></i>Consultar
-                                </button>
-                                <button onclick="agregarAlCarritoModal()" 
-                                        class="btn-modern bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl text-sm">
-                                    <i class="fas fa-cart-plus mr-2"></i>Agregar
-                                </button>
-                            </div>
+                
+                <!-- Detalles del producto -->
+                <div class="space-y-3 md:space-y-4">
+                    <div id="modal-details" class="text-sm md:text-base"></div>
+                    <div id="modal-tallas" class="text-sm"></div>
+                    <div id="modal-descripciones" class="text-sm"></div>
+                    
+                    <!-- Precio y botones -->
+                    <div class="pt-3 md:pt-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between mb-3 md:mb-4">
+                            <span id="modal-price" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"></span>
+                        </div>
+                        
+                        <!-- Botones apilados en móvil -->
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <button onclick="enviarWhatsAppModal()" 
+                                    class="btn-modern bg-gradient-to-r from-green-500 to-green-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-xl text-xs md:text-sm flex-1 w-full">
+                                <i class="fab fa-whatsapp mr-1 md:mr-2"></i>Consultar
+                            </button>
+                            <button onclick="agregarAlCarritoModal()" 
+                                    class="btn-modern bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-xl text-xs md:text-sm flex-1 w-full">
+                                <i class="fas fa-cart-plus mr-1 md:mr-2"></i>Agregar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Modal del Carrito MEJORADO -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden backdrop-blur-sm">
@@ -2035,15 +2234,6 @@
        class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-transform z-50 whatsapp-float">
         <i class="fab fa-whatsapp text-xl"></i>
     </a>
-
-    <!-- BOTÓN PARA SUBIR (PEGA AQUÍ) -->
-<button id="scroll-to-top" 
-        class="fixed bottom-20 right-6 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-300 z-50 hidden group">
-    <div class="relative">
-        <i class="fas fa-arrow-up text-lg font-bold group-hover:-translate-y-1 transition-transform"></i>
-        <div class="absolute inset-0 bg-white/20 rounded-2xl transform group-hover:scale-110 transition-transform"></div>
-    </div>
-</button>
 
     <footer class="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 text-white py-8 mt-12">
     <div class="container mx-auto px-4">
@@ -2173,7 +2363,8 @@
     
     
     <script>
-       // =============================================
+
+// =============================================
 // CONFIGURACIÓN FIREBASE
 // =============================================
 const firebaseConfig = {
@@ -2200,6 +2391,99 @@ let currentCarouselIndex = 0;
 let modalProduct = null;
 let metodoPagoSeleccionado = null;
 let currentTestimonioIndex = 0;
+
+// Asegurar que las variables estén inicializadas
+window.productos = window.productos || [];
+window.productosFiltrados = window.productosFiltrados || [];
+window.categoriaActual = window.categoriaActual || 'todos';
+window.productosCarrusel = window.productosCarrusel || [];
+
+// =============================================
+// FUNCIÓN NUEVA: SINCRONIZAR PRODUCTOS CON FIREBASE
+// =============================================
+async function sincronizarProductosConFirebase() {
+    try {
+        console.log('🔄 Sincronizando productos con Firebase...');
+        
+        await db.collection('productos').doc('paola_boutique').set({
+            items: productos,
+            ultimaActualizacion: new Date().toISOString()
+        });
+        
+        console.log('✅ Productos sincronizados con Firebase');
+        return true;
+        
+    } catch (error) {
+        console.error('❌ Error sincronizando productos:', error);
+        return false;
+    }
+}
+
+// =============================================
+// FUNCIÓN NUEVA: SINCRONIZAR VENTAS CON FIREBASE
+// =============================================
+async function sincronizarVentasConFirebase() {
+    try {
+        console.log('🔄 Sincronizando ventas con Firebase...');
+        
+        let ventasExistentes = JSON.parse(localStorage.getItem('ventas_paola') || '[]');
+        
+        await db.collection('ventas').doc('paola_boutique').set({
+            items: ventasExistentes,
+            ultimaActualizacion: new Date().toISOString()
+        });
+        
+        console.log('✅ Ventas sincronizadas con Firebase');
+        return true;
+        
+    } catch (error) {
+        console.error('❌ Error sincronizando ventas:', error);
+        return false;
+    }
+}
+
+// =============================================
+// SISTEMA DE MANEJO DE ERRORES
+// =============================================
+
+function mostrarErrorUsuario(mensaje, tipo = 'error') {
+    const colores = {
+        error: 'from-red-500 to-red-600',
+        warning: 'from-yellow-500 to-orange-500',
+        success: 'from-green-500 to-teal-500'
+    };
+    
+    // Remover notificaciones anteriores
+    document.querySelectorAll('.notificacion-usuario').forEach(el => el.remove());
+    
+    const notificacion = document.createElement('div');
+    notificacion.className = `notificacion-usuario fixed top-4 right-4 bg-gradient-to-r ${colores[tipo]} text-white px-6 py-3 rounded-xl shadow-lg z-[100] animate-fadeIn`;
+    notificacion.innerHTML = `
+        <div class="flex items-center gap-3">
+            <i class="fas ${tipo === 'error' ? 'fa-exclamation-circle' : tipo === 'warning' ? 'fa-exclamation-triangle' : 'fa-check-circle'} text-lg"></i>
+            <span class="font-semibold">${mensaje}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notificacion);
+    
+    // Auto-eliminar después de 5 segundos
+    setTimeout(() => {
+        notificacion.style.opacity = '0';
+        notificacion.style.transform = 'translateX(100%)';
+        setTimeout(() => notificacion.remove(), 300);
+    }, 5000);
+}
+
+// Función para log de errores
+function logError(contexto, error) {
+    console.error(`❌ Error en ${contexto}:`, error);
+    
+    // Aquí podrías enviar errores a un servicio como Sentry o Firebase Crashlytics
+    if (typeof firebase !== 'undefined') {
+        // Ejemplo: firebase.crashlytics().log(`Error: ${contexto} - ${error.message}`);
+    }
+}
 
         // Información de categorías
         const categoriasInfo = {
@@ -2282,56 +2566,24 @@ let currentTestimonioIndex = 0;
             }
         ];
 
-        // =============================================
-        // CONTADOR DE VISITAS (SOLO REGISTRO - NO SE MUESTRA)
-        // =============================================
-        
-        // Incrementar contador de visitas - solo registro, no se muestra al público
-        function incrementarContadorVisitas() {
-            let contador = localStorage.getItem('visitas_paola_boutique');
-            
-            if (!contador) {
-                contador = 1;
-            } else {
-                contador = parseInt(contador) + 1;
-            }
-            
-            localStorage.setItem('visitas_paola_boutique', contador.toString());
-            return contador;
-        }
+// =============================================
+// PREVENCIÓN DE DUPLICACIÓN DE IMÁGENES
+// =============================================
 
-        // También guardar fecha de la última visita
-        function registrarVisita() {
-            let ultimasVisitas = JSON.parse(localStorage.getItem('ultimas_visitas_paola') || '[]');
-            ultimasVisitas.push({
-                fecha: new Date().toISOString(),
-                userAgent: navigator.userAgent
-            });
+// Set para tracking de imágenes ya procesadas
+const imagenesProceadas = new Set();
 
-            // Mantener solo las últimas 100 visitas
-            if (ultimasVisitas.length > 100) {
-                ultimasVisitas = ultimasVisitas.slice(-100);
-            }
-
-            localStorage.setItem('ultimas_visitas_paola', JSON.stringify(ultimasVisitas));
-        }
-
-        // Función segura para obtener elementos
-       function getElement(id) {
-    const element = document.getElementById(id);
-    if (!element) {
-        // console.warn(`Elemento con ID '${id}' no encontrado`); // Comentado para evitar warnings
-        return null;
-    }
-    return element;
+// Función para generar hash simple de imagen
+function generarHashImagen(dataUrl) {
+    // Tomar una muestra del dataURL para comparación
+    const muestra = dataUrl.substring(0, 200) + dataUrl.substring(dataUrl.length - 200);
+    return btoa(muestra).substring(0, 50);
 }
-// =============================================
-// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
-// =============================================
+
+// Modificar la función procesarImagenParaProducto para prevenir duplicados
 async function procesarImagenParaProducto(archivoImagen) {
     return new Promise((resolve, reject) => {
         if (!archivoImagen) {
-            // Imagen por defecto
             resolve('https://via.placeholder.com/400x400?text=Sin+Imagen');
             return;
         }
@@ -2346,11 +2598,26 @@ async function procesarImagenParaProducto(archivoImagen) {
             return;
         }
 
-        // Convertir a Base64
         const reader = new FileReader();
         
         reader.onload = function(e) {
-            resolve(e.target.result);
+            const dataUrl = e.target.result;
+            
+            // Generar hash de la imagen
+            const hash = generarHashImagen(dataUrl);
+            
+            // Verificar si ya fue procesada
+            if (imagenesProceadas.has(hash)) {
+                console.warn('⚠️ Advertencia: Esta imagen parece ser duplicada');
+                // No rechazar, solo advertir
+                // Si quieres rechazar duplicados, descomenta la línea siguiente:
+                // reject('❌ Esta imagen ya fue subida. Por favor selecciona una imagen diferente.');
+            }
+            
+            // Agregar al set de imágenes procesadas
+            imagenesProceadas.add(hash);
+            
+            resolve(dataUrl);
         };
         
         reader.onerror = function() {
@@ -2360,6 +2627,45 @@ async function procesarImagenParaProducto(archivoImagen) {
         reader.readAsDataURL(archivoImagen);
     });
 }
+
+// Limpiar set de imágenes cuando sea necesario (opcional)
+function limpiarCacheImagenes() {
+    imagenesProceadas.clear();
+    console.log('🗑️ Cache de imágenes limpiado');
+}
+
+        
+        // =============================================
+        // CONTADOR DE VISITAS (SOLO REGISTRO - NO SE MUESTRA)
+        // =============================================
+        
+        // Incrementar contador de visitas - solo registro, no se muestra al público
+        function incrementarContadorVisitas() {
+        let contador = localStorage.getItem('contador_visitas_catalogo'); // ← CORREGIDO
+        
+        if (!contador) {
+            contador = 1;
+        } else {
+            contador = parseInt(contador) + 1;
+        }
+        
+        localStorage.setItem('contador_visitas_catalogo', contador.toString());
+        console.log('✅ Visita registrada. Total:', contador);
+        return contador;
+    }
+    // Función segura para obtener elementos
+       function getElement(id) {
+    const element = document.getElementById(id);
+    if (!element) {
+        // console.warn(`Elemento con ID '${id}' no encontrado`); // Comentado para evitar warnings
+        return null;
+    }
+    return element;
+}
+
+// =============================================
+// FUNCIÓN PRINCIPAL PARA MANEJAR IMÁGENES (BASE64)
+// =============================================
 
 // Función para comprimir imágenes (optimiza el tamaño)
 function comprimirImagen(dataUrl, maxWidth, maxHeight) {
@@ -2424,40 +2730,70 @@ function verificarImagenCarga(url) {
     });
 }
 
-// Función para reparar imágenes existentes
+// =============================================
+// FUNCIÓN CARGAR PRODUCTOS CORREGIDA
+// =============================================
 async function cargarProductos() {
     const loadingState = getElement('loading-state');
     
     try {
         console.log('🔄 Cargando productos desde Firebase...');
         
-        // Leer desde Firebase
+        // ✅ 1. CARGAR DESDE FIREBASE PRIMERO
         const snapshot = await db.collection('productos').doc('paola_boutique').get();
         
         if (snapshot.exists) {
             const data = snapshot.data();
             productos = data.items || [];
-            productosFiltrados = productos.filter(producto => producto.stock > 0);
-            
-            // Guardar en localStorage como backup
-            localStorage.setItem('productos_paola', JSON.stringify(productos));
-            
             console.log('✅ Productos cargados desde Firebase:', productos.length);
         } else {
-            console.log('⚠️ No hay productos en Firebase, intentando localStorage...');
-            
-            // Fallback a localStorage
+            console.log('⚠️ No hay productos en Firebase, usando localStorage...');
             const productosLocal = localStorage.getItem('productos_paola');
-            if (productosLocal) {
-                productos = JSON.parse(productosLocal);
-                productosFiltrados = productos.filter(producto => producto.stock > 0);
-                console.log('✅ Productos cargados desde localStorage:', productos.length);
-            } else {
-                productos = [];
-                productosFiltrados = [];
-                console.log('ℹ️ No hay productos disponibles');
+            productos = productosLocal ? JSON.parse(productosLocal) : [];
+        }
+        
+        // ✅ 2. FILTRAR SOLO PRODUCTOS CON STOCK
+        productosFiltrados = productos.filter(producto => producto.stock > 0);
+        
+        // ✅ 3. GUARDAR EN LOCALSTORAGE COMO BACKUP
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        
+        // ✅ 4. Renderizar categorías
+        renderizarCategoriasConProductos();
+        
+        // ✅ 5. Inicializar carrusel horizontal
+        if (productosFiltrados.length > 0) {
+            inicializarCarruselHorizontal();
+        } else {
+            // Mostrar estado vacío en carrusel
+            const carruselTrack1 = getElement('carrusel-track-1');
+            const carruselTrack2 = getElement('carrusel-track-2');
+            
+            if (carruselTrack1 && carruselTrack2) {
+                carruselTrack1.innerHTML = `
+                    <div class="text-center text-gray-500 py-8 px-4">
+                        <i class="fas fa-box-open text-4xl mb-3"></i>
+                        <p class="font-semibold">No hay productos disponibles</p>
+                    </div>
+                `;
+                carruselTrack2.innerHTML = '';
             }
         }
+        
+        // ✅ 6. Inicializar carrusel destacados
+        setTimeout(() => {
+            inicializarCarruselDestacados();
+        }, 100);
+        
+        // ✅ 7. Ocultar loading
+        if (loadingState) loadingState.classList.add('hidden');
+        
+        // ✅ 8. Actualizar contadores
+        actualizarContadorFavoritos();
+        actualizarContadorCarrito();
+        
+        console.log('✅ Todos los productos y carruseles inicializados');
+        
     } catch (error) {
         console.error('❌ Error cargando desde Firebase:', error);
         
@@ -2467,16 +2803,32 @@ async function cargarProductos() {
             productos = JSON.parse(productosLocal);
             productosFiltrados = productos.filter(producto => producto.stock > 0);
             console.log('✅ Productos cargados desde localStorage (fallback):', productos.length);
+            
+            // Renderizar igualmente
+            renderizarCategoriasConProductos();
+            
+            if (productosFiltrados.length > 0) {
+                inicializarCarruselHorizontal();
+            }
+            
+            if (loadingState) loadingState.classList.add('hidden');
+            actualizarContadorFavoritos();
+            actualizarContadorCarrito();
         } else {
             productos = [];
             productosFiltrados = [];
+            console.log('ℹ️ No hay productos disponibles');
+            
+            if (loadingState) {
+                loadingState.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-box-open text-4xl text-gray-400 mb-3"></i>
+                        <p class="text-gray-600">No hay productos disponibles</p>
+                    </div>
+                `;
+            }
         }
     }
-    
-    renderizarCategoriasConProductos();
-    inicializarCarrusel();
-    
-    if (loadingState) loadingState.classList.add('hidden');
 }
 
         // =============================================
@@ -2769,308 +3121,396 @@ if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
             `;
         }
 
-        // =============================================
-        // SISTEMA DE CARRITO (COMPACTO PERO FUNCIONAL)
-        // =============================================
+// =============================================
+// SISTEMA DE CARRITO (COMPACTO PERO FUNCIONAL)
+// =============================================
 
-        // Función para agregar producto al carrito
-        function agregarAlCarrito(productoId, cantidad = 1) {
-            const producto = productos.find(p => p.id === productoId);
-            
-            if (!producto) {
-                alert('Producto no encontrado');
-                return;
-            }
-            
-            if (producto.stock < cantidad) {
+function agregarAlCarrito(productoId, cantidad = 1) {
+    const producto = productos.find(p => p.id === productoId);
+    
+    if (!producto) {
+        alert('Producto no encontrado');
+        return;
+    }
+    
+    // Verificar stock disponible (pero NO descontarlo)
+    if (producto.stock < cantidad) {
+        alert(`Solo quedan ${producto.stock} unidades disponibles`);
+        return;
+    }
+    
+    // Verificar si el producto ya está en el carrito
+    const itemExistente = carrito.find(item => item.id === productoId);
+    
+    if (itemExistente) {
+        // Verificar que no exceda el stock disponible
+        if (itemExistente.cantidad + cantidad > producto.stock) {
+            alert(`No puedes agregar más de ${producto.stock} unidades`);
+            return;
+        }
+        itemExistente.cantidad += cantidad;
+        itemExistente.stockDisponible = producto.stock; // Stock actual
+    } else {
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            categoria: producto.categoria,
+            cantidad: cantidad,
+            stockDisponible: producto.stock // Stock actual
+        });
+    }
+    
+    guardarCarrito();
+    actualizarContadorCarrito();
+    mostrarNotificacion('✅ Producto agregado al carrito');
+    
+    // Actualizar vista del carrito
+    actualizarCarritoModal();
+}
+
+// Función para agregar desde el modal
+function agregarAlCarritoModal() {
+    if (modalProduct) {
+        agregarAlCarrito(modalProduct.id);
+        cerrarModal();
+    }
+}
+
+// Función para actualizar cantidad en carrito - CORREGIDA
+function actualizarCantidadCarrito(productoId, nuevaCantidad) {
+    const item = carrito.find(item => item.id === productoId);
+    const producto = productos.find(p => p.id === productoId);
+    
+    if (item && producto) {
+        const diferencia = nuevaCantidad - item.cantidad;
+        
+        if (nuevaCantidad <= 0) {
+            eliminarDelCarrito(productoId);
+            return;
+        }
+        
+        if (diferencia > 0) {
+            // Si está aumentando la cantidad
+            if (producto.stock < diferencia) {
                 alert(`Solo quedan ${producto.stock} unidades disponibles`);
                 return;
             }
-            
-            // Verificar si el producto ya está en el carrito
-            const itemExistente = carrito.find(item => item.id === productoId);
-            
-            if (itemExistente) {
-                if (itemExistente.cantidad + cantidad > producto.stock) {
-                    alert(`No puedes agregar más de ${producto.stock} unidades`);
-                    return;
-                }
-                itemExistente.cantidad += cantidad;
-            } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    precio: producto.precio,
-                    imagen: producto.imagen,
-                    categoria: producto.categoria,
-                    cantidad: cantidad,
-                    stockDisponible: producto.stock
-                });
-            }
-            
-            guardarCarrito();
-            actualizarContadorCarrito();
-            mostrarNotificacion('✅ Producto agregado al carrito');
+            // Solo actualizar cantidad en carrito, NO descontar stock
+            item.cantidad = nuevaCantidad;
+        } else {
+            // Si está reduciendo la cantidad
+            item.cantidad = nuevaCantidad;
         }
+        
+        // Actualizar stock disponible mostrado en carrito
+        item.stockDisponible = producto.stock;
+        
+        // Guardar solo el carrito
+        guardarCarrito();
+        actualizarContadorCarrito();
+        actualizarCarritoModal();
+    }
+}
 
-        // Función para agregar desde el modal
-        function agregarAlCarritoModal() {
-            if (modalProduct) {
-                agregarAlCarrito(modalProduct.id);
-                cerrarModal();
-            }
+// Función para eliminar producto del carrito - CORREGIDA
+function eliminarDelCarrito(productoId) {
+    // Eliminar del carrito
+    carrito = carrito.filter(item => item.id !== productoId);
+    guardarCarrito();
+    actualizarContadorCarrito();
+    actualizarCarritoModal();
+}
+
+// Función para guardar carrito en localStorage
+function guardarCarrito() {
+    localStorage.setItem('carrito_paola', JSON.stringify(carrito));
+}
+
+// Función para actualizar contador del carrito
+function actualizarContadorCarrito() {
+    const countElement = getElement('cart-count');
+    const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+    
+    if (countElement) {
+        if (totalItems > 0) {
+            countElement.textContent = totalItems;
+            countElement.classList.remove('hidden');
+        } else {
+            countElement.classList.add('hidden');
         }
+    }
+}
 
-        // Función para eliminar producto del carrito
-        function eliminarDelCarrito(productoId) {
-            carrito = carrito.filter(item => item.id !== productoId);
-            guardarCarrito();
-            actualizarContadorCarrito();
+// Función para mostrar/ocultar carrito
+function toggleCarrito() {
+    const modal = getElement('cart-modal');
+    if (carrito.length === 0) {
+        mostrarNotificacion('🛒 Tu carrito está vacío');
+        return;
+    }
+    actualizarCarritoModal();
+    if (modal) modal.classList.remove('hidden');
+}
+
+function cerrarCarrito() {
+    const modal = getElement('cart-modal');
+    if (modal) modal.classList.add('hidden');
+}
+
+// Función para actualizar el modal del carrito
+function actualizarCarritoModal() {
+    const cartItems = getElement('cart-items');
+    const cartTotal = getElement('cart-total');
+    
+    if (!cartItems || !cartTotal) return;
+    
+    if (carrito.length === 0) {
+        cartItems.innerHTML = `
+            <div class="text-center py-8 text-gray-500">
+                <i class="fas fa-shopping-cart text-4xl mb-3 text-gray-300"></i>
+                <p class="text-lg">Tu carrito está vacío</p>
+            </div>
+        `;
+        cartTotal.textContent = 'S/ 0.00';
+        return;
+    }
+    
+    // Calcular total
+    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    cartTotal.textContent = `S/ ${total.toFixed(2)}`;
+    
+    // Mostrar items del carrito
+    cartItems.innerHTML = carrito.map(item => {
+        const producto = productos.find(p => p.id === item.id);
+        const stockActual = producto ? producto.stock : item.stockDisponible;
+        
+        return `
+        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+            <img src="${item.imagen}" alt="${item.nombre}" class="w-16 h-16 object-contain rounded-lg shadow">
+            <div class="flex-1">
+                <h4 class="font-semibold text-gray-800 text-sm">${item.nombre}</h4>
+                <p class="text-purple-600 font-bold">S/ ${item.precio}</p>
+                <p class="text-xs ${stockActual <= 5 ? 'text-red-600' : stockActual <= 10 ? 'text-yellow-600' : 'text-green-600'}">
+                    Stock disponible: ${stockActual}
+                </p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="actualizarCantidadCarrito(${item.id}, ${item.cantidad - 1})" 
+                        class="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                    <i class="fas fa-minus text-xs"></i>
+                </button>
+                <span class="w-8 text-center font-semibold">${item.cantidad}</span>
+                <button onclick="actualizarCantidadCarrito(${item.id}, ${item.cantidad + 1})" 
+                        class="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                    <i class="fas fa-plus text-xs"></i>
+                </button>
+                <button onclick="eliminarDelCarrito(${item.id})" 
+                        class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center hover:bg-red-200 transition-colors ml-2">
+                    <i class="fas fa-trash text-xs"></i>
+                </button>
+            </div>
+        </div>
+    `}).join('');
+}
+
+// Función para procesar pago
+function procesarPago(metodo) {
+    if (carrito.length === 0) {
+        alert('El carrito está vacío');
+        return;
+    }
+    
+    metodoPagoSeleccionado = metodo;
+    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    const pagoInfo = getElement('pago-info');
+    const pagoDetails = getElement('pago-details');
+    
+    if (!pagoInfo || !pagoDetails) return;
+    
+    let infoPago = '';
+    if (metodo === 'yape') {
+        infoPago = `
+            <strong>Yape:</strong> 991 798 916<br>
+            <strong>Nombre:</strong> PAOLA BOUTIQUE<br>
+            <strong>Total a pagar:</strong> S/ ${total.toFixed(2)}<br>
+            <strong>Referencia:</strong> PEDIDO-${Date.now().toString().slice(-6)}
+        `;
+    } else if (metodo === 'plin') {
+        infoPago = `
+            <strong>Plin:</strong> 991 798 916<br>
+            <strong>Nombre:</strong> PAOLA BOUTIQUE<br>
+            <strong>Total a pagar:</strong> S/ ${total.toFixed(2)}<br>
+            <strong>Referencia:</strong> PEDIDO-${Date.now().toString().slice(-6)}
+        `;
+    }
+    
+    pagoDetails.innerHTML = infoPago;
+    pagoInfo.classList.remove('hidden');
+}
+
+// =============================================
+// FUNCIÓN CONFIRMAR PAGO CORREGIDA
+// =============================================
+async function confirmarPago() {
+    try {
+        // 1. Verificar stock antes de procesar
+        const sinStock = carrito.some(item => {
+            const producto = productos.find(p => p.id === item.id);
+            return !producto || producto.stock < item.cantidad;
+        });
+        
+        if (sinStock) {
+            alert('❌ Algunos productos ya no tienen stock disponible. Actualiza tu carrito.');
             actualizarCarritoModal();
+            return;
         }
-
-        // Función para actualizar cantidad en carrito
-        function actualizarCantidadCarrito(productoId, nuevaCantidad) {
-            const item = carrito.find(item => item.id === productoId);
-            const producto = productos.find(p => p.id === productoId);
-            
-            if (item && producto) {
-                if (nuevaCantidad <= 0) {
-                    eliminarDelCarrito(productoId);
-                } else if (nuevaCantidad > producto.stock) {
-                    alert(`Solo quedan ${producto.stock} unidades disponibles`);
-                    item.cantidad = producto.stock;
-                } else {
-                    item.cantidad = nuevaCantidad;
-                }
-                
-                guardarCarrito();
-                actualizarContadorCarrito();
-                actualizarCarritoModal();
+        
+        // 2. Preguntar nombre del cliente
+        const nombreCliente = prompt('Por favor, ingresa tu nombre para el pedido:') || 'Cliente no registrado';
+        
+        // 3. Registrar venta
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        
+        const nuevaVenta = {
+            id: Date.now(),
+            fecha: new Date().toISOString(),
+            productos: [...carrito],
+            total: total,
+            cliente: nombreCliente,
+            metodoPago: metodoPagoSeleccionado,
+            tipo: 'online',
+            estado: 'confirmada'
+        };
+        
+        // 4. Guardar venta en localStorage
+        let ventasExistentes = JSON.parse(localStorage.getItem('ventas_paola') || '[]');
+        ventasExistentes.push(nuevaVenta);
+        localStorage.setItem('ventas_paola', JSON.stringify(ventasExistentes));
+        
+        // 5. ✅ ACTUALIZAR STOCK DE PRODUCTOS
+        console.log('🔄 Actualizando stock de productos...');
+        
+        carrito.forEach(item => {
+            const producto = productos.find(p => p.id === item.id);
+            if (producto) {
+                producto.stock -= item.cantidad;
+                producto.vendidos = (producto.vendidos || 0) + item.cantidad;
+                console.log(`✅ Stock actualizado: ${producto.nombre} - Nuevo stock: ${producto.stock}`);
             }
+        });
+        
+        // 6. ✅ GUARDAR PRODUCTOS ACTUALIZADOS
+        localStorage.setItem('productos_paola', JSON.stringify(productos));
+        
+        // 7. ✅ SINCROnIZAR CON FIREBASE
+        await sincronizarProductosConFirebase();
+        await sincronizarVentasConFirebase();
+        
+        // 8. ✅ LIMPIAR CARRITO Y ACTUALIZAR VISTA
+        carrito = [];
+        guardarCarrito();
+        actualizarContadorCarrito();
+        actualizarVistaProductos(); // Esto actualiza la interfaz
+        
+        // 9. ✅ MOSTRAR CONFIRMACIÓN
+        const pagoInfo = getElement('pago-info');
+        const cartModal = getElement('cart-modal');
+        if (pagoInfo) pagoInfo.classList.add('hidden');
+        if (cartModal) cartModal.classList.add('hidden');
+        
+        // 10. ✅ MOSTRAR MENSAJE FINAL
+        const mensajeWhatsApp = `✅ ¡Pago realizado con éxito!\n\n📋 Detalles del pedido:\n- Referencia: PEDIDO-${nuevaVenta.id.toString().slice(-6)}\n- Total: S/ ${total.toFixed(2)}\n- Método: ${metodoPagoSeleccionado}\n- Cliente: ${nombreCliente}\n\n📸 ¡Envía la captura de pago a PAOLA'BOUTIQUE por WhatsApp!`;
+        
+        alert(mensajeWhatsApp);
+        
+        // Opcional: Abrir WhatsApp
+        const confirmarWhatsApp = confirm('¿Deseas abrir WhatsApp para enviar la captura de pago?');
+        if (confirmarWhatsApp) {
+            const mensaje = encodeURIComponent(`Hola PAOLA'BOUTIQUE, acabo de realizar un pago.\n\nReferencia: PEDIDO-${nuevaVenta.id.toString().slice(-6)}\nTotal: S/ ${total.toFixed(2)}\nMétodo: ${metodoPagoSeleccionado}\nCliente: ${nombreCliente}\n\nAdjunto captura de pago.`);
+            window.open(`https://wa.me/51991798916?text=${mensaje}`, '_blank');
         }
+        
+    } catch (error) {
+        console.error('❌ Error confirmando pago:', error);
+        alert('❌ Error al procesar el pago. Por favor, intenta nuevamente.');
+    }
+}
 
-        // Función para guardar carrito en localStorage
-        function guardarCarrito() {
-            localStorage.setItem('carrito_paola', JSON.stringify(carrito));
+function cancelarPago() {
+    const pagoInfo = getElement('pago-info');
+    if (pagoInfo) pagoInfo.classList.add('hidden');
+}
+
+// Función para cancelar pedido completo - CORREGIDA
+function cancelarPedido() {
+    if (confirm('¿Estás seguro de que quieres cancelar todo tu pedido?')) {
+        // ✅ NO devolver stock porque nunca se descontó
+        carrito = [];
+        guardarCarrito();
+        actualizarContadorCarrito();
+        actualizarCarritoModal();
+        cerrarCarrito();
+        
+        mostrarNotificacion('❌ Pedido cancelado');
+    }
+}
+
+// Función para mostrar notificaciones
+function mostrarNotificacion(mensaje) {
+    // Crear notificación temporal
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow z-50 animate-fadeIn';
+    notification.innerHTML = `
+        <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle"></i>
+            <span class="font-semibold text-sm">${mensaje}</span>
+        </div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 200);
+    }, 2000);
+}
+
+
+// =============================================
+// FUNCIÓN PARA ACTUALIZAR VISTA DE PRODUCTOS
+// =============================================
+function actualizarVistaProductos() {
+    // Actualizar productosFiltrados
+    productosFiltrados = productos.filter(p => p.stock > 0);
+    
+    // Actualizar según la vista actual
+    if (categoriaActual === 'todos') {
+        // Si estamos viendo todas las categorías
+        renderizarCategoriasConProductos();
+    } else {
+        // Si estamos viendo una categoría específica
+        const productosCategoriaGrid = getElement('productos-categoria-grid');
+        if (productosCategoriaGrid && productosCategoriaGrid.innerHTML !== '') {
+            // Estamos en vista de categoría específica
+            const productosCategoria = productosFiltrados.filter(p => p.categoria === categoriaActual);
+            productosCategoriaGrid.innerHTML = productosCategoria.map(producto => crearProductoHTML(producto)).join('');
+        } else {
+            // Estamos en vista principal
+            renderizarCategoriasConProductos();
         }
-
-        // Función para actualizar contador del carrito
-        function actualizarContadorCarrito() {
-            const countElement = getElement('cart-count');
-            const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
-            
-            if (countElement) {
-                if (totalItems > 0) {
-                    countElement.textContent = totalItems;
-                    countElement.classList.remove('hidden');
-                } else {
-                    countElement.classList.add('hidden');
-                }
-            }
-        }
-
-        // Función para mostrar/ocultar carrito
-        function toggleCarrito() {
-            const modal = getElement('cart-modal');
-            if (carrito.length === 0) {
-                mostrarNotificacion('🛒 Tu carrito está vacío');
-                return;
-            }
-            actualizarCarritoModal();
-            if (modal) modal.classList.remove('hidden');
-        }
-
-        function cerrarCarrito() {
-            const modal = getElement('cart-modal');
-            if (modal) modal.classList.add('hidden');
-        }
-
-        // Función para actualizar el modal del carrito
-        function actualizarCarritoModal() {
-            const cartItems = getElement('cart-items');
-            const cartTotal = getElement('cart-total');
-            
-            if (!cartItems || !cartTotal) return;
-            
-            if (carrito.length === 0) {
-                cartItems.innerHTML = `
-                    <div class="text-center py-8 text-gray-500">
-                        <i class="fas fa-shopping-cart text-4xl mb-3 text-gray-300"></i>
-                        <p class="text-lg">Tu carrito está vacío</p>
-                    </div>
-                `;
-                cartTotal.textContent = 'S/ 0.00';
-                return;
-            }
-            
-            // Calcular total
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            cartTotal.textContent = `S/ ${total.toFixed(2)}`;
-            
-            // Mostrar items del carrito
-            cartItems.innerHTML = carrito.map(item => `
-                <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                    <img src="${item.imagen}" alt="${item.nombre}" class="w-16 h-16 object-contain rounded-lg shadow">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-800 text-sm">${item.nombre}</h4>
-                        <p class="text-purple-600 font-bold">S/ ${item.precio}</p>
-                        <p class="text-xs text-gray-600">Stock: ${item.stockDisponible}</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="actualizarCantidadCarrito(${item.id}, ${item.cantidad - 1})" 
-                                class="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
-                            <i class="fas fa-minus text-xs"></i>
-                        </button>
-                        <span class="w-8 text-center font-semibold">${item.cantidad}</span>
-                        <button onclick="actualizarCantidadCarrito(${item.id}, ${item.cantidad + 1})" 
-                                class="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
-                            <i class="fas fa-plus text-xs"></i>
-                        </button>
-                        <button onclick="eliminarDelCarrito(${item.id})" 
-                                class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center hover:bg-red-200 transition-colors ml-2">
-                            <i class="fas fa-trash text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Función para procesar pago
-        function procesarPago(metodo) {
-            if (carrito.length === 0) {
-                alert('El carrito está vacío');
-                return;
-            }
-            
-            metodoPagoSeleccionado = metodo;
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            const pagoInfo = getElement('pago-info');
-            const pagoDetails = getElement('pago-details');
-            
-            if (!pagoInfo || !pagoDetails) return;
-            
-            let infoPago = '';
-            if (metodo === 'yape') {
-                infoPago = `
-                    <strong>Yape:</strong> 991 798 916<br>
-                    <strong>Nombre:</strong> PAOLA BOUTIQUE<br>
-                    <strong>Total a pagar:</strong> S/ ${total.toFixed(2)}<br>
-                    <strong>Referencia:</strong> PEDIDO-${Date.now().toString().slice(-6)}
-                `;
-            } else if (metodo === 'plin') {
-                infoPago = `
-                    <strong>Plin:</strong> 991 798 916<br>
-                    <strong>Nombre:</strong> PAOLA BOUTIQUE<br>
-                    <strong>Total a pagar:</strong> S/ ${total.toFixed(2)}<br>
-                    <strong>Referencia:</strong> PEDIDO-${Date.now().toString().slice(-6)}
-                `;
-            }
-            
-            pagoDetails.innerHTML = infoPago;
-            pagoInfo.classList.remove('hidden');
-        }
-
-        // Función para confirmar pago
-        function confirmarPago() {
-            // Verificar stock antes de procesar
-            const sinStock = carrito.some(item => {
-                const producto = productos.find(p => p.id === item.id);
-                return producto.stock < item.cantidad;
-            });
-            
-            if (sinStock) {
-                alert('❌ Algunos productos ya no tienen stock disponible. Actualiza tu carrito.');
-                actualizarCarritoModal();
-                return;
-            }
-            
-           // Registrar venta
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            const nuevaVenta = {
-                id: Date.now(),
-                fecha: new Date().toISOString(),
-                productos: [...carrito],
-                total: total,
-                metodoPago: metodoPagoSeleccionado,
-                tipo: 'online',
-                estado: 'completada'
-            };
-            
-            ventas.push(nuevaVenta);
-            localStorage.setItem('ventas_paola', JSON.stringify(ventas));
-            
-            // Actualizar stock
-            carrito.forEach(item => {
-                const producto = productos.find(p => p.id === item.id);
-                if (producto) {
-                    producto.stock -= item.cantidad;
-                    producto.vendidos += item.cantidad;
-                }
-            });
-            
-            // Guardar cambios
-            localStorage.setItem('productos_paola', JSON.stringify(productos));
-            
-            // Limpiar carrito y mostrar confirmación
-            carrito = [];
-            guardarCarrito();
-            actualizarContadorCarrito();
-            
-            const pagoInfo = getElement('pago-info');
-            const cartModal = getElement('cart-modal');
-            if (pagoInfo) pagoInfo.classList.add('hidden');
-            if (cartModal) cartModal.classList.add('hidden');
-            
-            alert(`✅ ¡Pago realizado con éxito!\n📸 ¡Enviar captura a PAOLA'BOUTIQUE!`);
-            
-            // Recargar productos para mostrar stock actualizado
-            cargarProductos();
-        }
-
-        function cancelarPago() {
-            const pagoInfo = getElement('pago-info');
-            if (pagoInfo) pagoInfo.classList.add('hidden');
-        }
-
-        // Función para cancelar pedido completo
-        function cancelarPedido() {
-            if (confirm('¿Estás seguro de que quieres cancelar todo tu pedido?')) {
-                carrito = [];
-                guardarCarrito();
-                actualizarContadorCarrito();
-                actualizarCarritoModal();
-                cerrarCarrito();
-                mostrarNotificacion('❌ Pedido cancelado');
-            }
-        }
-
-        // Función para mostrar notificaciones
-        function mostrarNotificacion(mensaje) {
-            // Crear notificación temporal
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow z-50 animate-fadeIn';
-            notification.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-check-circle"></i>
-                    <span class="font-semibold text-sm">${mensaje}</span>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    notification.remove();
-                }, 200);
-            }, 2000);
-        }
-
-        // =============================================
-        // FUNCIONES EXISTENTES MEJORADAS (COMPACTAS)
-        // =============================================
-        // =============================================
+    }
+    
+    // Actualizar carrusel si existe
+    if (typeof actualizarCarrusel === 'function') {
+        actualizarCarrusel();
+    }
+}      
+          
+     
 // FUNCIÓN DE BÚSQUEDA MEJORADA
 // =============================================
 function buscarProductos(termino) {
@@ -3148,380 +3588,785 @@ function limpiarBusqueda() {
     volverACategorias();
 }
 
+// Función para filtrar por categoría (VERSIÓN COMPACTA)
+function filtrarCategoria(categoria) {
+    categoriaActual = categoria;
+    
+    // Actualizar botones activos
+    document.querySelectorAll('.filtro-moderno').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    if (categoria === 'todos') {
+        volverACategorias();
+    } else {
+        mostrarTodosProductosCategoria(categoria);
+    }
+}
 
-        // Función para filtrar por categoría (VERSIÓN COMPACTA)
-        function filtrarCategoria(categoria) {
-            categoriaActual = categoria;
-            
-            // Actualizar botones activos
-            document.querySelectorAll('.filtro-moderno').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            if (categoria === 'todos') {
-                volverACategorias();
-            } else {
-                mostrarTodosProductosCategoria(categoria);
-            }
+// Función para toggle favoritos
+function toggleFavorito(productoId) {
+    const index = favoritos.indexOf(productoId);
+    if (index > -1) {
+        favoritos.splice(index, 1);
+    } else {
+        favoritos.push(productoId);
+    }
+    
+    localStorage.setItem('favoritos_paola', JSON.stringify(favoritos));
+    actualizarContadorFavoritos();
+    
+    // Recargar la vista actual
+    if (categoriaActual === 'todos') {
+        renderizarCategoriasConProductos();
+    } else {
+        mostrarTodosProductosCategoria(categoriaActual);
+    }
+}
+
+// Función para actualizar contador de favoritos
+function actualizarContadorFavoritos() {
+    const countElement = getElement('favorites-count');
+    if (countElement) {
+        if (favoritos.length > 0) {
+            countElement.textContent = favoritos.length;
+            countElement.classList.remove('hidden');
+        } else {
+            countElement.classList.add('hidden');
         }
+    }
+}
 
-        // Función para toggle favoritos
-        function toggleFavorito(productoId) {
-            const index = favoritos.indexOf(productoId);
-            if (index > -1) {
-                favoritos.splice(index, 1);
-            } else {
-                favoritos.push(productoId);
-            }
-            
-            localStorage.setItem('favoritos_paola', JSON.stringify(favoritos));
-            actualizarContadorFavoritos();
-            
-            // Recargar la vista actual
-            if (categoriaActual === 'todos') {
-                renderizarCategoriasConProductos();
-            } else {
-                mostrarTodosProductosCategoria(categoriaActual);
-            }
+// =============================================
+// VARIABLES GLOBALES PARA NAVEGACIÓN DE MODAL
+// =============================================
+let productosCategoriaActual = [];
+let indiceProductoActual = 0;
+
+// =============================================
+// FUNCIÓN PARA MOSTRAR MODAL - CON NAVEGACIÓN
+// =============================================
+function mostrarModal(productoId) {
+    const producto = productos.find(p => p.id === productoId);
+    if (!producto) return;
+    
+    modalProduct = producto;
+    
+    // Obtener productos de la misma categoría para navegación
+    productosCategoriaActual = productosFiltrados.filter(p => p.categoria === producto.categoria);
+    indiceProductoActual = productosCategoriaActual.findIndex(p => p.id === productoId);
+    
+    actualizarContenidoModal(producto);
+    actualizarBotonesNavegacion();
+    
+    const productModal = getElement('product-modal');
+    if (productModal) productModal.classList.remove('hidden');
+    
+    // Configurar gestos táctiles para móvil
+    configurarGestosTactiles();
+}
+
+// =============================================
+// AJUSTAR ALTURA DEL MODAL SEGÚN DISPOSITIVO
+// =============================================
+function ajustarAlturaModal() {
+    const modalImage = getElement('modal-image');
+    const modalContainer = document.querySelector('#product-modal > div');
+    
+    if (!modalImage || !modalContainer) return;
+    
+    // Detectar altura de viewport
+    const viewportHeight = window.innerHeight;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // En móvil: limitar altura de imagen
+        const maxHeight = Math.min(250, viewportHeight * 0.3);
+        modalImage.style.maxHeight = `${maxHeight}px`;
+        
+        // Ajustar altura del contenedor del modal
+        modalContainer.style.maxHeight = `${viewportHeight * 0.95}px`;
+    } else {
+        // En escritorio: altura normal
+        modalImage.style.maxHeight = '400px';
+        modalContainer.style.maxHeight = '90vh';
+    }
+}
+
+// Llamar al ajustar tamaño de ventana
+window.addEventListener('resize', ajustarAlturaModal);
+
+// =============================================
+// FUNCIÓN PARA ACTUALIZAR CONTENIDO DEL MODAL
+// =============================================
+function actualizarContenidoModal(producto) {
+    const modalTitle = getElement('modal-title');
+    const modalImage = getElement('modal-image');
+    const modalPrice = getElement('modal-price');
+    const modalStockBadge = getElement('modal-stock-badge');
+    const modalDetails = getElement('modal-details');
+    const modalTallas = getElement('modal-tallas');
+    const modalDescripciones = getElement('modal-descripciones');
+    const modalImageCounter = getElement('modal-image-counter');
+    
+    if (!modalTitle || !modalImage || !modalPrice || !modalStockBadge || !modalDetails || !modalTallas || !modalDescripciones) return;
+    
+    modalTitle.textContent = producto.nombre;
+    modalImage.src = producto.imagen;
+    modalPrice.textContent = `S/ ${producto.precio}`;
+    ajustarAlturaModal();
+    
+    // Actualizar badge de stock
+    modalStockBadge.className = `stock-badge-moderno ${getStockClass(producto.stock)} text-base px-3 py-1`;
+    modalStockBadge.textContent = getStockText(producto.stock);
+    
+    // Actualizar contador de navegación
+    if (modalImageCounter) {
+        if (productosCategoriaActual.length > 1) {
+            modalImageCounter.textContent = `${indiceProductoActual + 1} / ${productosCategoriaActual.length}`;
+            modalImageCounter.classList.remove('hidden');
+        } else {
+            modalImageCounter.classList.add('hidden');
         }
-
-        // Función para actualizar contador de favoritos
-        function actualizarContadorFavoritos() {
-            const countElement = getElement('favorites-count');
-            if (countElement) {
-                if (favoritos.length > 0) {
-                    countElement.textContent = favoritos.length;
-                    countElement.classList.remove('hidden');
-                } else {
-                    countElement.classList.add('hidden');
-                }
-            }
-        }
-
-        // Función para mostrar modal de producto - CORREGIDA
-        function mostrarModal(productoId) {
-            const producto = productos.find(p => p.id === productoId);
-            if (!producto) return;
-            
-            modalProduct = producto;
-            const modalTitle = getElement('modal-title');
-            const modalImage = getElement('modal-image');
-            const modalPrice = getElement('modal-price');
-            const modalStockBadge = getElement('modal-stock-badge');
-            const modalDetails = getElement('modal-details');
-            const modalTallas = getElement('modal-tallas');
-            const modalDescripciones = getElement('modal-descripciones');
-            const productModal = getElement('product-modal');
-            
-            if (!modalTitle || !modalImage || !modalPrice || !modalStockBadge || !modalDetails || !modalTallas || !modalDescripciones || !productModal) return;
-            
-            modalTitle.textContent = producto.nombre;
-            modalImage.src = producto.imagen;
-            modalPrice.textContent = `S/ ${producto.precio}`;
-            
-            // Actualizar badge de stock en el modal
-            modalStockBadge.className = `stock-badge-moderno ${getStockClass(producto.stock)} text-base px-3 py-1`;
-            modalStockBadge.textContent = getStockText(producto.stock);
-            
-            const categoriaBadge = producto.categoria === 'niñas' ? '👧 Niñas' : 
-                                   producto.categoria === 'niños' ? '👦 Niños' : 
-                                   producto.categoria === 'cosmeticos' ? '💄 Cosméticos' :
-                                   producto.categoria === 'joyas' ? '💎 Joyas' : '🎁 Otros';
-            
-            let detallesHTML = `
-                <div class="space-y-3">
-                    <p class="text-xl font-semibold text-gray-800">${categoriaBadge}</p>
-                    <p class="text-base ${getStockClass(producto.stock)} font-medium">
-                        <i class="fas fa-box mr-1"></i>${producto.stock} unidades disponibles
-                    </p>
-                </div>
-            `;
-            
-            modalDetails.innerHTML = detallesHTML;
-            
-            // CORRECCIÓN: Manejar correctamente las especificaciones en el modal
-            modalTallas.innerHTML = '';
-            modalDescripciones.innerHTML = '';
-            
-            if (producto.tallas) {
-                // Si es el formato nuevo (con tallas y descripciones separadas)
-                if (typeof producto.tallas === 'object' && producto.tallas.tallas !== undefined) {
-                    // Mostrar tallas si existen
-                    if (producto.tallas.tallas && producto.tallas.tallas.length > 0) {
-                        modalTallas.innerHTML = `
-                            <div class="space-y-2">
-                                <p class="text-sm text-gray-600 font-medium">📏 Tallas disponibles:</p>
-                                <div class="flex gap-2 flex-wrap">
-                                    ${producto.tallas.tallas.map(item => `
-                                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-lg border border-gray-200 font-semibold">
-                                            ${item}
-                                        </span>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }
-                    
-                 // Mostrar descripciones si existen
-if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
-    modalDescripciones.innerHTML = `
-        <div class="space-y-2">
-            <p class="text-sm text-gray-600 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
-            <ul class="space-y-1">
-                ${producto.tallas.descripciones.map(desc => `
-                    <li class="text-gray-700 flex items-start gap-2">
-                        <i class="fas fa-check text-green-500 mt-1"></i>
-                        <span>${desc}</span>
-                    </li>
-                `).join('')}
-            </ul>
+    }
+    
+    const categoriaBadge = producto.categoria === 'niñas' ? '👧 Niñas' : 
+                           producto.categoria === 'niños' ? '👦 Niños' : 
+                           producto.categoria === 'cosmeticos' ? '💄 Cosméticos' :
+                           producto.categoria === 'joyas' ? '💎 Joyas' : '🎁 Otros';
+    
+    let detallesHTML = `
+        <div class="space-y-3">
+            <p class="text-xl font-semibold text-gray-800">${categoriaBadge}</p>
+            <p class="text-base ${getStockClass(producto.stock)} font-medium">
+                <i class="fas fa-box mr-1"></i>${producto.stock} unidades disponibles
+            </p>
         </div>
     `;
-}
-                } else {
-                    // Formato antiguo (solo array of strings)
-                    modalTallas.innerHTML = `
-                        <div class="space-y-2">
-                            <p class="text-sm text-gray-600 font-medium">📏 Tallas disponibles:</p>
-                            <div class="flex gap-2 flex-wrap">
-                                ${producto.tallas.map(item => `
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-lg border border-gray-200 font-semibold">
-                                        ${item}
-                                    </span>
-                                `).join('')}
-                            </div>
+    
+    modalDetails.innerHTML = detallesHTML;
+    
+    // Manejar tallas y descripciones
+    modalTallas.innerHTML = '';
+    modalDescripciones.innerHTML = '';
+    
+    if (producto.tallas) {
+        if (typeof producto.tallas === 'object' && producto.tallas.tallas !== undefined) {
+            if (producto.tallas.tallas && producto.tallas.tallas.length > 0) {
+                modalTallas.innerHTML = `
+                    <div class="space-y-2">
+                        <p class="text-sm text-gray-600 font-medium">📏 Tallas disponibles:</p>
+                        <div class="flex gap-2 flex-wrap">
+                            ${producto.tallas.tallas.map(item => `
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-lg border border-gray-200 font-semibold">
+                                    ${item}
+                                </span>
+                            `).join('')}
                         </div>
-                    `;
-                }
+                    </div>
+                `;
             }
-
-            productModal.classList.remove('hidden');
+            
+            if (producto.tallas.descripciones && producto.tallas.descripciones.length > 0) {
+                modalDescripciones.innerHTML = `
+                    <div class="space-y-2">
+                        <p class="text-sm text-gray-600 font-medium">📝 DESCRIPCIÓN DEL PRODUCTO:</p>
+                        <ul class="space-y-1">
+                            ${producto.tallas.descripciones.map(desc => `
+                                <li class="text-gray-700 flex items-start gap-2">
+                                    <i class="fas fa-check text-green-500 mt-1"></i>
+                                    <span>${desc}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+        } else {
+            modalTallas.innerHTML = `
+                <div class="space-y-2">
+                    <p class="text-sm text-gray-600 font-medium">📏 Tallas disponibles:</p>
+                    <div class="flex gap-2 flex-wrap">
+                        ${producto.tallas.map(item => `
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-lg border border-gray-200 font-semibold">
+                                ${item}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
         }
+    }
+}
 
-        // Función para cerrar modal
-        function cerrarModal() {
-            const productModal = getElement('product-modal');
-            if (productModal) productModal.classList.add('hidden');
-            modalProduct = null;
+// =============================================
+// FUNCIÓN PARA NAVEGAR ENTRE PRODUCTOS
+// =============================================
+function navegarProductoModal(direccion) {
+    if (productosCategoriaActual.length === 0) return;
+    
+    // Calcular nuevo índice
+    indiceProductoActual += direccion;
+    
+    // Circular: si llega al final, volver al inicio y viceversa
+    if (indiceProductoActual >= productosCategoriaActual.length) {
+        indiceProductoActual = 0;
+    } else if (indiceProductoActual < 0) {
+        indiceProductoActual = productosCategoriaActual.length - 1;
+    }
+    
+    const nuevoProducto = productosCategoriaActual[indiceProductoActual];
+    modalProduct = nuevoProducto;
+    
+    // Actualizar modal con animación
+    const modalImage = getElement('modal-image');
+    if (modalImage) {
+        modalImage.style.opacity = '0';
+        modalImage.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            actualizarContenidoModal(nuevoProducto);
+            actualizarBotonesNavegacion();
+            modalImage.style.opacity = '1';
+            modalImage.style.transform = 'scale(1)';
+        }, 150);
+    }
+}
+
+// =============================================
+// FUNCIÓN PARA ACTUALIZAR BOTONES DE NAVEGACIÓN
+// =============================================
+function actualizarBotonesNavegacion() {
+    const prevBtn = getElement('modal-prev-btn');
+    const nextBtn = getElement('modal-next-btn');
+    
+    if (!prevBtn || !nextBtn) return;
+    
+    // Mostrar/ocultar botones según cantidad de productos
+    if (productosCategoriaActual.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    } else {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+    }
+}
+
+// =============================================
+// CONFIGURAR GESTOS TÁCTILES PARA MÓVIL
+// =============================================
+function configurarGestosTactiles() {
+    const modalImage = getElement('modal-image');
+    if (!modalImage) return;
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    // Remover listeners anteriores si existen
+    modalImage.removeEventListener('touchstart', handleTouchStart);
+    modalImage.removeEventListener('touchend', handleTouchEnd);
+    
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+    
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50; // Mínimo de píxeles para detectar swipe
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe izquierda -> Siguiente
+            navegarProductoModal(1);
         }
-
-        // Función para enviar WhatsApp
-        function enviarWhatsApp(nombre, precio) {
-            const mensaje = `Hola! Me interesa el producto: ${nombre} - S/ ${precio}`;
-            const url = `https://wa.me/51991798916?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+        
+        if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe derecha -> Anterior
+            navegarProductoModal(-1);
         }
+    }
+    
+    modalImage.addEventListener('touchstart', handleTouchStart, { passive: true });
+    modalImage.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
 
-        function enviarWhatsAppModal() {
-            if (!modalProduct) return;
-            const mensaje = `Hola! Me interesa el producto: ${modalProduct.nombre} - S/ ${modalProduct.precio}`;
-            const url = `https://wa.me/51991798916?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+// Función para cerrar modal
+function cerrarModal() {
+    const productModal = getElement('product-modal');
+    if (productModal) productModal.classList.add('hidden');
+    modalProduct = null;
+    productosCategoriaActual = [];
+    indiceProductoActual = 0;
+}
+
+// Función para enviar WhatsApp
+function enviarWhatsApp(nombre, precio) {
+    const mensaje = `Hola! Me interesa el producto: ${nombre} - S/ ${precio}`;
+    const url = `https://wa.me/51991798916?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+function enviarWhatsAppModal() {
+    if (!modalProduct) return;
+    
+    // ✅ REGISTRAR VENTA ANTES DE ABRIR WHATSAPP CON LA FUNCIÓN CORREGIDA
+    const cantidad = 1;
+    registrarVentaDesdeCatalogo(modalProduct, cantidad, 'whatsapp', 'Cliente WhatsApp');
+    
+    const mensaje = `Hola! Me interesa el producto: ${modalProduct.nombre} - S/ ${modalProduct.precio}`;
+    const url = `https://wa.me/51991798916?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+    cerrarModal();
+}
+
+// Funciones del carrusel MEJORADO
+function inicializarCarruselDestacados() {
+    const productosDestacados = productosFiltrados.slice(0, 3);
+    const carousel = getElement('carousel');
+    const indicators = getElement('carousel-indicators');
+    
+    if (!carousel || !indicators) return;
+    
+    if (productosDestacados.length === 0) {
+        carousel.innerHTML = `
+            <div class="bg-gradient-to-r from-gray-100 to-gray-200 p-12 rounded-xl text-center">
+                <i class="fas fa-box-open text-4xl text-gray-400 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-600 mb-3">No hay productos destacados</h3>
+                <p class="text-gray-500">Agrega productos en el panel de administración</p>
+            </div>
+        `;
+        const prevBtn = getElement('prev-btn');
+        const nextBtn = getElement('next-btn');
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        return;
+    }
+    
+    // Crear items del carrusel MEJORADOS
+    carousel.innerHTML = productosDestacados.map((producto, index) => {
+        const categoriaColor = producto.categoria === 'niñas' ? 'from-pink-100 to-purple-100' : 
+                              producto.categoria === 'niños' ? 'from-blue-100 to-purple-100' : 
+                              producto.categoria === 'cosmeticos' ? 'from-purple-100 to-pink-100' :
+                              producto.categoria === 'joyas' ? 'from-yellow-100 to-orange-100' : 'from-green-100 to-teal-100';
+        
+        const categoriaTexto = producto.categoria === 'niñas' ? 'bg-pink-500' : 
+                              producto.categoria === 'niños' ? 'bg-blue-500' : 
+                              producto.categoria === 'cosmeticos' ? 'bg-purple-500' :
+                              producto.categoria === 'joyas' ? 'bg-yellow-500' : 'bg-green-500';
+        
+        return `
+            <div class="carousel-item-mejorado ${index === 0 ? 'active' : 'hidden'}">
+                <div class="carousel-background bg-gradient-to-r ${categoriaColor}"></div>
+                <div class="carousel-item-content-mejorado">
+                    <div class="carousel-text-mejorado">
+                        <span class="carousel-badge">Producto Destacado</span>
+                        <h3 class="carousel-title">${producto.nombre}</h3>
+                        <p class="carousel-description">${getDescripcionProducto(producto)}</p>
+                        <p class="carousel-price">S/ ${producto.precio}</p>
+                        <div class="carousel-actions">
+                            <button onclick="mostrarModal(${producto.id})" 
+                                    class="carousel-btn primary">
+                                <i class="fas fa-eye mr-2"></i>Ver Detalles
+                            </button>
+                            <button onclick="agregarAlCarrito(${producto.id})" 
+                                class="carousel-btn secondary">
+                                <i class="fas fa-cart-plus mr-2"></i>Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="carousel-image-container">
+                        <img src="${producto.imagen}" alt="${producto.nombre}" 
+                             class="carousel-img-mejorado">
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Crear indicadores
+    indicators.innerHTML = productosDestacados.map((_, index) => `
+        <button class="carousel-indicator w-3 h-3 rounded-full ${index === 0 ? 'bg-purple-600' : 'bg-purple-300'} hover:bg-purple-500 transition-colors" data-index="${index}"></button>
+    `).join('');
+}
+
+function getDescripcionProducto(producto) {
+    if (producto.categoria === 'niñas') {
+        return '¡Perfecto para las más pequeñas! Diseños únicos y tejidos suaves que garantizan comodidad y estilo.';
+    } else if (producto.categoria === 'niños') {
+        return '¡Ideal para los más activos! Resistente, cómodo y diseñado para durar en todas sus aventuras.';
+    } else if (producto.categoria === 'cosmeticos') {
+        return 'Productos de la más alta calidad para el cuidado delicado de la piel de tus pequeños. Hipoalergénicos y testeados.';
+    } else if (producto.categoria === 'joyas') {
+        return 'Hermosas joyas y accesorios elaborados con materiales premium para complementar tu estilo único.';
+    } else {
+        return 'Productos especiales y únicos, seleccionados cuidadosamente para satisfacer todos los gustos y necesidades.';
+    }
+}
+
+function cambiarCarrusel(direction) {
+    const items = document.querySelectorAll('.carousel-item-mejorado');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (items.length === 0) return;
+    
+    items[currentCarouselIndex].classList.remove('active');
+    items[currentCarouselIndex].classList.add('hidden');
+    indicators[currentCarouselIndex].classList.remove('bg-purple-600');
+    indicators[currentCarouselIndex].classList.add('bg-purple-300');
+    
+    if (direction === 'next') {
+        currentCarouselIndex = (currentCarouselIndex + 1) % items.length;
+    } else {
+        currentCarouselIndex = (currentCarouselIndex - 1 + items.length) % items.length;
+    }
+    
+    items[currentCarouselIndex].classList.remove('hidden');
+    items[currentCarouselIndex].classList.add('active');
+    indicators[currentCarouselIndex].classList.remove('bg-purple-300');
+    indicators[currentCarouselIndex].classList.add('bg-purple-600');
+}
+
+function irACarrusel(index) {
+    const items = document.querySelectorAll('.carousel-item-mejorado');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (items.length === 0) return;
+    
+    items[currentCarouselIndex].classList.remove('active');
+    items[currentCarouselIndex].classList.add('hidden');
+    indicators[currentCarouselIndex].classList.remove('bg-purple-600');
+    indicators[currentCarouselIndex].classList.add('bg-purple-300');
+    
+    currentCarouselIndex = index;
+    
+    items[currentCarouselIndex].classList.remove('hidden');
+    items[currentCarouselIndex].classList.add('active');
+    indicators[currentCarouselIndex].classList.remove('bg-purple-300');
+    indicators[currentCarouselIndex].classList.add('bg-purple-600');
+}
+
+// Función para inicializar todos los eventos después de cargar el DOM
+function inicializarEventos() {
+    // Verificar que los elementos existen antes de agregar eventos
+    const prevBtn = getElement('prev-btn');
+    const nextBtn = getElement('next-btn');
+    const closeModal = getElement('close-modal');
+    const productModal = getElement('product-modal');
+    const cartBtn = getElement('cart-btn');
+    const busquedaInput = getElement('busqueda');
+    
+    if (closeModal) closeModal.addEventListener('click', cerrarModal);
+    if (cartBtn) cartBtn.addEventListener('click', toggleCarrito);
+    if (busquedaInput) {
+        busquedaInput.addEventListener('input', (e) => {
+            busquedaActual = e.target.value.toLowerCase();
+            buscarProductos(busquedaActual);
+        });
+    }
+    
+    // Configurar indicadores del carrusel
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('carousel-indicator')) {
+            irACarrusel(parseInt(e.target.dataset.index));
+        }
+    });
+    
+    // Cerrar modal al hacer clic fuera
+    if (productModal) {
+        productModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarModal();
+            }
+        });
+    }
+    
+    // Soporte de teclado para navegación en modal
+    document.addEventListener('keydown', (e) => {
+        const modalElement = getElement('product-modal');
+        if (!modalElement || modalElement.classList.contains('hidden')) return;
+        
+        if (e.key === 'ArrowLeft') {
+            navegarProductoModal(-1);
+        } else if (e.key === 'ArrowRight') {
+            navegarProductoModal(1);
+        } else if (e.key === 'Escape') {
             cerrarModal();
         }
+    });
+}
 
-        // Funciones del carrusel MEJORADO
-        function inicializarCarrusel() {
-            const productosDestacados = productosFiltrados.slice(0, 3);
-            const carousel = getElement('carousel');
-            const indicators = getElement('carousel-indicators');
-            
-            if (!carousel || !indicators) return;
-            
-            if (productosDestacados.length === 0) {
-                carousel.innerHTML = `
-                    <div class="bg-gradient-to-r from-gray-100 to-gray-200 p-12 rounded-xl text-center">
-                        <i class="fas fa-box-open text-4xl text-gray-400 mb-4"></i>
-                        <h3 class="text-xl font-bold text-gray-600 mb-3">No hay productos destacados</h3>
-                        <p class="text-gray-500">Agrega productos en el panel de administración</p>
-                    </div>
-                `;
-                const prevBtn = getElement('prev-btn');
-                const nextBtn = getElement('next-btn');
-                if (prevBtn) prevBtn.style.display = 'none';
-                if (nextBtn) nextBtn.style.display = 'none';
-                return;
-            }
-            
-            // Crear items del carrusel MEJORADOS
-            carousel.innerHTML = productosDestacados.map((producto, index) => {
-                const categoriaColor = producto.categoria === 'niñas' ? 'from-pink-100 to-purple-100' : 
-                                      producto.categoria === 'niños' ? 'from-blue-100 to-purple-100' : 
-                                      producto.categoria === 'cosmeticos' ? 'from-purple-100 to-pink-100' :
-                                      producto.categoria === 'joyas' ? 'from-yellow-100 to-orange-100' : 'from-green-100 to-teal-100';
-                
-                const categoriaTexto = producto.categoria === 'niñas' ? 'bg-pink-500' : 
-                                      producto.categoria === 'niños' ? 'bg-blue-500' : 
-                                      producto.categoria === 'cosmeticos' ? 'bg-purple-500' :
-                                      producto.categoria === 'joyas' ? 'bg-yellow-500' : 'bg-green-500';
-                
-                return `
-                    <div class="carousel-item-mejorado ${index === 0 ? 'active' : 'hidden'}">
-                        <div class="carousel-background bg-gradient-to-r ${categoriaColor}"></div>
-                        <div class="carousel-item-content-mejorado">
-                            <div class="carousel-text-mejorado">
-                                <span class="carousel-badge">Producto Destacado</span>
-                                <h3 class="carousel-title">${producto.nombre}</h3>
-                                <p class="carousel-description">${getDescripcionProducto(producto)}</p>
-                                <p class="carousel-price">S/ ${producto.precio}</p>
-                                <div class="carousel-actions">
-                                    <button onclick="mostrarModal(${producto.id})" 
-                                            class="carousel-btn primary">
-                                        <i class="fas fa-eye mr-2"></i>Ver Detalles
-                                    </button>
-                                    <button onclick="agregarAlCarrito(${producto.id})" 
-                                        class="carousel-btn secondary">
-                                        <i class="fas fa-cart-plus mr-2"></i>Agregar
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-image-container">
-                                <img src="${producto.imagen}" alt="${producto.nombre}" 
-                                     class="carousel-img-mejorado">
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
-            // Crear indicadores
-            indicators.innerHTML = productosDestacados.map((_, index) => `
-                <button class="carousel-indicator w-3 h-3 rounded-full ${index === 0 ? 'bg-purple-600' : 'bg-purple-300'} hover:bg-purple-500 transition-colors" data-index="${index}"></button>
-            `).join('');
+// =============================================
+// REGISTRAR VENTA DESDE CATÁLOGO (CORREGIDA)
+// =============================================
+function registrarVentaDesdeCatalogo(producto, cantidad, metodoPago = 'online', cliente = 'Cliente Web') {
+    try {
+        // Cargar ventas existentes
+        let ventasExistentes = [];
+        const ventasGuardadas = localStorage.getItem('ventas_paola');
+        if (ventasGuardadas) {
+            ventasExistentes = JSON.parse(ventasGuardadas);
         }
 
-        function getDescripcionProducto(producto) {
-            if (producto.categoria === 'niñas') {
-                return '¡Perfecto para las más pequeñas! Diseños únicos y tejidos suaves que garantizan comodidad y estilo.';
-            } else if (producto.categoria === 'niños') {
-                return '¡Ideal para los más activos! Resistente, cómodo y diseñado para durar en todas sus aventuras.';
-            } else if (producto.categoria === 'cosmeticos') {
-                return 'Productos de la más alta calidad para el cuidado delicado de la piel de tus pequeños. Hipoalergénicos y testeados.';
-            } else if (producto.categoria === 'joyas') {
-                return 'Hermosas joyas y accesorios elaborados con materiales premium para complementar tu estilo único.';
-            } else {
-                return 'Productos especiales y únicos, seleccionados cuidadosamente para satisfacer todos los gustos y necesidades.';
-            }
+        // ✅ 1. ACTUALIZAR STOCK DEL PRODUCTO
+        const productoActualizado = productos.find(p => p.id === producto.id);
+        if (productoActualizado) {
+            productoActualizado.stock -= cantidad;
+            productoActualizado.vendidos = (productoActualizado.vendidos || 0) + cantidad;
+            
+            // Guardar cambios en localStorage
+            localStorage.setItem('productos_paola', JSON.stringify(productos));
+            
+            // Sincronizar con Firebase
+            sincronizarProductosConFirebase();
+            
+            // Actualizar vista
+            productosFiltrados = productos.filter(p => p.stock > 0);
+            actualizarVistaProductos();
         }
-
-        function cambiarCarrusel(direction) {
-            const items = document.querySelectorAll('.carousel-item-mejorado');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            
-            if (items.length === 0) return;
-            
-            items[currentCarouselIndex].classList.remove('active');
-            items[currentCarouselIndex].classList.add('hidden');
-            indicators[currentCarouselIndex].classList.remove('bg-purple-600');
-            indicators[currentCarouselIndex].classList.add('bg-purple-300');
-            
-            if (direction === 'next') {
-                currentCarouselIndex = (currentCarouselIndex + 1) % items.length;
-            } else {
-                currentCarouselIndex = (currentCarouselIndex - 1 + items.length) % items.length;
-            }
-            
-            items[currentCarouselIndex].classList.remove('hidden');
-            items[currentCarouselIndex].classList.add('active');
-            indicators[currentCarouselIndex].classList.remove('bg-purple-300');
-            indicators[currentCarouselIndex].classList.add('bg-purple-600');
-        }
-
-        function irACarrusel(index) {
-            const items = document.querySelectorAll('.carousel-item-mejorado');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            
-            if (items.length === 0) return;
-            
-            items[currentCarouselIndex].classList.remove('active');
-            items[currentCarouselIndex].classList.add('hidden');
-            indicators[currentCarouselIndex].classList.remove('bg-purple-600');
-            indicators[currentCarouselIndex].classList.add('bg-purple-300');
-            
-            currentCarouselIndex = index;
-            
-            items[currentCarouselIndex].classList.remove('hidden');
-            items[currentCarouselIndex].classList.add('active');
-            indicators[currentCarouselIndex].classList.remove('bg-purple-300');
-            indicators[currentCarouselIndex].classList.add('bg-purple-600');
-        }
-
-        // Función para inicializar todos los eventos después de cargar el DOM
-        function inicializarEventos() {
-            // Verificar que los elementos existan antes de agregar eventos
-            const prevBtn = getElement('prev-btn');
-            const nextBtn = getElement('next-btn');
-            const closeModal = getElement('close-modal');
-            const productModal = getElement('product-modal');
-            const cartBtn = getElement('cart-btn');
-            const busquedaInput = getElement('busqueda');
-            
-           // if (prevBtn) prevBtn.addEventListener('click', () => cambiarCarrusel('prev'));
-           //if (nextBtn) nextBtn.addEventListener('click', () => cambiarCarrusel('next'));
-            if (closeModal) closeModal.addEventListener('click', cerrarModal);
-            if (cartBtn) cartBtn.addEventListener('click', toggleCarrito);
-            if (busquedaInput) {
-             busquedaInput.addEventListener('input', (e) => {
-               busquedaActual = e.target.value.toLowerCase();
-                buscarProductos(busquedaActual);
-                 });
-                }
-              
-            // Configurar indicadores del carrusel (se configuran después de crear el carrusel)
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('carousel-indicator')) {
-                    irACarrusel(parseInt(e.target.dataset.index));
-                }
-            });
-            
-            // Cerrar modal al hacer clic fuera
-            if (productModal) {
-                productModal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        cerrarModal();
-                    }
-                });
-            }
-            
-            // Escuchar cambios en localStorage
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'productos_paola') {
-                    cargarProductos();
-                }
-            });
-        }
-
-        // Inicialización corregida
-        document.addEventListener('DOMContentLoaded', function() {
-            // =============================================
-            // CONTADOR DE VISITAS - INCREMENTAR AL CARGAR LA PÁGINA
-            // =============================================
-            incrementarContadorVisitas();
-            
-            registrarVisita();
-            
-            // Cargar productos primero
-            cargarProductos();
-            
-            // Renderizar testimonios
-            renderizarTestimonios();
-            
-            // Inicializar eventos después de un pequeño delay para asegurar que el DOM esté listo
-            setTimeout(() => {
-                inicializarEventos();
-                actualizarContadorFavoritos();
-                actualizarContadorCarrito();
-                
-                // Iniciar carrusel automático si hay productos
-                if (productosFiltrados.length > 0) {
-                    setInterval(() => cambiarCarrusel('next'), 5000);
-                }
-                
-                // Iniciar rotación automática de testimonios
-                setInterval(rotarTestimonios, 5000);
-            }, 100);
+        
+        // Crear nueva venta
+        const nuevaVenta = {
+            id: Date.now(),
+            fecha: new Date().toISOString(),
+            productos: [{
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                cantidad: cantidad,
+                imagen: producto.imagen
+            }],
+            total: cantidad * producto.precio,
+            cliente: cliente,
+            metodoPago: metodoPago,
+            tipo: 'online',
+            estado: 'confirmada'
+        };
+        
+        // Guardar venta
+        ventasExistentes.push(nuevaVenta);
+        localStorage.setItem('ventas_paola', JSON.stringify(ventasExistentes));
+        
+        // Sincronizar ventas con Firebase
+        sincronizarVentasConFirebase();
+        
+        console.log('✅ Venta registrada desde catálogo:', {
+            id: nuevaVenta.id,
+            total: nuevaVenta.total,
+            estado: nuevaVenta.estado,
+            cliente: nuevaVenta.cliente
         });
+        
+        return true;
+    } catch (error) {
+        console.error('❌ Error registrando venta desde catálogo:', error);
+        return false;
+    }
+}
+
+// =============================================
+// INICIALIZACIÓN CORREGIDA
+// =============================================
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🚀 Iniciando aplicación PAOLA\'BOUTIQUE...');
+    
+    // ✅ 1. INCREMENTAR VISITAS
+    incrementarContadorVisitas();
+    
+    // ✅ 2. CARGAR PRODUCTOS (UNA SOLA VEZ)
+    try {
+        await cargarProductos();
+        console.log('✅ Productos cargados correctamente');
+    } catch (error) {
+        console.error('❌ Error cargando productos:', error);
+        // Usar función existente, no mostrarErrorCarga()
+        const loadingState = getElement('loading-state');
+        if (loadingState) {
+            loadingState.innerHTML = `
+                <div class="text-center py-12">
+                    <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-3"></i>
+                    <p class="text-red-600 font-bold text-lg mb-2">Error al cargar productos</p>
+                    <p class="text-gray-600 mb-4">Por favor, recarga la página.</p>
+                    <button onclick="location.reload()" 
+                            class="btn-modern bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2 rounded-xl">
+                        <i class="fas fa-redo mr-2"></i>Recargar página
+                    </button>
+                </div>
+            `;
+        }
+    }
+    
+    // ✅ 3. RENDERIZAR TESTIMONIOS
+    renderizarTestimonios();
+    
+    // ✅ 4. INICIALIZAR EVENTOS DE UI
+    inicializarEventos();
+    
+    // ✅ 5. ACTUALIZAR CONTADORES (ya se hacen en cargarProductos)
+    // actualizarContadorFavoritos(); // YA SE HACE EN cargarProductos()
+    // actualizarContadorCarrito();  // YA SE HACE EN cargarProductos()
+    
+    // ✅ 6. INICIAR ANIMACIONES AUTOMÁTICAS
+    iniciarAnimacionesAutomaticas();
+    
+    // ✅ 7. ACTIVAR SISTEMA DE ACTUALIZACIÓN AUTOMÁTICA
+    inicializarSistemaActualizacionAutomatica();
+    
+    console.log('✅ Aplicación inicializada correctamente');
+});
+
+// =============================================
+// SISTEMA DE ACTUALIZACIÓN AUTOMÁTICA
+// =============================================
+function inicializarSistemaActualizacionAutomatica() {
+    console.log('🔄 Activando sistema de actualización automática...');
+    
+    // Variable para almacenar el último estado de productos
+    let ultimoProductos = '';
+    
+    // Función para verificar cambios
+    function verificarCambiosProductos() {
+        try {
+            const productosActual = localStorage.getItem('productos_paola');
+            
+            // Si hay productos y son diferentes a los últimos registrados
+            if (productosActual && productosActual !== ultimoProductos) {
+                console.log('🔄 Cambios detectados en productos');
+                ultimoProductos = productosActual;
+                
+                // Recargar los productos sin recargar toda la página
+                recargarProductosDesdeStorage();
+                
+                // Mostrar notificación suave al usuario
+                mostrarNotificacionCatalogo('🔄 Productos actualizados automáticamente');
+            }
+        } catch (error) {
+            console.error('❌ Error verificando cambios:', error);
+        }
+    }
+    
+    // Función para recargar productos desde localStorage
+    function recargarProductosDesdeStorage() {
+        try {
+            const productosActual = localStorage.getItem('productos_paola');
+            if (productosActual) {
+                const nuevosProductos = JSON.parse(productosActual);
+                
+                // Actualizar la variable global de productos
+                productos = nuevosProductos;
+                productosFiltrados = productos.filter(p => p.stock > 0);
+                
+                console.log('✅ Productos actualizados en tiempo real:', productos.length);
+                
+                // Actualizar la vista según la pantalla actual
+                if (categoriaActual === 'todos') {
+                    renderizarCategoriasConProductos();
+                } else {
+                    const productosCategoriaGrid = getElement('productos-categoria-grid');
+                    if (productosCategoriaGrid && productosCategoriaGrid.innerHTML !== '') {
+                        const productosCategoria = productosFiltrados.filter(p => p.categoria === categoriaActual);
+                        productosCategoriaGrid.innerHTML = productosCategoria.map(producto => crearProductoHTML(producto)).join('');
+                    } else {
+                        renderizarCategoriasConProductos();
+                    }
+                }
+                
+                // Actualizar carrusel si existe
+                if (typeof actualizarCarrusel === 'function') {
+                    actualizarCarrusel();
+                }
+                
+                // Actualizar carrusel horizontal
+                if (productosFiltrados.length > 0) {
+                    inicializarCarruselHorizontal();
+                }
+            }
+        } catch (error) {
+            console.error('❌ Error recargando productos:', error);
+        }
+    }
+    
+    // Función para mostrar notificación en el catálogo
+    function mostrarNotificacionCatalogo(mensaje) {
+        // Remover notificaciones anteriores
+        document.querySelectorAll('.notificacion-actualizacion').forEach(el => el.remove());
+        
+        const notificacion = document.createElement('div');
+        notificacion.className = 'notificacion-actualizacion fixed top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg shadow-lg z-[60] text-sm flex items-center gap-2 animate-fadeIn';
+        notificacion.innerHTML = `
+            <i class="fas fa-sync-alt animate-spin"></i>
+            <span>${mensaje}</span>
+        `;
+        document.body.appendChild(notificacion);
+        
+        // Auto-eliminar después de 3 segundos
+        setTimeout(() => {
+            notificacion.style.opacity = '0';
+            notificacion.style.transform = 'translateY(-20px)';
+            setTimeout(() => notificacion.remove(), 300);
+        }, 3000);
+    }
+    
+    // Escuchar eventos de almacenamiento entre pestañas
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'productos_paola') {
+            console.log('📦 Cambio detectado en otra pestaña:', e.key);
+            verificarCambiosProductos();
+        }
+    });
+    
+    // Verificar cambios periódicamente (cada 3 segundos)
+    setInterval(verificarCambiosProductos, 3000);
+    
+    // Inicializar con el estado actual
+    const productosActual = localStorage.getItem('productos_paola');
+    if (productosActual) {
+        ultimoProductos = productosActual;
+    }
+    
+    console.log('✅ Sistema de actualización automática activado');
+}
+
+// =============================================
+// FUNCIÓN PARA INICIAR ANIMACIONES
+// =============================================
+function iniciarAnimacionesAutomaticas() {
+    // Carrusel de productos destacados
+    if (productosFiltrados && productosFiltrados.length > 0) {
+        setInterval(() => cambiarCarrusel('next'), 5000);
+        console.log('✅ Carrusel destacados iniciado');
+    }
+    
+    // Rotación de testimonios
+    if (testimonios && testimonios.length > 0) {
+        setInterval(rotarTestimonios, 5000);
+        console.log('✅ Rotación de testimonios iniciada');
+    }
+}
+
+// =============================================
+// FUNCIÓN PARA MOSTRAR ERROR DE CARGA
+// =============================================
+function mostrarErrorCarga() {
+    const loadingState = getElement('loading-state');
+    if (loadingState) {
+        loadingState.innerHTML = `
+            <div class="text-center py-12">
+                <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-3"></i>
+                <p class="text-red-600 font-bold text-lg mb-2">Error al cargar productos</p>
+                <p class="text-gray-600 mb-4">Por favor, recarga la página o verifica tu conexión.</p>
+                <button onclick="location.reload()" 
+                        class="btn-modern bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2 rounded-xl">
+                    <i class="fas fa-redo mr-2"></i>Recargar página
+                </button>
+            </div>
+        `;
+    }
+}
+
     // Botón para subir
 const scrollToTopBtn = document.getElementById('scroll-to-top');
 
@@ -3553,111 +4398,176 @@ scrollToTopBtn.addEventListener('click', function() {
 });
 
 // =============================================
-// CARRUSEL HORIZONTAL CON DIRECCIONES OPUESTAS - CORREGIDO
+// CARRUSEL HORIZONTAL OPTIMIZADO - VERSIÓN CORREGIDA
 // =============================================
 
 let productosCarrusel = [];
 
-// Función para inicializar el carrusel
-function inicializarCarrusel() {
-    productosCarrusel = productos.filter(p => p.stock > 0).map(p => ({
-        id: p.id,
-        nombre: p.nombre,
-        categoria: p.categoria,
-        precio: p.precio,
-        imagen: p.imagen
-    }));
+// Función principal para inicializar el carrusel
+function inicializarCarruselHorizontal() {
+    // Obtener productos únicos con stock
+    const productosDisponibles = productos.filter(p => p.stock > 0);
     
-    cargarCarruselDireccionesOpuestas(productosCarrusel);
+    if (productosDisponibles.length === 0) {
+        mostrarCarruselVacio();
+        return;
+    }
+    
+    // Crear un Map para garantizar productos únicos por ID
+    const productosUnicosMap = new Map();
+    productosDisponibles.forEach(p => {
+        if (!productosUnicosMap.has(p.id)) {
+            productosUnicosMap.set(p.id, {
+                id: p.id,
+                nombre: p.nombre,
+                categoria: p.categoria,
+                precio: p.precio,
+                imagen: p.imagen,
+                stock: p.stock
+            });
+        }
+    });
+    
+    productosCarrusel = Array.from(productosUnicosMap.values());
+    
+    // Cargar carrusel con todos los productos
+    cargarCarruselConProductos(productosCarrusel);
 }
 
-// Función para crear el HTML de un producto
-function crearProductoCirculoHTML(producto) {
-    let categoriaEmoji = "🎁";
-    if (producto.categoria === "niñas") categoriaEmoji = "👧";
-    else if (producto.categoria === "niños") categoriaEmoji = "👦";
-    else if (producto.categoria === "cosmeticos") categoriaEmoji = "💄";
-    else if (producto.categoria === "joyas") categoriaEmoji = "💎";
-    
-    return `
-        <div class="producto-circulo" onclick="mostrarDetalleProductoCarrusel(${producto.id})">
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <div class="nombre-producto">${producto.nombre}</div>
-            <div class="precio-producto">S/ ${producto.precio}</div>
-            <div class="categoria-badge">${categoriaEmoji}</div>
-        </div>
-    `;
-}
-// Función para cargar productos en el carrusel con direcciones opuestas - CORREGIDA
-function cargarCarruselDireccionesOpuestas(productos) {
+function mostrarCarruselVacio() {
     const carruselTrack1 = document.getElementById('carrusel-track-1');
     const carruselTrack2 = document.getElementById('carrusel-track-2');
     
     if (!carruselTrack1 || !carruselTrack2) return;
     
-    if (productos.length === 0) {
-        carruselTrack1.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
-        carruselTrack2.innerHTML = '<div class="text-center text-gray-500 py-4">No hay productos disponibles</div>';
+    carruselTrack1.innerHTML = `
+        <div class="text-center text-gray-500 py-8 px-4">
+            <i class="fas fa-box-open text-4xl mb-3"></i>
+            <p class="font-semibold">No hay productos disponibles</p>
+        </div>
+    `;
+    carruselTrack2.innerHTML = '';
+    
+    // Desactivar animaciones
+    carruselTrack1.style.animation = 'none';
+    carruselTrack2.style.animation = 'none';
+}
+
+function cargarCarruselConProductos(productosArray) {
+    const carruselTrack1 = document.getElementById('carrusel-track-1');
+    const carruselTrack2 = document.getElementById('carrusel-track-2');
+    
+    if (!carruselTrack1 || !carruselTrack2) return;
+    
+    if (productosArray.length === 0) {
+        mostrarCarruselVacio();
         return;
     }
     
-    // CORRECCIÓN: Dividir los productos en dos grupos diferentes
-    const mitad = Math.ceil(productos.length / 2);
+    // Mezclar aleatoriamente para variedad visual
+    const productosAleatorios = [...productosArray].sort(() => Math.random() - 0.5);
     
-    // Para la fila 1 (izquierda): primera mitad de productos
-    const productosFila1 = productos.slice(0, mitad);
+    // Dividir en dos filas DIFERENTES
+    const mitad = Math.ceil(productosAleatorios.length / 2);
+    const productosFila1 = productosAleatorios.slice(0, mitad);
+    const productosFila2 = productosAleatorios.slice(mitad);
     
-    // Para la fila 2 (derecha): segunda mitad de productos
-    const productosFila2 = productos.slice(mitad);
+    console.log(`✅ Carrusel: ${productosFila1.length} + ${productosFila2.length} productos únicos`);
     
-    // Si hay menos productos, duplicar algunos para que el carrusel se vea completo
-    // pero asegurando que no se repitan exactamente los mismos productos
-    if (productosFila1.length < 5) {
-        const productosExtras = productosFila2.slice(0, 5 - productosFila1.length);
-        productosFila1.push(...productosExtras);
-    }
+    // Crear HTML - SIN DUPLICACIÓN
+    const htmlFila1 = productosFila1.map(producto => crearProductoCirculoHTML(producto)).join('');
+    const htmlFila2 = productosFila2.map(producto => crearProductoCirculoHTML(producto)).join('');
     
-    if (productosFila2.length < 5) {
-        const productosExtras = productosFila1.slice(0, 5 - productosFila2.length);
-        productosFila2.push(...productosExtras);
-    }
+    // ASIGNAR CONTENIDO - SIN DUPLICACIÓN
+    carruselTrack1.innerHTML = htmlFila1;
+    carruselTrack2.innerHTML = htmlFila2;
     
-    carruselTrack1.innerHTML = productosFila1.map(producto => 
-        crearProductoCirculoHTML(producto)
-    ).join('');
-    
-    carruselTrack2.innerHTML = productosFila2.map(producto => 
-        crearProductoCirculoHTML(producto)
-    ).join('');
+    // Configurar animaciones
+    configurarAnimacionesCarrusel(productosFila1.length, productosFila2.length);
 }
 
-// Función para filtrar el carrusel
+function configurarAnimacionesCarrusel(cantidadFila1, cantidadFila2) {
+    const carruselTrack1 = document.getElementById('carrusel-track-1');
+    const carruselTrack2 = document.getElementById('carrusel-track-2');
+    
+    if (!carruselTrack1 || !carruselTrack2) return;
+    
+    // Calcular velocidad basada en cantidad de productos
+    const velocidadBase = 25; // segundos base
+    const ajustePorProducto = 1.5; // segundos adicionales por producto
+    
+    const duracion1 = velocidadBase + (cantidadFila1 * ajustePorProducto);
+    const duracion2 = velocidadBase + (cantidadFila2 * ajustePorProducto);
+    
+    carruselTrack1.style.animationDuration = `${duracion1}s`;
+    carruselTrack2.style.animationDuration = `${duracion2}s`;
+    
+    // Asegurar que las animaciones estén activas
+    carruselTrack1.style.animationPlayState = 'running';
+    carruselTrack2.style.animationPlayState = 'running';
+}
+
+function crearProductoCirculoHTML(producto) {
+    let categoriaEmoji = "🎁";
+    let categoriaColor = "bg-green-100";
+    
+    if (producto.categoria === "niñas") {
+        categoriaEmoji = "👧";
+        categoriaColor = "bg-pink-100";
+    } else if (producto.categoria === "niños") {
+        categoriaEmoji = "👦";
+        categoriaColor = "bg-blue-100";
+    } else if (producto.categoria === "cosmeticos") {
+        categoriaEmoji = "💄";
+        categoriaColor = "bg-purple-100";
+    } else if (producto.categoria === "joyas") {
+        categoriaEmoji = "💎";
+        categoriaColor = "bg-yellow-100";
+    }
+    
+    return `
+        <div class="producto-circulo group" onclick="mostrarDetalleProductoCarrusel(${producto.id})">
+            <div class="relative w-full h-24 flex items-center justify-center mb-2">
+                <img src="${producto.imagen}" alt="${producto.nombre}" 
+                     class="w-auto h-16 object-contain group-hover:scale-110 transition-transform duration-300">
+                <div class="absolute -top-1 -right-1 ${categoriaColor} text-gray-700 text-xs font-bold px-2 py-1 rounded-full">
+                    ${categoriaEmoji}
+                </div>
+            </div>
+            <div class="nombre-producto-carrusel text-center px-2">${producto.nombre}</div>
+        </div>
+    `;
+}
+
+// Función para filtrar el carrusel por categoría (CORREGIDA)
 function filtrarCarrusel(categoria) {
-    const productosFiltrados = categoria === 'todos' 
-        ? productos.filter(p => p.stock > 0).map(p => ({
-            id: p.id,
-            nombre: p.nombre,
-            categoria: p.categoria,
-            precio: p.precio,
-            imagen: p.imagen
-        }))
-        : productos.filter(p => p.categoria === categoria && p.stock > 0).map(p => ({
-            id: p.id,
-            nombre: p.nombre,
-            categoria: p.categoria,
-            precio: p.precio,
-            imagen: p.imagen
-        }));
+    if (!productosCarrusel || productosCarrusel.length === 0) {
+        inicializarCarruselHorizontal();
+        return;
+    }
     
-    productosCarrusel = productosFiltrados;
+    let productosFiltrados;
     
-    // Actualizar botones activos
-    document.querySelectorAll('.filtro-carrusel').forEach(btn => {
+    if (categoria === 'todos') {
+        // Mostrar todos los productos
+        productosFiltrados = productosCarrusel;
+    } else {
+        // Filtrar por categoría específica
+        productosFiltrados = productosCarrusel.filter(p => p.categoria === categoria);
+    }
+    
+    if (productosFiltrados.length === 0) {
+        mostrarCarruselVacio();
+        return;
+    }
+    
+    // Actualizar botones activos si existen
+    document.querySelectorAll('.filtro-moderno').forEach(btn => {
         btn.classList.remove('active');
     });
-    event.target.classList.add('active');
     
-    cargarCarruselDireccionesOpuestas(productosFiltrados);
+    // Cargar productos filtrados
+    cargarCarruselConProductos(productosFiltrados);
 }
 
 // Función para mostrar detalles del producto
@@ -3668,20 +4578,50 @@ function mostrarDetalleProductoCarrusel(id) {
     }
 }
 
-// Actualizar carrusel cuando se actualicen los productos
+// Función para actualizar carrusel cuando cambien los productos
 function actualizarCarrusel() {
-    inicializarCarrusel();
+    console.log('🔄 Actualizando carrusel...');
+    inicializarCarruselHorizontal();
 }
 
-// Inicializar cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => {
-        inicializarCarrusel();
-    }, 500);
-});
-        
-        
-    </script>
+// =============================================
+// OPTIMIZACIÓN DE PERFORMANCE
+// =============================================
+
+// Prevenir múltiples clics rápidos
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Optimizar búsqueda
+const busquedaInput = getElement('busqueda');
+if (busquedaInput) {
+    busquedaInput.addEventListener('input', debounce((e) => {
+        busquedaActual = e.target.value.toLowerCase();
+        buscarProductos(busquedaActual);
+    }, 300));
+}
+
+// Preload de imágenes para mejor UX
+function preloadImages() {
+    if (productosFiltrados.length > 0) {
+        productosFiltrados.slice(0, 10).forEach(producto => {
+            const img = new Image();
+            img.src = producto.imagen;
+        });
+    }
+}
+
+// Llamar después de cargar productos
+setTimeout(preloadImages, 1000);
+</script>
 </body>
 </html>
-
