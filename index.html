@@ -4650,29 +4650,42 @@ setTimeout(preloadImages, 1000);
 function inicializarEscuchaVentasRealTime() {
     console.log('👂 Escuchando ventas en tiempo real desde index.html...');
     
-    // Escuchar cambios en la colección de ventas
-    db.collection('ventas').doc('paola_boutique')
-        .onSnapshot((snapshot) => {
-            if (snapshot.exists) {
-                const data = snapshot.data();
-                const ventasActualizadas = data.items || [];
-                
-                console.log('🔄 Ventas actualizadas en tiempo real:', ventasActualizadas.length);
-                
-                // Actualizar localStorage
-                localStorage.setItem('ventas_paola', JSON.stringify(ventasActualizadas));
-                
-                // Mostrar notificación si hay nuevas ventas (opcional)
-                if (ventasActualizadas.length > 0) {
-                    const ultimaVenta = ventasActualizadas[ventasActualizadas.length - 1];
-                    console.log('📈 Última venta:', ultimaVenta.cliente, '- S/', ultimaVenta.total);
+    try {
+        // Escuchar cambios en la colección de ventas
+        const unsubscribe = db.collection('ventas').doc('paola_boutique')
+            .onSnapshot((snapshot) => {
+                try {
+                    if (snapshot.exists) {
+                        const data = snapshot.data();
+                        const ventasActualizadas = data.items || [];
+                        
+                        console.log('🔄 Ventas actualizadas en tiempo real:', ventasActualizadas.length);
+                        
+                        // Actualizar localStorage
+                        localStorage.setItem('ventas_paola', JSON.stringify(ventasActualizadas));
+                        
+                        // Mostrar última venta si hay
+                        if (ventasActualizadas.length > 0) {
+                            const ultimaVenta = ventasActualizadas[ventasActualizadas.length - 1];
+                            console.log('📈 Última venta:', ultimaVenta.cliente || 'Sin cliente', '- S/', ultimaVenta.total);
+                        }
+                    }
+                } catch (error) {
+                    console.error('❌ Error procesando snapshot:', error);
                 }
-            }
-        }, (error) => {
-            console.error('❌ Error escuchando ventas en tiempo real:', error);
-        });
-    
-    console.log('✅ Escucha de ventas en tiempo real activada');
+            }, (error) => {
+                console.error('❌ Error escuchando ventas:', error);
+                // Retornar false para indicar error
+                return false;
+            });
+        
+        console.log('✅ Escucha de ventas en tiempo real activada');
+        return unsubscribe; // Retorna la función para desuscribirse
+        
+    } catch (error) {
+        console.error('❌ Error inicializando escucha:', error);
+        return null;
+    }
 }
 </script>
 </body>
