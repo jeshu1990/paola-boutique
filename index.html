@@ -1723,9 +1723,6 @@
         line-height: 14px !important;
     }
 }
-
-
-
 </style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen">
@@ -2420,7 +2417,7 @@ async function sincronizarProductosConFirebase() {
 }
 
 // =============================================
-// FUNCIÓN NUEVA: SINCRONIZAR VENTAS CON FIREBASE
+// FUNCIÓN NUEVA: SINCRONIZAR VENTAS CON FIREBASE - ✅ MODIFICACIÓN IMPORTANTE
 // =============================================
 async function sincronizarVentasConFirebase() {
     try {
@@ -2428,12 +2425,15 @@ async function sincronizarVentasConFirebase() {
         
         let ventasExistentes = JSON.parse(localStorage.getItem('ventas_paola') || '[]');
         
+        // ✅ MODIFICACIÓN: Guardar TODAS las ventas en Firebase con más información
         await db.collection('ventas').doc('paola_boutique').set({
             items: ventasExistentes,
-            ultimaActualizacion: new Date().toISOString()
+            ultimaActualizacion: new Date().toISOString(),
+            totalVentas: ventasExistentes.length,
+            ultimaVenta: ventasExistentes.length > 0 ? ventasExistentes[ventasExistentes.length - 1] : null
         });
         
-        console.log('✅ Ventas sincronizadas con Firebase');
+        console.log('✅ Ventas sincronizadas con Firebase:', ventasExistentes.length, 'ventas');
         return true;
         
     } catch (error) {
@@ -2801,7 +2801,7 @@ async function cargarProductos() {
         const productosLocal = localStorage.getItem('productos_paola');
         if (productosLocal) {
             productos = JSON.parse(productosLocal);
-            productosFiltrados = productos.filter(producto => producto.stock > 0);
+            productosFiltrados = productos.filter(p => p.stock > 0);
             console.log('✅ Productos cargados desde localStorage (fallback):', productos.length);
             
             // Renderizar igualmente
@@ -3351,10 +3351,13 @@ function procesarPago(metodo) {
 }
 
 // =============================================
-// FUNCIÓN CONFIRMAR PAGO CORREGIDA
+// FUNCIÓN CONFIRMAR PAGO CORREGIDA - ✅ MODIFICACIÓN CRÍTICA
 // =============================================
 async function confirmarPago() {
     try {
+        // DEBUG: Verificar que se está ejecutando
+        console.log('🔍 DEBUG: confirmarPago() se está ejecutando');
+        
         // 1. Verificar stock antes de procesar
         const sinStock = carrito.some(item => {
             const producto = productos.find(p => p.id === item.id);
@@ -3389,6 +3392,9 @@ async function confirmarPago() {
         ventasExistentes.push(nuevaVenta);
         localStorage.setItem('ventas_paola', JSON.stringify(ventasExistentes));
         
+        // DEBUG: Verificar ventas antes de sincronizar
+        console.log('🔍 DEBUG: Ventas a sincronizar:', ventasExistentes.length);
+        
         // 5. ✅ ACTUALIZAR STOCK DE PRODUCTOS
         console.log('🔄 Actualizando stock de productos...');
         
@@ -3404,9 +3410,21 @@ async function confirmarPago() {
         // 6. ✅ GUARDAR PRODUCTOS ACTUALIZADOS
         localStorage.setItem('productos_paola', JSON.stringify(productos));
         
-        // 7. ✅ SINCROnIZAR CON FIREBASE
-        await sincronizarProductosConFirebase();
-        await sincronizarVentasConFirebase();
+        // 7. ✅ SINCROnIZAR CON FIREBASE - ¡ESTO ES LO QUE FALTABA!
+        console.log('📤 Sincronizando con Firebase...');
+        
+        // DEBUG: Verificar que Firebase está configurado
+        console.log('🔍 DEBUG: Firebase db disponible?', db ? 'Sí' : 'No');
+        
+        // Sincronizar productos
+        const resultadoProductos = await sincronizarProductosConFirebase();
+        console.log('🔍 DEBUG: Resultado sincronización productos:', resultadoProductos ? 'Éxito' : 'Error');
+        
+        // ✅ MODIFICACIÓN IMPORTANTE: Sincronizar ventas - ¡ESTA LÍNEA ES LA MÁS IMPORTANTE!
+        const resultadoVentas = await sincronizarVentasConFirebase();
+        console.log('🔍 DEBUG: Resultado sincronización ventas:', resultadoVentas ? 'Éxito' : 'Error');
+        
+        console.log('✅ Sincronización con Firebase completada');
         
         // 8. ✅ LIMPIAR CARRITO Y ACTUALIZAR VISTA
         carrito = [];
@@ -4150,7 +4168,7 @@ function registrarVentaDesdeCatalogo(producto, cantidad, metodoPago = 'online', 
         ventasExistentes.push(nuevaVenta);
         localStorage.setItem('ventas_paola', JSON.stringify(ventasExistentes));
         
-        // Sincronizar ventas con Firebase
+        // ✅ MODIFICACIÓN: Sincronizar ventas con Firebase
         sincronizarVentasConFirebase();
         
         console.log('✅ Venta registrada desde catálogo:', {
@@ -4214,6 +4232,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // ✅ 7. ACTIVAR SISTEMA DE ACTUALIZACIÓN AUTOMÁTICA
     inicializarSistemaActualizacionAutomatica();
+    
+    // ✅ 8. INICIAR SISTEMA DE SINCRONIZACIÓN DE VENTAS EN TIEMPO REAL
+    inicializarEscuchaVentasRealTime();
     
     console.log('✅ Aplicación inicializada correctamente');
 });
@@ -4622,6 +4643,37 @@ function preloadImages() {
 
 // Llamar después de cargar productos
 setTimeout(preloadImages, 1000);
+
+// =============================================
+// FUNCIÓN NUEVA: ESCUCHAR VENTAS EN TIEMPO REAL - ✅ AGREGADA
+// =============================================
+function inicializarEscuchaVentasRealTime() {
+    console.log('👂 Escuchando ventas en tiempo real desde index.html...');
+    
+    // Escuchar cambios en la colección de ventas
+    db.collection('ventas').doc('paola_boutique')
+        .onSnapshot((snapshot) => {
+            if (snapshot.exists) {
+                const data = snapshot.data();
+                const ventasActualizadas = data.items || [];
+                
+                console.log('🔄 Ventas actualizadas en tiempo real:', ventasActualizadas.length);
+                
+                // Actualizar localStorage
+                localStorage.setItem('ventas_paola', JSON.stringify(ventasActualizadas));
+                
+                // Mostrar notificación si hay nuevas ventas (opcional)
+                if (ventasActualizadas.length > 0) {
+                    const ultimaVenta = ventasActualizadas[ventasActualizadas.length - 1];
+                    console.log('📈 Última venta:', ultimaVenta.cliente, '- S/', ultimaVenta.total);
+                }
+            }
+        }, (error) => {
+            console.error('❌ Error escuchando ventas en tiempo real:', error);
+        });
+    
+    console.log('✅ Escucha de ventas en tiempo real activada');
+}
 </script>
 </body>
 </html>
