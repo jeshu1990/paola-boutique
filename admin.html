@@ -1299,11 +1299,13 @@
         // FUNCIÓN CRÍTICA: Escuchar ventas en tiempo real
         // =============================================
         function inicializarEscuchaVentasRealTime() {
-            console.log('👂 Iniciando escucha de ventas en tiempo real...');
-            
-            // Escuchar cambios en el documento de ventas
-            db.collection('ventas').doc('paola_boutique')
-                .onSnapshot((snapshot) => {
+    console.log('👂 Iniciando escucha de ventas en tiempo real...');
+    
+    try {
+        // Escuchar cambios en el documento de ventas
+        const unsubscribe = db.collection('ventas').doc('paola_boutique')
+            .onSnapshot((snapshot) => {
+                try {
                     if (snapshot.exists) {
                         const data = snapshot.data();
                         const ventasActualizadas = data.items || [];
@@ -1313,7 +1315,7 @@
                         // Comparar con las ventas actuales
                         const ventasAnteriores = ventas.length;
                         
-                        if (ventasActualizadas.length !== ventasAnteriores) {
+                        if (JSON.stringify(ventasActualizadas) !== JSON.stringify(ventas)) {
                             console.log(`📈 Cambio detectado: ${ventasAnteriores} → ${ventasActualizadas.length} ventas`);
                             
                             // Actualizar variable global
@@ -1334,10 +1336,23 @@
                             }
                         }
                     }
-                }, (error) => {
-                    console.error('❌ Error escuchando ventas en tiempo real:', error);
-                });
-        }
+                } catch (error) {
+                    console.error('❌ Error procesando snapshot:', error);
+                }
+            }, (error) => {
+                console.error('❌ Error escuchando ventas en tiempo real:', error);
+                // Retornar false para indicar error
+                return false;
+            });
+        
+        console.log('✅ Escucha de ventas en tiempo real activada');
+        return unsubscribe; // Guardar para poder desuscribirse
+        
+    } catch (error) {
+        console.error('❌ Error inicializando escucha:', error);
+        return null;
+    }
+}
 
         // =============================================
         // FUNCIÓN: Notificación en tiempo real
