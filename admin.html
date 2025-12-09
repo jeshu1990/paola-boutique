@@ -7,7 +7,7 @@
     <title>Panel de Administración - PAOLA'BOUTIQUE</title>
     <!-- Favicons para PAOLA'BOUTIQUE -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23EC4899'/><stop offset='100%' stop-color='%238B5CF6'/></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23g)'/><text x='50' y='68' font-family='system-ui' font-size='45' text-anchor='middle' fill='white'>👑</text></svg>">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYklEQVRYhe2WwW7CMAxF3wYSEkf+/3M4IBVtNK0TJ47jOGlXpE9q0yR+/uxnJ4XdbpcBwG63y5vN5qv5er1+XC6Xj9Vq9bRcLp8AXK/Xz+Vy+Xi5XD6u1+vnZrN5Xq/Xz5vN5nm73T5vt9vn3W73vN/vX/b7/ct+v385HA4vh8Ph5Xg8vhyPx5fT6fRyOp1ezufzy/l8frlcLq+Xy+X1er2+3m6319vt9nq/39/u9/vb4/F4ezweb8/n8+35fL79CQARQURQVRARVBUiAhGBiEBVYWYwM5gZzAxmBjODmcHMOAR2CQQmKJ0BAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYklEQVRYhe2WwW7CMAxF3wYSEkf+/3M4IBVtNK0TJ47jOGlXpE9q0yR+/uxnJ4XdbpcBwG63y5vN5qv5er1+XC6Xj9Vq9bRcLp8AXK/Xz+Vy+Xi5XD6u1+vnZrN5Xq/Xz5vN5nm73T5vt9vn3W73vN/vX/b7/ct+v385HA4vh8Ph5Xg8vhyPx5fT6fRyOp1ezufzy/l8frlcLq+Xy+X1er2+3m6319vt9nq/39/u9/vb4/F4ezweb8/n8+35fL79CQARQURQVRARVBUiAhGBiEBVYWYwM5gZzAxmBjODmcHM+JXACQgkGHwBvhmJAAAAAElFTkSuQmCC">
     <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABYklEQVRYhe2WwW7CMAxF3wYSEkf+/3M4IBVtNK0TJ47jOGlXpE9q0yR+/uxnJ4XdbpcBwG63y5vN5qv5er1+XC6Xj9Vq9bRcLp8AXK/Xz+Vy+Xi5XD6u1+vnZrN5Xq/Xz5vN5nm73T5vt9vn3W73vN/vX/b7/ct+v385HA4vh8Ph5Xg8vhyPx5fT6fRyOp1ezufzy/l8frlcLq+Xy+X1er2+3m6319vt9nq/39/u9/vb4/F4ezweb8/n8+35fL79CQARQURQVRARVBUiAhGBiEBVYWYwM5gZzAxmBjODmcHM+JXACQgkGHwBvhmJAAAAAElFTkSuQmCC">
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -129,6 +129,44 @@
         @keyframes spin {
             to {
                 transform: rotate(360deg);
+            }
+        }
+
+        /* Estilos para notificaciones en tiempo real */
+        .real-time-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.5s ease-out;
+            max-width: 350px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
             }
         }
     </style>
@@ -976,7 +1014,7 @@
                 <div class="bg-white rounded-2xl shadow-glow p-6">
                     <h3 class="text-xl font-bold mb-4 text-gray-800">Top 10 Productos Más Vendidos</h3>
                     <div id="top-productos-reporte" class="space-y-3">
-                        <!-- Se lennará dinámicamente -->
+                        <!-- Se llenará dinámicamente -->
                     </div>
                 </div>
             </div>
@@ -1130,32 +1168,25 @@
                     }, 500);
                 }
             });
-            
-            // Escuchar cambios en localStorage (para actualizar entre pestañas)
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'ventas_paola') {
-                    console.log('🔄 Cambio detectado en ventas, actualizando...');
-                    ventas = JSON.parse(e.newValue || '[]');
-                    actualizarResumen();
-                    cargarHistorialVentasCatalogo();
-                    cargarReportes();
-                }
-                
-                if (e.key === 'productos_paola') {
-                    console.log('🔄 Cambio detectado en productos, actualizando...');
-                    productos = JSON.parse(e.newValue || '[]');
-                    cargarProductos();
-                    cargarInventario();
-                    cargarProductosEnSelect();
-                }
-            });
         });
 
         // =============================================
         // INICIALIZACIÓN DEL PANEL
         // =============================================
         function inicializarPanel() {
-            cargarDatos();
+            console.log('🚀 Iniciando panel admin...');
+            
+            // 1. Primero cargar datos locales
+            cargarDatosLocales();
+            
+            // 2. Luego cargar y escuchar ventas de Firebase
+            cargarVentasDeFirebase();
+            inicializarEscuchaVentasRealTime();
+            
+            // 3. Cargar productos de Firebase
+            cargarProductosDeFirebase();
+            
+            // 4. Inicializar componentes de la interfaz
             inicializarSubidaImagen();
             cambiarTab('resumen');
             cargarProductosEnSelect();
@@ -1165,6 +1196,186 @@
             actualizarContadorVisitas();
             iniciarBackupAutomatico();
             inicializarListenersVentas();
+            
+            console.log('✅ Panel admin inicializado correctamente');
+        }
+
+        // =============================================
+        // NUEVA FUNCIÓN: Cargar datos locales primero
+        // =============================================
+        function cargarDatosLocales() {
+            try {
+                // Cargar productos desde localStorage
+                const productosGuardados = localStorage.getItem('productos_paola');
+                if (productosGuardados) {
+                    productos = JSON.parse(productosGuardados);
+                    console.log('📦 Productos cargados desde localStorage:', productos.length);
+                }
+                
+                // Cargar ventas desde localStorage
+                const ventasGuardadas = localStorage.getItem('ventas_paola');
+                if (ventasGuardadas) {
+                    ventas = JSON.parse(ventasGuardadas);
+                    console.log('💰 Ventas cargadas desde localStorage:', ventas.length);
+                }
+                
+            } catch (error) {
+                console.error('❌ Error cargando datos locales:', error);
+                productos = [];
+                ventas = [];
+            }
+        }
+
+        // =============================================
+        // NUEVA FUNCIÓN: Cargar productos desde Firebase
+        // =============================================
+        async function cargarProductosDeFirebase() {
+            try {
+                console.log('🔄 Cargando productos desde Firebase...');
+                
+                const snapshot = await db.collection('productos').doc('paola_boutique').get();
+                
+                if (snapshot.exists) {
+                    const data = snapshot.data();
+                    const productosFirebase = data.items || [];
+                    
+                    console.log('✅ Productos desde Firebase:', productosFirebase.length);
+                    
+                    // Combinar con productos locales (priorizar Firebase)
+                    if (productosFirebase.length > 0) {
+                        productos = productosFirebase;
+                        localStorage.setItem('productos_paola', JSON.stringify(productos));
+                    }
+                    
+                    cargarProductos();
+                }
+                
+            } catch (error) {
+                console.error('❌ Error cargando productos de Firebase:', error);
+            }
+        }
+
+        // =============================================
+        // FUNCIÓN MEJORADA: Cargar ventas desde Firebase
+        // =============================================
+        async function cargarVentasDeFirebase() {
+            try {
+                console.log('🔄 Cargando ventas desde Firebase...');
+                
+                const snapshot = await db.collection('ventas').doc('paola_boutique').get();
+                
+                if (snapshot.exists) {
+                    const data = snapshot.data();
+                    const ventasFirebase = data.items || [];
+                    
+                    console.log('✅ Ventas desde Firebase:', ventasFirebase.length);
+                    
+                    // Usar ventas de Firebase como fuente principal
+                    if (ventasFirebase.length > 0) {
+                        ventas = ventasFirebase;
+                        localStorage.setItem('ventas_paola', JSON.stringify(ventas));
+                        console.log('💾 Ventas guardadas en localStorage desde Firebase');
+                    }
+                    
+                    // Actualizar la interfaz
+                    actualizarResumen();
+                    cargarHistorialVentasCatalogo();
+                    cargarReportes();
+                    
+                    return ventasFirebase;
+                } else {
+                    console.log('⚠️ No hay ventas en Firebase, usando localStorage');
+                    return ventas;
+                }
+                
+            } catch (error) {
+                console.error('❌ Error cargando ventas de Firebase:', error);
+                console.log('⚠️ Usando ventas de localStorage como backup');
+                return ventas;
+            }
+        }
+
+        // =============================================
+        // FUNCIÓN CRÍTICA: Escuchar ventas en tiempo real
+        // =============================================
+        function inicializarEscuchaVentasRealTime() {
+            console.log('👂 Iniciando escucha de ventas en tiempo real...');
+            
+            // Escuchar cambios en el documento de ventas
+            db.collection('ventas').doc('paola_boutique')
+                .onSnapshot((snapshot) => {
+                    if (snapshot.exists) {
+                        const data = snapshot.data();
+                        const ventasActualizadas = data.items || [];
+                        
+                        console.log('🔄 Ventas actualizadas en tiempo real:', ventasActualizadas.length);
+                        
+                        // Comparar con las ventas actuales
+                        const ventasAnteriores = ventas.length;
+                        
+                        if (ventasActualizadas.length !== ventasAnteriores) {
+                            console.log(`📈 Cambio detectado: ${ventasAnteriores} → ${ventasActualizadas.length} ventas`);
+                            
+                            // Actualizar variable global
+                            ventas = ventasActualizadas;
+                            
+                            // Actualizar localStorage
+                            localStorage.setItem('ventas_paola', JSON.stringify(ventasActualizadas));
+                            
+                            // Actualizar todas las secciones de la interfaz
+                            actualizarResumen();
+                            cargarHistorialVentasCatalogo();
+                            cargarReportes();
+                            
+                            // Mostrar notificación de nueva venta
+                            if (ventasActualizadas.length > ventasAnteriores) {
+                                const nuevaVenta = ventasActualizadas[ventasActualizadas.length - 1];
+                                mostrarNotificacionRealTime(`💰 Nueva venta: S/ ${nuevaVenta.total || 0}`);
+                            }
+                        }
+                    }
+                }, (error) => {
+                    console.error('❌ Error escuchando ventas en tiempo real:', error);
+                });
+        }
+
+        // =============================================
+        // FUNCIÓN: Notificación en tiempo real
+        // =============================================
+        function mostrarNotificacionRealTime(mensaje) {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.className = 'real-time-notification';
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-bell text-white"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-white">Nueva Venta</p>
+                        <p class="text-white/90 text-sm">${mensaje}</p>
+                        <p class="text-white/70 text-xs mt-1">${new Date().toLocaleTimeString('es-PE')}</p>
+                    </div>
+                </div>
+                <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white ml-4">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Agregar al body
+            document.body.appendChild(notification);
+            
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'fadeOut 0.5s ease-out';
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, 500);
+                }
+            }, 5000);
         }
 
         // =============================================
@@ -1254,14 +1465,14 @@
                         cliente: cliente,
                         metodoPago: metodoPago,
                         tipo: tipoVenta,
-                        estado: 'confirmada' // ✅ Asegurar que tenga estado
+                        estado: 'confirmada'
                     };
                     
                     // Agregar a ventas
                     ventas.push(nuevaVenta);
                     localStorage.setItem('ventas_paola', JSON.stringify(ventas));
                     
-                    // 🔥 ACTUALIZAR STOCK DEL PRODUCTO (PARTE MÁS IMPORTANTE)
+                    // 🔥 ACTUALIZAR STOCK DEL PRODUCTO
                     const productoIndex = productos.findIndex(p => p.id === productoId);
                     if (productoIndex !== -1) {
                         // Disminuir stock
@@ -1284,13 +1495,11 @@
                         }
                     }
                     
+                    // 🔥 Sincronizar con Firebase inmediatamente
+                    await sincronizarVentasConFirebase();
+                    
                     // 🔥 ACTUALIZAR INTERFAZ
                     actualizarInterfazDespuesDeVenta(nuevaVenta);
-                    
-                    // Sincronizar con Firebase (en segundo plano)
-                    sincronizarVentasConFirebase().then(() => {
-                        console.log('✅ Venta sincronizada con Firebase');
-                    });
                     
                     // Limpiar formulario
                     this.reset();
@@ -1303,6 +1512,29 @@
                     
                     mostrarNotificacion('✅ Venta registrada correctamente');
                 });
+            }
+        }
+
+        // =============================================
+        // FUNCIÓN: Sincronizar ventas con Firebase
+        // =============================================
+        async function sincronizarVentasConFirebase() {
+            try {
+                console.log('🔄 Subiendo ventas a Firebase...');
+                
+                await db.collection('ventas').doc('paola_boutique').set({
+                    items: ventas,
+                    ultimaActualizacion: new Date().toISOString(),
+                    totalVentas: ventas.length,
+                    ventasTotal: ventas.reduce((sum, v) => sum + (v.total || 0), 0)
+                });
+                
+                console.log('✅ Ventas guardadas en Firebase:', ventas.length);
+                return true;
+                
+            } catch (error) {
+                console.error('❌ Error subiendo ventas a Firebase:', error);
+                return false;
             }
         }
 
@@ -1365,141 +1597,10 @@
                     localStorage.setItem('ventas_paola', JSON.stringify(ventas));
                 }
 
-                // Cargar datos de Firebase
-                cargarDatosDeFirebase();
-
             } catch (error) {
                 console.error('Error cargando datos:', error);
                 productos = [];
                 ventas = [];
-            }
-        }
-
-        // =============================================
-        // FUNCIONES DE FIREBASE
-        // =============================================
-        async function cargarDatosDeFirebase() {
-            try {
-                console.log('🔄 Sincronizando con Firebase...');
-                
-                // Cargar productos
-                const snapshot = await db.collection('productos').doc('paola_boutique').get();
-                if (snapshot.exists) {
-                    const data = snapshot.data();
-                    if (data.items) {
-                        productos = data.items;
-                        localStorage.setItem('productos_paola', JSON.stringify(productos));
-                        console.log('✅ Productos sincronizados desde Firebase:', productos.length);
-                    }
-                }
-                
-                // Cargar ventas con actualización en tiempo real
-                await cargarVentasDeFirebase(true); // Pasar true para forzar actualización
-                
-                console.log('✅ Sincronización completa');
-                
-            } catch (error) {
-                console.error('❌ Error sincronizando con Firebase:', error);
-            }
-        }
-
-        async function cargarVentasDeFirebase(forzarActualizacion = false) {
-            try {
-                console.log('🔄 Cargando ventas desde Firebase...');
-                
-                // ✅ CONSULTA MODIFICADA - NO REQUIERE ÍNDICE COMPUESTO
-                const ventasSnapshot = await db.collection('ventas')
-                    .where('tienda', '==', 'paola_boutique')
-                    .get();
-                
-                if (!ventasSnapshot.empty) {
-                    const ventasFirebase = [];
-                    ventasSnapshot.forEach(doc => {
-                        ventasFirebase.push({ 
-                            id: doc.id, 
-                            ...doc.data()
-                        });
-                    });
-                    
-                    console.log(`📥 Ventas obtenidas de Firebase: ${ventasFirebase.length}`);
-                    
-                    // ORDENAR MANUALMENTE por fecha (más reciente primero)
-                    ventasFirebase.sort((a, b) => {
-                        // Convertir fechas a timestamps para comparar
-                        const fechaA = a.fecha ? new Date(a.fecha).getTime() : 0;
-                        const fechaB = b.fecha ? new Date(b.fecha).getTime() : 0;
-                        return fechaB - fechaA; // Orden descendente (más reciente primero)
-                    });
-                    
-                    // Sincronizar con ventas locales (evitar duplicados)
-                    let nuevasVentas = 0;
-                    ventasFirebase.forEach(ventaFB => {
-                        // Verificar si ya existe por ID
-                        const ventaExistente = ventas.find(v => v.id === ventaFB.id);
-                        
-                        if (!ventaExistente) {
-                            ventas.push(ventaFB);
-                            nuevasVentas++;
-                        }
-                    });
-                    
-                    if (nuevasVentas > 0 || forzarActualizacion) {
-                        localStorage.setItem('ventas_paola', JSON.stringify(ventas));
-                        console.log(`✅ ${nuevasVentas} nuevas ventas sincronizadas desde Firebase`);
-                        
-                        // Actualizar la interfaz si hay nuevas ventas
-                        if (nuevasVentas > 0) {
-                            actualizarResumen();
-                            cargarHistorialVentasCatalogo();
-                            cargarReportes();
-                        }
-                    } else {
-                        console.log('ℹ️ No hay nuevas ventas para sincronizar');
-                    }
-                    
-                    console.log(`📊 Total de ventas en sistema: ${ventas.length}`);
-                    
-                } else {
-                    console.log('ℹ️ No hay ventas en Firebase');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error cargando ventas desde Firebase:', error);
-                console.error('Detalles del error:', error.message);
-            }
-        }
-
-        async function sincronizarVentasConFirebase() {
-            try {
-                console.log('🔄 Subiendo ventas a Firebase...');
-                
-                let ventasSubidas = 0;
-                
-                for (const venta of ventas) {
-                    // Verificar si la venta ya existe en Firebase
-                    const ventaExistente = await db.collection('ventas').doc(venta.id.toString()).get();
-                    
-                    if (!ventaExistente.exists) {
-                        await db.collection('ventas').doc(venta.id.toString()).set({
-                            ...venta,
-                            tienda: 'paola_boutique',
-                            sincronizado: new Date().toISOString()
-                        });
-                        ventasSubidas++;
-                    }
-                }
-                
-                if (ventasSubidas > 0) {
-                    console.log(`✅ ${ventasSubidas} ventas subidas a Firebase`);
-                } else {
-                    console.log('ℹ️ Todas las ventas ya están sincronizadas con Firebase');
-                }
-                
-                return true;
-                
-            } catch (error) {
-                console.error('❌ Error subiendo ventas:', error);
-                return false;
             }
         }
 
@@ -3016,60 +3117,6 @@
             }
         }
 
-        function corregirEstadosVentas() {
-            try {
-                let ventasCorregidas = false;
-                
-                // Corregir todas las ventas que tengan estado mal escrito
-                ventas = ventas.map(v => {
-                    if (v.estado === 'comfirmada') {
-                        v.estado = 'confirmada';
-                        ventasCorregidas = true;
-                    }
-                    // También corregir ventas sin estado
-                    if (!v.estado) {
-                        v.estado = 'confirmada';
-                        ventasCorregidas = true;
-                    }
-                    return v;
-                });
-                
-                if (ventasCorregidas) {
-                    localStorage.setItem('ventas_paola', JSON.stringify(ventas));
-                    console.log('✅ Estados de ventas corregidos');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error corrigiendo estados:', error);
-            }
-        }
-
-        function diagnosticarVentas() {
-            console.log('🔍 DIAGNÓSTICO DE VENTAS:');
-            console.log('Total ventas:', ventas.length);
-            
-            const estados = {};
-            ventas.forEach(v => {
-                const estado = v.estado || 'sin estado';
-                estados[estado] = (estados[estado] || 0) + 1;
-            });
-            
-            console.log('Distribución por estado:', estados);
-            
-            // Mostrar las últimas 3 ventas
-            const ultimasVentas = ventas.slice(-3);
-            console.log('Últimas 3 ventas:', ultimasVentas.map(v => ({
-                id: v.id,
-                total: v.total,
-                estado: v.estado,
-                cliente: v.cliente,
-                fecha: v.fecha
-            })));
-        }
-
-        // Hacerla global para la consola
-        window.diagnosticarVentas = diagnosticarVentas;
-
         function mostrarNotificacion(mensaje) {
             const notification = document.createElement('div');
             notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 flex items-center gap-2';
@@ -3204,7 +3251,18 @@
         async function sincronizarCompleto() {
             mostrarNotificacion('🔄 Sincronizando...');
             
-            await cargarDatosDeFirebase();
+            // Sincronizar productos con Firebase
+            try {
+                await db.collection('productos').doc('paola_boutique').set({
+                    items: productos,
+                    ultimaActualizacion: new Date().toISOString()
+                });
+                console.log('✅ Productos sincronizados con Firebase');
+            } catch (error) {
+                console.error('❌ Error sincronizando productos:', error);
+            }
+            
+            // Sincronizar ventas con Firebase
             await sincronizarVentasConFirebase();
             
             cargarProductos();
